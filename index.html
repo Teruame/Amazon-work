@@ -1,0 +1,3492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>亚马逊运营工作台</title>
+<style>
+:root{
+  --bg:#f1efe9; --card:#ffffff; --line:#e8e5db; --txt:#333d35; --sub:#8a9188;
+  --acc:#2e7d5b; --acc-deep:#256a4c; --acc-bg:#e4f0e8;
+  --ok:#2e7d5b; --ok-bg:#e4f0e8;
+  --warn:#b7791f; --warn-bg:#faf1df;
+  --err:#c05648; --err-bg:#fbeae7;
+  --info:#4a7dab; --info-bg:#e8f1f8;
+  --panel:#f7f6f1; --panel-line:#eeede5; --th-bg:#faf9f4; --td-line:#f2f1ea; --hover:#eef2e9;
+  --pill:#f4f2ec; --tag-gray:#eceae1; --img-bg:#edefe6; --chip-bg:#f1efe7; --zero:#c9cec2; --dash:#f0eee6;
+  --side1:#fbfaf6; --side2:#f4f4ec; --side3:#e9efe2; --nav-txt:#6f7a6e; --nav-grp:#a9b0a2;
+  --scroll:#d8d5c9; --toast:#37413a; --row-del:#b9bfb1; --empty:#a3a899;
+  --acc-soft:rgba(46,125,91,.08); --acc-ring:rgba(46,125,91,.13); --acc-glow:rgba(46,125,91,.3);
+  --acc-txt:#ffffff; --overlay:rgba(45,55,45,.45);
+  --radius:14px; --shadow:0 1px 2px rgba(85,85,60,.05),0 4px 16px rgba(85,85,60,.07);
+}
+/* ===== 主题：莫兰迪 · 灰绿 ===== */
+[data-theme="sage"]{
+  --bg:#ebece6; --card:#f8f9f5; --line:#dcded4; --txt:#3b4038; --sub:#8b9088;
+  --acc:#7f927c; --acc-deep:#6d806a; --acc-bg:#e7ece2;
+  --ok:#7f927c; --ok-bg:#e7ece2; --warn:#a8845c; --warn-bg:#f3ecdf;
+  --err:#a97e78; --err-bg:#f2e6e4; --info:#8497a6; --info-bg:#e9edf0;
+  --panel:#f1f2ec; --panel-line:#e3e5dc; --th-bg:#f4f5ef; --td-line:#e8eae1; --hover:#e9ece2;
+  --pill:#e8eae2; --tag-gray:#e2e4db; --img-bg:#e4e6dc; --chip-bg:#eff0e9; --zero:#c2c6ba; --dash:#e9eae1;
+  --side1:#f9f9f5; --side2:#f0f2ea; --side3:#e3e8de; --nav-txt:#6f776d; --nav-grp:#a5ab9f;
+  --scroll:#d4d7cb; --toast:#4a4f47; --row-del:#b7bcb0; --empty:#9aa092;
+  --acc-soft:rgba(127,146,124,.10); --acc-ring:rgba(127,146,124,.16); --acc-glow:rgba(127,146,124,.32);
+  --acc-txt:#ffffff;
+  --overlay:rgba(60,64,56,.45);
+  --shadow:0 1px 2px rgba(90,95,80,.06),0 4px 16px rgba(90,95,80,.09);
+}
+/* ===== 主题：莫兰迪 · 雾霾蓝 ===== */
+[data-theme="mist"]{
+  --bg:#e8ebef; --card:#f7f9fb; --line:#dbe0e7; --txt:#333a42; --sub:#828b95;
+  --acc:#7b8fa5; --acc-deep:#697d92; --acc-bg:#e5ecf2;
+  --ok:#7b8fa5; --ok-bg:#e5ecf2; --warn:#a58a5e; --warn-bg:#f2ecdf;
+  --err:#a97e78; --err-bg:#f2e6e4; --info:#7b8fa5; --info-bg:#e5ecf2;
+  --panel:#eef1f5; --panel-line:#e0e5eb; --th-bg:#f2f4f8; --td-line:#e6eaf0; --hover:#e8edf3;
+  --pill:#e6eaf0; --tag-gray:#e0e4ea; --img-bg:#e2e7ed; --chip-bg:#edf0f4; --zero:#bec5ce; --dash:#e7eaef;
+  --side1:#f8fafc; --side2:#eef2f6; --side3:#e2e9f0; --nav-txt:#6d7884; --nav-grp:#a3abb5;
+  --scroll:#d3d8df; --toast:#414a54; --row-del:#b4bcc6; --empty:#969eaa;
+  --acc-soft:rgba(123,143,165,.12); --acc-ring:rgba(123,143,165,.18); --acc-glow:rgba(123,143,165,.32);
+  --acc-txt:#ffffff;
+  --overlay:rgba(52,58,66,.45);
+  --shadow:0 1px 2px rgba(70,80,95,.06),0 4px 16px rgba(70,80,95,.09);
+}
+/* ===== 主题：莫兰迪 · 豆沙粉 ===== */
+[data-theme="rose"]{
+  --bg:#efe9e8; --card:#faf7f6; --line:#e2d9d7; --txt:#413a39; --sub:#948b8a;
+  --acc:#ab8585; --acc-deep:#96716f; --acc-bg:#f0e4e3;
+  --ok:#96a88f; --ok-bg:#e9ece4; --warn:#ab8a62; --warn-bg:#f4ead9;
+  --err:#b3706a; --err-bg:#f4e0de; --info:#8a94a8; --info-bg:#e8ecf1;
+  --panel:#f4efee; --panel-line:#e7dcd9; --th-bg:#f7f2f1; --td-line:#ece2e0; --hover:#efe3e2;
+  --pill:#ece4e3; --tag-gray:#e6dcd9; --img-bg:#e9e0de; --chip-bg:#f1eae9; --zero:#cfc2c0; --dash:#efe7e5;
+  --side1:#fbf8f7; --side2:#f4edec; --side3:#ecdfdf; --nav-txt:#847a79; --nav-grp:#b0a5a4;
+  --scroll:#dcd2d0; --toast:#504746; --row-del:#c2b6b5; --empty:#a59a99;
+  --acc-soft:rgba(171,133,133,.10); --acc-ring:rgba(171,133,133,.16); --acc-glow:rgba(171,133,133,.30);
+  --acc-txt:#ffffff;
+  --overlay:rgba(66,58,57,.45);
+  --shadow:0 1px 2px rgba(100,88,86,.06),0 4px 16px rgba(100,88,86,.09);
+}
+/* ===== 主题：莫兰迪 · 燕麦 ===== */
+[data-theme="oat"]{
+  --bg:#eee9e1; --card:#f9f6f1; --line:#e0d9cd; --txt:#403a31; --sub:#8f887b;
+  --acc:#a58f6f; --acc-deep:#8f7a5c; --acc-bg:#f0e8dc;
+  --ok:#8f9f7a; --ok-bg:#e9ecdf; --warn:#b38b52; --warn-bg:#f4ead8;
+  --err:#ad7365; --err-bg:#f3e3de; --info:#87909e; --info-bg:#e9ebef;
+  --panel:#f3eee6; --panel-line:#e6ddce; --th-bg:#f6f1e9; --td-line:#ebe4d8; --hover:#eee6da;
+  --pill:#eae4d9; --tag-gray:#e5ddd0; --img-bg:#e6dfd2; --chip-bg:#f0eae1; --zero:#cbc2b3; --dash:#ede5d9;
+  --side1:#fbf9f4; --side2:#f4efe5; --side3:#eae0cf; --nav-txt:#82796a; --nav-grp:#aca494;
+  --scroll:#dbd3c5; --toast:#4d463b; --row-del:#bcb3a3; --empty:#a29a8c;
+  --acc-soft:rgba(165,143,111,.10); --acc-ring:rgba(165,143,111,.16); --acc-glow:rgba(165,143,111,.32);
+  --acc-txt:#ffffff;
+  --overlay:rgba(64,58,49,.45);
+  --shadow:0 1px 2px rgba(95,88,73,.06),0 4px 16px rgba(95,88,73,.09);
+}
+/* ===== 主题：静谧夜（深色） ===== */
+[data-theme="night"]{
+  --bg:#1c211e; --card:#242a26; --line:#333a34; --txt:#e3e8e3; --sub:#96a097;
+  --acc:#7fae94; --acc-deep:#6d9c82; --acc-bg:#2b3a31;
+  --ok:#7fae94; --ok-bg:#2b3a31; --warn:#d0a866; --warn-bg:#3a3323;
+  --err:#d98a7e; --err-bg:#3d2b28; --info:#89a7c4; --info-bg:#26323c;
+  --panel:#2b312c; --panel-line:#39413a; --th-bg:#272d29; --td-line:#313833; --hover:#2f362f;
+  --pill:#2a302b; --tag-gray:#39413a; --img-bg:#333a34; --chip-bg:#2b312c; --zero:#4a524b; --dash:#313833;
+  --side1:#202622; --side2:#1e241f; --side3:#1a201b; --nav-txt:#a8b3a9; --nav-grp:#6f7a70;
+  --scroll:#3d453f; --toast:#4f6d5d; --row-del:#5c665e; --empty:#7d877e;
+  --acc-soft:rgba(127,174,148,.16); --acc-ring:rgba(127,174,148,.22); --acc-glow:rgba(127,174,148,.35);
+  --acc-txt:#17211b;
+  --overlay:rgba(0,0,0,.62);
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 6px 18px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;background:var(--bg);color:var(--txt);font-size:14px}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:9px;font-size:13px;white-space:nowrap}
+input,select,textarea{font-family:inherit;font-size:13px;color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:var(--card);outline:none;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-ring)}
+label{font-size:12px;color:var(--sub);display:block;margin-bottom:5px}
+.nav::-webkit-scrollbar,.content::-webkit-scrollbar,.modal-body::-webkit-scrollbar{width:8px}
+.nav::-webkit-scrollbar-thumb,.content::-webkit-scrollbar-thumb,.modal-body::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:99px}
+
+/* ===== 布局 ===== */
+.app{display:flex;height:100vh;overflow:hidden}
+@supports (height:100dvh){.app{height:100dvh}} /* 安卓/HarmonyOS 浏览器地址栏动态视口，防底部被裁 */
+.sidebar{width:232px;background:linear-gradient(180deg,var(--side1) 0%,var(--side2) 55%,var(--side3) 100%);border-right:1px solid var(--line);display:flex;flex-direction:column;flex-shrink:0;transition:width .2s}
+.sidebar.collapsed{width:64px}
+.sidebar.collapsed .nav-txt,.sidebar.collapsed .brand-txt,.sidebar.collapsed .collapse-label,.sidebar.collapsed .nav-grp,.sidebar.collapsed .sf-txt{display:none}
+.brand{display:flex;align-items:center;gap:11px;padding:20px 16px 14px}
+.brand-icon{width:38px;height:38px;border-radius:12px;background:var(--acc);color:var(--acc-txt);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;flex-shrink:0;box-shadow:0 4px 10px var(--acc-glow)}
+.brand-txt b{display:block;font-size:14.5px;letter-spacing:.3px}
+.brand-txt span{display:block;font-size:11px;color:var(--sub);margin-top:2px}
+.nav{flex:1;overflow-y:auto;padding:2px 12px 10px}
+.nav-grp{font-size:11px;color:var(--nav-grp);padding:16px 6px 6px;letter-spacing:1px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;color:var(--nav-txt);cursor:pointer;margin-bottom:2px;transition:all .15s;white-space:nowrap;font-size:13.5px}
+.nav-item:hover{background:var(--acc-soft);color:var(--txt)}
+.nav-item.active{background:var(--acc);color:var(--acc-txt);font-weight:600;box-shadow:0 4px 12px var(--acc-glow)}
+.nav-item .nav-ico{width:20px;display:flex;justify-content:center;flex-shrink:0}
+.nav-item .nav-ico svg{width:17px;height:17px}
+.side-foot{display:flex;align-items:center;gap:9px;padding:14px 18px;border-top:1px solid var(--line)}
+/* 侧栏快捷区（仅手机端显示：主题切换 / 提醒入口） */
+.sb-quick{display:none}
+.sbq-btn{position:relative;width:46px;min-height:46px;display:flex;align-items:center;justify-content:center;background:none;color:var(--nav-txt);border-radius:11px;cursor:pointer;border:none;padding:0}
+.sbq-btn svg{width:20px;height:20px}
+.sbq-btn:active{background:var(--acc-soft)}
+.side-foot .sf-ico{width:26px;height:26px;border-radius:8px;background:var(--acc-bg);color:var(--acc);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.side-foot .sf-txt b{display:block;font-size:12.5px}
+.side-foot .sf-txt span{display:block;font-size:11px;color:var(--sub);margin-top:1px}
+.collapse-btn{margin:0 14px 14px;padding:8px;border-radius:8px;background:transparent;color:var(--sub);font-size:12px}
+.collapse-btn:hover{color:var(--acc);background:var(--acc-soft)}
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{height:60px;background:var(--card);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding:0 24px;flex-shrink:0}
+.crumb{color:var(--sub);font-size:13px;white-space:nowrap}
+.crumb b{color:var(--txt);font-weight:600}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.top-ico{background:none;color:var(--sub);position:relative;padding:7px;border-radius:9px;display:flex}
+.top-ico svg{width:18px;height:18px}
+.top-ico:hover{background:var(--pill);color:var(--txt)}
+.bell-dot{position:absolute;top:5px;right:5px;width:8px;height:8px;background:var(--err);border-radius:50%;border:2px solid var(--card)}
+.avatar{display:flex;align-items:center;gap:9px}
+.avatar-circle{width:36px;height:36px;border-radius:50%;background:var(--acc);color:var(--acc-txt);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600}
+.avatar-meta b{display:block;font-size:13px}
+.avatar-meta span{font-size:11px;color:var(--sub)}
+.content{flex:1;overflow-y:auto;padding:26px 30px}
+.page-head{margin-bottom:20px}
+.page-head h1{font-size:24px;font-weight:700;letter-spacing:.3px}
+.page-head p{color:var(--sub);font-size:13px;margin-top:5px}
+
+/* ===== 通用组件 ===== */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:18px}
+.card-head{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.card-head h2{font-size:15px;font-weight:600;display:flex;align-items:center;gap:9px}
+.h2-ico{display:inline-flex;color:var(--acc)}
+.h2-ico svg{width:16px;height:16px}
+.count-badge{background:var(--acc);color:var(--acc-txt);font-size:11px;border-radius:999px;padding:1px 9px;min-width:20px;text-align:center;font-weight:500}
+.count-badge.zero{background:var(--zero)}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.head-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-width:0}
+.head-left .search-wrap{flex:0 1 330px;min-width:220px}
+.color-cell.clickable{cursor:pointer}
+.color-cell.clickable:hover .thumb{outline:2px solid var(--acc);outline-offset:1px}
+.det-img{width:100%;max-width:280px;height:200px;border-radius:12px;background-size:cover;background-position:center;background-color:var(--img-bg);margin:0 auto 4px}
+.det-img.noimg{display:flex;align-items:center;justify-content:center;color:var(--empty);font-size:13px}
+.det-grid{display:grid;grid-template-columns:70px 1fr;gap:9px 14px;font-size:13.5px;margin-top:12px}
+.det-grid .k{color:var(--sub)}
+.det-grid .v{font-weight:500}
+.search-wrap{display:flex;gap:8px;align-items:center;flex:1;min-width:260px;max-width:430px}
+.search-wrap input{min-width:0;border-radius:999px;padding:8px 15px;background:var(--panel);border-color:transparent}
+.search-wrap input:focus{background:var(--card);border-color:var(--acc)}
+.btn{background:var(--acc);color:var(--acc-txt);padding:8px 14px;font-weight:500}
+.btn:hover{background:var(--acc-deep)}
+.btn.ghost{background:var(--card);color:var(--txt);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-bg)}
+.btn.danger{background:var(--err)}
+.btn.warn{background:var(--warn)}
+.btn.sm{padding:4px 10px;font-size:12px;border-radius:7px}
+.tbl-wrap{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:12px;color:var(--sub);font-weight:600;text-align:left;padding:11px 16px;background:var(--th-bg);border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid var(--td-line);vertical-align:middle}
+.tbl tbody tr:hover{background:var(--hover)}
+.tbl tbody tr:last-child td{border-bottom:none}
+.thumb{width:44px;height:44px;border-radius:10px;background-size:cover;background-position:center;background-color:var(--img-bg);flex-shrink:0}
+.thumb-empty{display:flex;align-items:center;justify-content:center;color:var(--empty);font-size:11px;background:var(--img-bg)}
+.tag{display:inline-flex;align-items:center;font-size:11px;border-radius:999px;padding:3px 10px;white-space:nowrap;font-weight:500}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}
+.tag.err{background:var(--err-bg);color:var(--err)}
+.tag.info{background:var(--info-bg);color:var(--info)}
+.tag.gray{background:var(--tag-gray);color:var(--sub)}
+.empty{padding:36px;text-align:center;color:var(--empty)}
+.link-btn{color:var(--acc);background:none;padding:2px 4px;font-size:13px}
+.link-btn:hover{text-decoration:underline}
+.mini-btn{background:var(--card);border:1px solid var(--line);color:var(--sub);padding:2px 7px;font-size:12px;border-radius:7px}
+.mini-btn:hover{color:var(--acc);border-color:var(--acc)}
+.chip{display:inline-flex;align-items:center;gap:4px;background:#f1efe7;border-radius:999px;padding:2px 9px;font-size:12px;margin:2px 3px 2px 0;color:var(--sub);background:var(--chip-bg)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.err{background:var(--err-bg);color:var(--err)}
+.color-cells{display:flex;gap:6px;flex-wrap:wrap}
+.color-cell{text-align:center}
+.color-cell .thumb{width:36px;height:36px}
+.color-cell span{display:block;font-size:10px;color:var(--sub);margin-top:2px}
+
+/* 统计卡片 */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-bottom:18px}
+.stat-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;display:flex;align-items:center;gap:14px}
+.stat-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stat-ico svg{width:20px;height:20px}
+.s-green{background:var(--acc-bg);color:var(--acc)}
+.s-blue{background:var(--info-bg);color:var(--info)}
+.s-orange{background:var(--warn-bg);color:var(--warn)}
+.s-red{background:var(--err-bg);color:var(--err)}
+.stat-label{font-size:12px;color:var(--sub)}
+.stat-num{font-size:22px;font-weight:700;margin-top:3px}
+.stat-num span{font-size:12px;color:var(--sub);font-weight:400;margin-left:6px}
+.stat-card.clickable{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.stat-card.clickable:hover{transform:translateY(-2px);box-shadow:var(--shadow),0 6px 16px rgba(0,0,0,.10)}
+.stat-card.clickable:active{transform:translateY(0)}
+
+/* 表格表头点击排序 */
+.tbl thead th.sortable{cursor:pointer;user-select:none}
+.tbl thead th.sortable:hover{color:var(--acc)}
+.sort-ar{color:var(--acc);font-size:10px;margin-left:2px}
+.tbl thead th[draggable="true"]{cursor:grab}
+.tbl thead th.drop-before{box-shadow:inset 3px 0 0 var(--acc)}
+.tbl thead th.drop-after{box-shadow:inset -3px 0 0 var(--acc)}
+
+/* 提醒卡片拖拽手柄 */
+.drag-handle{cursor:grab;color:var(--sub);font-size:15px;line-height:1;padding:5px 4px;border-radius:6px;user-select:none;touch-action:none;flex:0 0 auto}
+.drag-handle:hover{color:var(--acc);background:var(--hover)}
+.drag-handle:active{cursor:grabbing}
+
+/* 提醒中心 */
+.remind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.remind-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-radius:12px;background:var(--panel);margin-bottom:8px}
+.remind-item:hover{background:var(--hover)}
+.remind-item .r-txt{flex:1;min-width:0}
+.remind-item .r-title{font-weight:500;margin-bottom:2px}
+.remind-item .r-sub{color:var(--sub);font-size:12px}
+
+/* 提醒卡片展开/折叠 */
+.rem-body{padding:14px 16px}
+.rem-body.hidden{padding:10px 16px}
+.rem-body.hidden .empty{padding:8px}
+.head-acts{display:flex;align-items:center;gap:8px}
+.rem-toggle{min-width:76px;justify-content:center}
+.rem-toggle:hover{border-color:var(--acc)}
+
+/* Excel 导入结果回传 */
+.imp-sum{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.imp-sum .tag{font-size:12.5px;padding:5px 13px}
+.imp-wrap{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.imp-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.imp-tbl th{position:sticky;top:0;background:var(--th-bg);color:var(--sub);font-weight:600;padding:7px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+.imp-tbl td{padding:7px 10px;border-bottom:1px solid var(--td-line);color:var(--txt);word-break:break-all;white-space:normal}
+.imp-tbl tr:last-child td{border-bottom:none}
+.imp-tbl tr.imp-fail td{background:var(--err-bg);color:var(--err);font-weight:600}
+.imp-tbl tr.imp-skip td{color:var(--sub)}
+.imp-note{font-size:12px;color:var(--sub);margin-top:10px}
+.imp-note b{color:var(--err)}
+/* 模态框 */
+.overlay{position:fixed;inset:0;background:var(--overlay);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal{background:var(--card);border-radius:16px;width:640px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.modal.wide{width:860px}
+.modal.xl{width:980px}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.modal-head h3{font-size:15px;font-weight:600}
+.modal-close{background:none;font-size:20px;color:var(--sub);line-height:1;padding:2px 6px}
+.modal-close:hover{color:var(--err)}
+.modal-body{padding:18px 20px;overflow-y:auto}
+.modal-foot{padding:14px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.form-grid .full{grid-column:1/-1}
+
+/* 主题选择面板 */
+.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.theme-card{border:2px solid var(--line);border-radius:14px;padding:9px;cursor:pointer;background:var(--card);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.theme-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--acc)}
+.theme-card.active{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-ring)}
+.theme-prev{position:relative;height:86px;border-radius:9px;overflow:hidden;display:flex}
+.tp-side{width:26%;display:flex;flex-direction:column;align-items:center;padding-top:9px;gap:5px}
+.tp-brand{width:18px;height:18px;border-radius:6px}
+.tp-dot{width:14px;height:6px;border-radius:99px;opacity:.85}
+.tp-main{flex:1;padding:9px 9px}
+.tp-bar{height:16px;border-radius:6px;display:flex;align-items:center;gap:4px;padding:0 6px}
+.tp-bar span{width:16px;height:5px;border-radius:99px;display:block}
+.tp-pills{display:flex;gap:5px;margin-top:8px}
+.tp-pills span{width:22px;height:10px;border-radius:99px;display:block}
+.tp-check{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.theme-meta{padding:9px 4px 2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.theme-meta b{font-size:13.5px}
+.theme-desc{display:block;width:100%;font-size:12px;color:var(--sub);margin-top:2px}
+.pe-sec{margin-bottom:18px}
+.pe-sec>h4{font-size:13px;color:var(--acc);margin-bottom:9px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.pe-row{display:grid;grid-template-columns:44px 1fr 1.8fr 1.8fr 34px;gap:8px;margin-bottom:8px;align-items:center}
+.pe-row.adj{grid-template-columns:150px 1fr 34px}
+.row-del{background:none;color:var(--row-del);font-size:16px;padding:4px}
+.row-del:hover{color:var(--err)}
+/* 产品编辑器颜色行内的图片组（链接 + 本地上传） */
+.pe-img{display:flex;align-items:center;gap:6px;min-width:0}
+.pe-cur{flex:1;min-width:0;padding:7px 9px;font-size:12.5px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--txt);outline:none}
+.pe-cur:focus{border-color:var(--acc)}
+.pe-up{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--acc);font-size:11.5px;padding:6px 8px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.pe-up:hover{border-color:var(--acc);background:var(--pill)}
+.pe-tag{flex:0 0 auto;font-size:11px;color:var(--sub);padding:3px 7px;border-radius:20px;background:var(--pill);cursor:pointer;white-space:nowrap}
+.pe-tag:hover{color:var(--acc)}
+/* 通用图片字段（链接 / 本地上传 双模式） */
+.imgf{grid-column:1/-1;display:flex;gap:11px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:11px;background:var(--panel)}
+.imgf-prev{width:66px;height:66px;flex:0 0 auto;border-radius:10px;border:1px solid var(--line);background:var(--img-bg) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:19px;color:var(--empty)}
+.imgf-main{flex:1;min-width:0}
+.imgf-label{font-size:12px;color:var(--sub);margin-bottom:6px}
+.imgf-tabs{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:2px;margin-bottom:7px}
+.itab{border:0;background:transparent;color:var(--sub);font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;transition:.15s}
+.itab.on{background:var(--acc);color:var(--acc-txt)}
+.imgf-url{width:100%;box-sizing:border-box;padding:8px 10px;font-size:13px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--txt);outline:none;transition:.15s}
+.imgf-url:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(46,125,91,.12)}
+.imgf-local{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.imgf-file{font-size:11px;color:var(--sub);word-break:break-all}
+.term-list .term{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:8px;margin-bottom:4px;background:var(--panel)}
+.term .t-txt{flex:1;font-size:12.5px}
+.term-add{display:flex;gap:6px;margin-top:6px}
+.act-mini{background:var(--panel);border:1px solid var(--panel-line);border-radius:10px;padding:6px 9px;margin-bottom:6px;font-size:12px}
+.act-mini .am-meta{color:var(--sub);font-size:11px;margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.desc-list{width:100%}
+.desc-list td,.desc-list th{padding:6px 8px;font-size:12.5px}
+
+/* Toast */
+#toastRoot{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{background:var(--toast);color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.25);animation:fadein .2s}
+.toast.ok{background:var(--acc)}
+.toast.err{background:var(--err)}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+/* ===== 响应式布局（电脑 / 手机双状态） ===== */
+html,body{overflow-x:hidden;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+.hamburger{display:none;background:none;color:var(--txt);padding:7px;border-radius:9px;flex-shrink:0}
+.hamburger svg{width:22px;height:22px}
+.hamburger:active{background:var(--pill)}
+.drawer-backdrop{display:none}
+/* 触屏设备：所有按钮保证清晰点击区域（≥44px），输入16px防iOS缩放 */
+@media (hover:none) and (pointer:coarse){
+  button,.nav-item{touch-action:manipulation}
+  .btn,.link-btn,.row-del,.modal-close,.top-ico,.hamburger{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
+  .mini-btn{min-height:38px;min-width:38px;display:inline-flex;align-items:center;justify-content:center}
+  .btn.sm{min-height:40px;min-width:40px}
+  .nav-item{min-height:46px}
+  .collapse-btn{min-height:44px}
+  input,select,textarea{font-size:16px}
+}
+/* 手机布局状态（≤900px）：单列 + 汉堡菜单 */
+@media (max-width:900px){
+  .hamburger{display:none} /* 恢复固定左侧栏，不再需要抽屉入口 */
+  .crumb,.avatar-meta,.help-ico,.collapse-btn{display:none}
+  /* 顶栏整体去掉（华为 Mate 80 Pro 等手机端）：功能入口移至侧栏快捷区 */
+  .topbar{display:none !important}
+  /* 左侧栏：固定显示，仅图标（适中边距），长按/悬停可见完整名称（title 提示） */
+  .sidebar{position:static;width:62px;transform:none;box-shadow:none;border-right:1px solid var(--line)}
+  .sidebar.open{transform:none}
+  /* 品牌区让出状态栏/挖孔摄像头区域 */
+  .brand{justify-content:center;padding:calc(14px + env(safe-area-inset-top, 0px)) 8px 10px}
+  @supports not (padding:calc(0px + env(safe-area-inset-top, 0px))){
+    .brand{padding-top:18px}
+  }
+  .brand-icon{width:36px;height:36px;font-size:16px}
+  .brand-txt,.nav-txt,.nav-grp,.sf-txt,.collapse-btn,.collapse-label{display:none}
+  .nav{padding:6px 6px}
+  .nav-item{justify-content:center;padding:11px 0;margin:0 0 6px;min-height:46px;border-radius:11px}
+  .nav-item .nav-ico svg{width:20px;height:20px}
+  /* 侧栏快捷区（顶栏去掉后的主题/提醒入口） */
+  .sb-quick{display:flex;flex-direction:column;align-items:center;gap:6px;margin:auto 0 4px;padding:8px 8px 2px;border-top:1px solid var(--line)}
+  .sbq-btn{width:46px;min-height:46px}
+  .sbq-btn .bell-dot{top:8px;right:8px}
+  .side-foot{justify-content:center;padding:10px 0;border-top:none}
+  .drawer-backdrop{display:none !important}
+  /* 内容区单列：顶部让出状态栏/挖孔区，底部让出手势条 */
+  .content{padding:calc(14px + env(safe-area-inset-top, 0px)) 12px calc(24px + env(safe-area-inset-bottom, 0px))}
+  @supports not (padding:calc(0px + env(safe-area-inset-top, 0px))){
+    .content{padding-top:18px}
+  }
+  .page-head{margin-bottom:14px}
+  .page-head h1{font-size:19px}
+  .page-head p{font-size:12px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-num{font-size:19px}
+  .remind-grid{grid-template-columns:1fr}
+  .remind-item{padding:10px 12px}
+  .rem-card .card-head,.remind-grid .card-head{flex-direction:row;align-items:center}
+  .remind-grid .head-acts{margin-left:auto}
+  .remind-grid .head-acts .btn{flex:0 0 auto}
+  /* 卡片头纵向堆叠，搜索占满一行 */
+  .card-head{flex-direction:column;align-items:stretch;gap:10px;padding:14px}
+  .head-left{width:100%}
+  .head-left .search-wrap{flex:1 1 100%;max-width:none;min-width:0}
+  .toolbar{width:100%}
+  .toolbar .btn{flex:1 1 auto;justify-content:center}
+  /* 表格 → 卡片式行（正文无横向滚动） */
+  .tbl-wrap{overflow-x:visible}
+  table.tbl{display:block}
+  table.tbl thead{display:none}
+  table.tbl tbody{display:block}
+  table.tbl tr{display:block;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:4px 0;background:var(--card);box-shadow:0 1px 6px rgba(85,85,60,.06)}
+  table.tbl tbody tr:hover{background:var(--card)}
+  table.tbl td{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px 10px;border-bottom:1px dashed var(--dash);padding:9px 13px;white-space:normal;word-break:break-word}
+  table.tbl td:last-of-type{border-bottom:none}
+  table.tbl td::before{content:attr(data-label);flex:0 0 5.5em;color:var(--sub);font-size:12px;font-weight:600;line-height:1.9}
+  table.tbl td[colspan]{display:block;border-bottom:none;padding:20px 14px;text-align:center}
+  table.tbl td[colspan]::before{content:''}
+  table.tbl td .act-mini{flex:1 1 100%}
+  /* 模态框 → 底部弹层（让出底部手势区） */
+  .overlay{padding:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));align-items:flex-end;z-index:150}
+  .modal,.modal.wide,.modal.xl{width:100%;max-width:100%;max-height:calc(100% - 12px);border-radius:18px 18px 12px 12px}
+  .modal-foot{padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px))}
+  .modal-body{padding:14px}
+  .form-grid{grid-template-columns:1fr}
+  /* 产品编辑器颜色行 / 样鞋记录行纵向堆叠 */
+  .pe-row{grid-template-columns:44px 1fr 34px;grid-template-areas:"t n d" "t i i" "f f f"}
+  .pe-row>.thumb{grid-area:t}
+  .pe-row .pe-cn{grid-area:n}
+  .pe-row .pe-img{grid-area:i}
+  .pe-row .pe-cf{grid-area:f}
+  .pe-row .row-del{grid-area:d}
+  .pe-row.adj{display:flex;flex-direction:column;align-items:stretch;gap:6px}
+  .pe-row.adj .row-del{align-self:flex-end}
+  .desc-list td,.desc-list th{white-space:normal;word-break:break-word}
+  .empty{padding:18px}
+  #toastRoot{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:420px){
+  .brand-txt b{font-size:13px}
+  .page-head h1{font-size:18px}
+}
+
+/* ===== 多用户登录页 ===== */
+.login-screen{position:fixed;inset:0;z-index:220;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--bg) 0%,var(--pill) 130%);padding:24px;overflow:auto}
+.login-screen[hidden]{display:none}
+.login-card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 60px rgba(20,40,30,.13);padding:36px 32px 26px;width:100%;max-width:400px}
+.login-brand{text-align:center;margin-bottom:20px}
+.login-brand .brand-icon{width:52px;height:52px;font-size:24px;border-radius:15px;margin:0 auto 12px}
+.login-brand h1{font-size:19px;color:var(--txt)}
+.login-brand p{font-size:12px;color:var(--sub);margin-top:4px}
+.login-tabs{display:flex;gap:6px;background:var(--pill);border-radius:10px;padding:4px;margin-bottom:18px}
+.ltab{flex:1;border:0;background:transparent;color:var(--sub);font-size:13px;padding:8px 0;border-radius:8px;cursor:pointer;transition:.15s}
+.ltab.on{background:var(--card);color:var(--acc);font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.login-field{margin-bottom:13px}
+.login-field label{display:block;font-size:12px;color:var(--sub);margin-bottom:5px}
+.login-field input{width:100%;box-sizing:border-box;padding:10px 12px;font-size:14px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--txt);outline:none;transition:.15s}
+.login-field input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(46,125,91,.12)}
+.login-err{color:var(--err);font-size:12px;min-height:18px;margin:2px 0 10px}
+.login-btn{width:100%;justify-content:center;padding:11px 0;font-size:14px}
+.login-tip{font-size:11px;color:var(--sub);text-align:center;margin-top:13px;line-height:1.7}
+.login-note{background:var(--pill);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12px;color:var(--txt);margin-bottom:13px;line-height:1.6}
+.login-links{text-align:center;margin-top:9px;font-size:12px}
+.login-links a{color:var(--acc);cursor:pointer;text-decoration:none;font-weight:500}
+.login-links a:hover{text-decoration:underline}
+.avatar{cursor:pointer}
+.avatar:hover .avatar-circle{filter:brightness(1.08)}
+.logout-ico:hover{color:var(--err)}
+/* 账户设置面板 */
+.acc-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:4px 0 12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.acc-lbl{font-size:12px;color:var(--sub)}
+.acc-val{display:flex;gap:8px;align-items:center;font-size:14px}
+.acc-sec{font-size:13px;font-weight:600;color:var(--txt);margin:16px 0 9px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.acc-hint{font-size:11px;font-weight:400;color:var(--sub)}
+.acc-inline{display:flex;gap:8px;align-items:center}
+.acc-inline input{flex:1;box-sizing:border-box;padding:9px 11px;font-size:13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--txt);outline:none;transition:.15s}
+.acc-inline input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(46,125,91,.12)}
+.acc-err{color:var(--err);font-size:12px;min-height:16px;margin-top:6px}
+.acc-acts{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
+/* ===== 稳定性相关：存储告警 / 渲染异常 / 存储占用 / 大表折叠 ===== */
+.store-warn{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:260;display:flex;align-items:center;gap:10px;max-width:min(880px,94vw);background:var(--err);color:#fff;padding:9px 14px;border-radius:12px;font-size:12.5px;box-shadow:0 10px 28px rgba(0,0,0,.28);line-height:1.5}
+.store-warn[hidden]{display:none}
+.store-warn .sw-ico{font-size:15px;flex:0 0 auto}
+.store-warn #storeWarnTxt{flex:1 1 auto;min-width:0}
+.store-warn .btn{background:rgba(255,255,255,.94);color:var(--err);border-color:transparent;flex:0 0 auto}
+.store-warn .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+.err-box{padding:22px 20px;line-height:1.7}
+.err-box b{font-size:15px;color:var(--err)}
+.err-box p{margin-top:8px;font-size:13px;color:var(--txt);word-break:break-word}
+.err-box .err-hint{color:var(--sub);font-size:12px}
+.err-acts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.acc-bar{height:7px;border-radius:99px;background:var(--pill);overflow:hidden;margin:9px 0 5px}
+.acc-bar span{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width .3s}
+.acc-bar.warn span{background:var(--warn)}
+.acc-bar.danger span{background:var(--err)}
+.acc-sub{font-size:11px;color:var(--sub);line-height:1.6}
+.more-row td{text-align:center;padding:14px 10px!important;border-bottom:none!important}
+.more-row td::before{content:''!important}
+@media (max-width:900px){
+  .store-warn{top:calc(8px + env(safe-area-inset-top,0px));font-size:12px;flex-wrap:wrap;padding:8px 12px}
+  .store-warn #storeWarnTxt{flex:1 1 100%}
+}
+</style>
+<script>try{var _u=localStorage.getItem('amz_session_v1');var _t=_u?localStorage.getItem('amz_u_'+_u+'__theme'):null;if(!_t)_t=localStorage.getItem('amz_theme_v1');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-icon">A</div><div class="brand-txt"><b>亚马逊运营工作台</b><span>全链路数据一站管理</span></div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="sb-quick">
+      <button class="sbq-btn" title="主题风格" onclick="openThemePanel()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9c0 1.5-1.2 2.5-2.5 2.5H16a2 2 0 0 0-1.5 3.3c.3.4.5.9.5 1.2 0 1.1-1.3 2-3 2z"/><circle cx="7.5" cy="12" r="1"/><circle cx="9.5" cy="7.5" r="1"/><circle cx="14.5" cy="7" r="1"/></svg>
+      </button>
+      <button class="sbq-btn" title="提醒中心" onclick="go('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        <span class="bell-dot" id="bellDot2" hidden></span>
+      </button>
+      <button class="sbq-btn" id="sbAccount" title="账户设置（修改密码 / 绑定邮箱）" onclick="openAccountPanel()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+      </button>
+    </div>
+    <div class="side-foot"><span class="sf-ico">ⓘ</span><div class="sf-txt"><b>帮助与支持</b><span>各账号数据独立保存于本地</span></div></div>
+    <button class="collapse-btn" onclick="toggleSidebar()"><span class="collapse-label">« 收起侧边栏&nbsp;&nbsp;</span><span>«</span></button>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="hamburger" onclick="toggleDrawer()" aria-label="打开导航菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="crumb" id="crumb">工作空间 / <b>首页</b></div>
+      <div class="top-right">
+        <button class="top-ico theme-ico" title="主题风格" onclick="openThemePanel()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9c0 1.5-1.2 2.5-2.5 2.5H16a2 2 0 0 0-1.5 3.3c.3.4.5.9.5 1.2 0 1.1-1.3 2-3 2z"/><circle cx="7.5" cy="12" r="1"/><circle cx="9.5" cy="7.5" r="1"/><circle cx="14.5" cy="7" r="1"/></svg>
+        </button>
+        <button class="top-ico help-ico" title="帮助与支持" onclick="toast('数据保存在本地浏览器，刷新页面不会丢失')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7"/><path d="M12 17h.01"/></svg>
+        </button>
+        <button class="top-ico" title="提醒中心" onclick="go('home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span class="bell-dot" id="bellDot" hidden></span>
+        </button>
+        <button class="top-ico logout-ico" title="退出登录" onclick="logout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+        </button>
+        <div class="avatar" onclick="openAccountPanel()" title="账户设置（修改密码 / 绑定邮箱）"><div class="avatar-circle" id="avatarCircle">运</div><div class="avatar-meta"><b id="avatarName">运营主账号</b><span id="avatarRole">亚马逊运营</span></div></div>
+      </div>
+    </header>
+    <main class="content" id="content"></main>
+  </div>
+</div>
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<div id="loginRoot" class="login-screen" hidden></div>
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+<div id="storeWarn" class="store-warn" hidden>
+  <span class="sw-ico">⚠</span>
+  <span id="storeWarnTxt">数据保存失败</span>
+  <button class="btn sm" onclick="exportBackup()">导出备份</button>
+  <button class="btn ghost sm" onclick="hideStoreWarn()">隐藏</button>
+</div>
+<input type="file" id="fileInput" accept=".xlsx,.xls,.csv" hidden>
+<input type="file" id="bakFileInput" accept=".json,application/json" hidden onchange="onBackupFile(this)">
+<input type="file" id="imgFileInput" accept="image/*" hidden onchange="onImgFilePicked(this)">
+
+<datalist id="skuList"></datalist>
+<datalist id="parentList"></datalist>
+<datalist id="shopList"></datalist>
+<datalist id="typeList"></datalist>
+<datalist id="colorList"></datalist>
+
+<script>
+/* ================= 工具函数 ================= */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = p => p + '_' + Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-3);
+const iso = d => { const x = new Date(d); return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0'); };
+const today = () => iso(new Date());
+const _usFmt = new Intl.DateTimeFormat('en-CA', { timeZone:'America/Los_Angeles', year:'numeric', month:'2-digit', day:'2-digit' });
+let _usKey = '', _usVal = '';
+function usToday(){ // 促销活动时间以美国太平洋时间为准；按小时缓存，避免每条记录都构造 Intl 对象（数据多时极慢）
+  const d = new Date();
+  const k = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours();
+  if(k !== _usKey){ _usKey = k; _usVal = _usFmt.format(d); }
+  return _usVal;
+}
+const nowDT = () => { const d = new Date(); return iso(d) + 'T' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); };
+const fmtDT = s => String(s || '').replace('T', ' ');
+const dayDiff = (a, b) => Math.round((new Date(a) - new Date(b)) / 86400000);
+const num = v => { const n = parseFloat(String(v == null ? '' : v).replace(/[,\s¥$%]/g, '')); return isNaN(n) ? 0 : n; };
+function toast(msg, type){ const t = document.createElement('div'); t.className = 'toast ' + (type || ''); t.textContent = msg; document.getElementById('toastRoot').appendChild(t); setTimeout(() => t.remove(), 2600); }
+const jsq = s => String(s == null ? '' : s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;'); // onclick 内联参数安全转义
+function copyText(btn){
+  const txt = btn.dataset.t || '';
+  const done = () => toast('已复制到剪贴板', 'ok');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(() => fallbackCopy(txt, done));
+  } else fallbackCopy(txt, done);
+}
+function fallbackCopy(txt, done){
+  const ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ toast('复制失败，请手动复制', 'err'); }
+  ta.remove();
+}
+function weekKey(d){ const date = new Date(d); const day = (date.getDay()+6)%7; const th = new Date(date); th.setDate(date.getDate()-day+3); const y = th.getFullYear(); const w = Math.ceil(((th - new Date(y,0,1))/86400000 + 1) / 7); return y + '-W' + w; }
+function weekRange(d){ const date = new Date(d); const day = (date.getDay()+6)%7; const ws = new Date(date); ws.setDate(date.getDate()-day); const we = new Date(ws); we.setDate(ws.getDate()+6); return [iso(ws), iso(we)]; }
+/* 周日 ~ 周六 的送达时段工具（预计送达时段以周日至下周六为一时段） */
+function sunWeek(d){ const date = new Date(d); const day = date.getDay(); const ws = new Date(date); ws.setDate(date.getDate()-day); const we = new Date(ws); we.setDate(ws.getDate()+6); return [iso(ws), iso(we)]; }
+function nextSunWeek(){ const t = new Date(); const day = t.getDay(); const off = day === 0 ? 7 : 7 - day; const ws = new Date(t); ws.setDate(t.getDate()+off); const we = new Date(ws); we.setDate(ws.getDate()+6); return [iso(ws), iso(we)]; }
+function winFmt(s){
+  const f = (str, full) => { if(!str) return ''; const d = new Date(str); if(isNaN(d)) return str;
+    const md = (d.getMonth()+1) + '月' + d.getDate() + '日'; return full ? d.getFullYear() + '年' + md : md; };
+  if(s.winStart && s.winEnd) return f(s.winStart, false) + ' - ' + f(s.winEnd, true);
+  return f(s.winStart || s.winEnd, true);
+}
+function matchQ(q, ...fields){ if(!q) return true; const qq = q.trim().toLowerCase(); return fields.some(f => String(f || '').toLowerCase().includes(qq)); }
+
+/* ================= 图标（线性SVG） ================= */
+const SVG = (p) => `<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ICONS = {
+  home: SVG('<path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>'),
+  products: SVG('<path d="M20.6 13.4 11 3.8A2 2 0 0 0 9.6 3.2H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.6a2 2 0 0 0 0-2.8z"/><circle cx="7.5" cy="7.5" r="1"/>'),
+  promotions: SVG('<path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/>'),
+  ads: SVG('<path d="m3 11 14-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'),
+  creators: SVG('<circle cx="9" cy="7" r="4"/><path d="M2 21v-1a7 7 0 0 1 14 0v1"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/><path d="M22 21v-1a5 5 0 0 0-3-4.6"/>'),
+  inventory: SVG('<path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/>'),
+  shipments: SVG('<path d="M1 5h13v11H1z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/>'),
+  factory: SVG('<path d="M2 20V9l6 4V9l6 4V4h8v16z"/><path d="M17 13h.01M17 17h.01"/>'),
+  skus: SVG('<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>'),
+  clock: SVG('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  calwin: SVG('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M8 14h2M14 14h2M8 17.5h2M14 17.5h2"/>'),
+  sampling: SVG('<circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/>'),
+  trash: SVG('<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 10.5v5.5M14 10.5v5.5"/>')
+};
+
+/* ================= 多用户账户 ================= */
+const USERS_KEY = 'amz_users_v1';
+const SESSION_KEY = 'amz_session_v1';
+function getUsers(){ try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch(e){ return {}; } }
+function saveUsers(u){ try { localStorage.setItem(USERS_KEY, JSON.stringify(u)); return true; } catch(e){ toast('账号信息保存失败：本地存储空间已满', 'err'); return false; } }
+function hashPwd(pw, salt){ // 盐化迭代散列（本地工具级防护，非加密强度）
+  const s = salt + '::' + pw;
+  let h1 = 0x811c9dc5, h2 = 0x9e3779b9;
+  for(let r = 0; r < 96; r++){
+    for(let i = 0; i < s.length; i++){
+      h1 = (h1 ^ s.charCodeAt(i)) >>> 0; h1 = (h1 * 16777619) >>> 0;
+      h2 = (h2 + h1 + r + i) >>> 0; h2 = (h2 ^ (h2 << 13)) >>> 0; h2 = (h2 ^ (h2 >>> 7)) >>> 0;
+    }
+  }
+  return h1.toString(36) + '-' + h2.toString(36) + '-' + s.length.toString(36);
+}
+
+/* ================= 数据层（按用户隔离 + 完整性保护） ================= */
+const DB_VERSION = 3;
+const COLLS = ['products','promotions','sampling','ads','creators','inventory','shipments','factoryOrders','skus'];
+/* ---- 回收站：删除的数据先保留 3 天，可随时恢复；到期自动彻底删除 ---- */
+const TRASH_DAYS = 3;
+const TRASH_TTL = TRASH_DAYS * 24 * 60 * 60 * 1000;
+const TRASH_MAX = 200;          // 最多保留条数（防止长期积累占满本地存储）
+const TRASH_BUDGET = 1200000;   // 回收站最多占用的字符数（约 1.2M 字符）
+const COLL_LABEL = {
+  products:'产品详情', promotions:'促销活动', sampling:'工厂打样情况', ads:'广告数据', creators:'创作者计划',
+  inventory:'产品库存情况', shipments:'FBA货件追踪', factoryOrders:'工厂下单', skus:'具体产品情况'
+};
+const LS_LIMIT = 4500000;           // localStorage 可用字符数保守估算（浏览器上限约 5M）
+const BAK_TTL = 2 * 60 * 60 * 1000; // 自动快照最短间隔：2 小时
+let DB = null;
+let _dataRev = 0; // 数据版本号：派生索引（如工厂未出货）据此失效重建
+const S = { page: 'home', q: {}, user: null };
+let saveFailed = false;   // 最近一次写入是否失败（用于顶部告警条）
+let lastSavedJSON = '';   // 上次成功写入的内容，用于生成可恢复快照
+let lastSaveAt = 0;
+function ukey(k){ return 'amz_u_' + S.user + '__' + k; }
+function loadUserSettings(){
+  const rd = (k, dv) => { try { const v = JSON.parse(localStorage.getItem(ukey(k))); return v || dv; } catch(e){ return dv; } };
+  S.remCol = rd('remcol', {});
+  S.sort = rd('sort', {});
+  S.cols = rd('cols', {});
+  S.remOrder = rd('remorder', null);
+}
+/* ---- 存储读写：配额不足时不静默失败 ---- */
+function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function showStoreWarn(msg){
+  saveFailed = true;
+  const el = document.getElementById('storeWarn');
+  const tx = document.getElementById('storeWarnTxt');
+  if(tx) tx.textContent = msg || '数据保存失败：浏览器本地存储空间已满，最新修改可能丢失，请立即导出备份。';
+  if(el) el.hidden = false;
+}
+function hideStoreWarn(){ const el = document.getElementById('storeWarn'); if(el) el.hidden = true; }
+function safeSet(k, v){
+  try { localStorage.setItem(k, v); saveFailed = false; return true; }
+  catch(e){
+    try { // 配额不足：先清理自动快照再重试一次
+      localStorage.removeItem(ukey('bak'));
+      localStorage.removeItem(ukey('bakat'));
+      localStorage.setItem(k, v);
+      toast('存储空间紧张，已清理自动快照后保存成功', 'ok');
+      saveFailed = false; return true;
+    } catch(e2){
+      showStoreWarn('数据保存失败：本地存储空间已满。请导出备份，并把过大的本地图片改为图片链接。');
+      toast('保存失败：本地存储空间已满，请先导出备份', 'err');
+      return false;
+    }
+  }
+}
+function usageChars(){
+  let n = 0;
+  try {
+    for(let i = 0; i < localStorage.length; i++){
+      const k = localStorage.key(i) || '';
+      if(k.indexOf('amz_') !== 0) continue;
+      n += k.length + String(localStorage.getItem(k) || '').length;
+    }
+  } catch(e){}
+  return n;
+}
+function storagePct(){ return Math.min(100, Math.round(usageChars() / LS_LIMIT * 100)); }
+/* ---- 自动快照（可恢复到最近一次状态） ---- */
+function readSnapshot(){
+  try { const o = JSON.parse(safeGet(ukey('bak')) || 'null'); return o && o.json ? o : null; } catch(e){ return null; }
+}
+/* 快照时间戳单独存一个小键：避免每次保存都解析上兆字节的快照 JSON（长期使用后编辑会明显变卡） */
+function snapshotAt(){ const v = Number(safeGet(ukey('bakat')) || 0); return isFinite(v) ? v : 0; }
+function snapshot(tag, force){
+  try {
+    if(!DB || !lastSavedJSON) return false;
+    if(!force && Date.now() - snapshotAt() < BAK_TTL) return false;
+    if(lastSavedJSON.length > 1200000) return false;                    // 快照过大，跳过以免占满配额
+    if(usageChars() + lastSavedJSON.length > LS_LIMIT * 0.82) return false;
+    const at = Date.now();
+    if(!safeSet(ukey('bak'), JSON.stringify({ at, tag: tag || 'auto', json: lastSavedJSON }))) return false;
+    try { localStorage.setItem(ukey('bakat'), String(at)); } catch(e){}
+    return true;
+  } catch(e){ return false; }
+}
+/* ---- 结构规范化：任何缺失字段都不会导致渲染崩溃 ---- */
+function normalizeDB(db){
+  if(!db || typeof db !== 'object' || Array.isArray(db)) db = {};
+  COLLS.forEach(k => { if(!Array.isArray(db[k])) db[k] = []; });
+  const clean = arr => arr.filter(x => x && typeof x === 'object' && !Array.isArray(x));
+  db.products = clean(db.products).map(p => {
+    p.id = p.id || uid('p');
+    p.createdAt = p.createdAt || nowDT();
+    p.colors = Array.isArray(p.colors) ? clean(p.colors) : [];
+    p.colors.forEach(c => {
+      if(c.fabric == null) c.fabric = p.fabric || ''; // 旧数据：产品级面料下沉到颜色
+      c.name = c.name || ''; c.img = c.img || '';
+    });
+    p.adjustments = Array.isArray(p.adjustments) ? clean(p.adjustments) : [];
+    p.spec = (p.spec && typeof p.spec === 'object') ? p.spec : {};
+    p.done = (p.done && typeof p.done === 'object') ? p.done : {};
+    return p;
+  });
+  ['promotions','sampling','ads','creators','inventory','shipments','factoryOrders','skus'].forEach(k => {
+    db[k] = clean(db[k]).map(r => {
+      r.id = r.id || uid(k.slice(0, 2));
+      r.createdAt = r.createdAt || nowDT();
+      if(k === 'ads'){
+        r.keywords = Array.isArray(r.keywords) ? r.keywords : [];
+        r.hots = Array.isArray(r.hots) ? r.hots : [];
+      }
+      if(k === 'sampling') r.adjustments = Array.isArray(r.adjustments) ? clean(r.adjustments) : [];
+      if(k === 'creators') r.weeksDone = (r.weeksDone && typeof r.weeksDone === 'object') ? r.weeksDone : {};
+      if(k === 'shipments' && r.winDone && typeof r.winDone !== 'object') r.winDone = {};
+      return r;
+    });
+  });
+  // 回收站：结构规范化，任何异常条目都不会导致渲染或恢复崩溃
+  db.trash = Array.isArray(db.trash) ? db.trash.filter(t => t && typeof t === 'object' && !Array.isArray(t)).map(t => {
+    const it = {
+      tid: String(t.tid || uid('tr')),
+      kind: t.kind === 'term' ? 'term' : 'rec',
+      coll: COLL_LABEL[t.coll] ? t.coll : 'products',
+      at: Number(t.at) || 0,
+      label: String(t.label || ''),
+      size: Number(t.size) || 0
+    };
+    if(it.kind === 'term'){
+      it.rid = String(t.rid || '');
+      it.field = t.field === 'hots' ? 'hots' : 'keywords';
+      it.idx = Math.max(0, Number(t.idx) || 0);
+      it.val = String(t.val || '');
+    } else {
+      it.rec = (t.rec && typeof t.rec === 'object' && !Array.isArray(t.rec)) ? t.rec : null;
+    }
+    return it;
+  }).filter(t => t.kind === 'term' || t.rec) : [];
+  db.__v = DB_VERSION;
+  return db;
+}
+function saveRemCol(){ safeSet(ukey('remcol'), JSON.stringify(S.remCol)); }
+function toggleRemCard(key){ S.remCol[key] = !S.remCol[key]; saveRemCol(); render(); }
+function saveSort(){ safeSet(ukey('sort'), JSON.stringify(S.sort)); }
+function saveCols(){ safeSet(ukey('cols'), JSON.stringify(S.cols)); } // 各业务模块列顺序
+function saveRemOrder(){ safeSet(ukey('remorder'), JSON.stringify(S.remOrder)); } // 首页提醒卡顺序
+// 首位注册用户自动继承旧版单账户的全部数据
+function migrateLegacyData(name){
+  if(safeGet('amz_legacy_taken_v1')) return;
+  try { localStorage.setItem('amz_legacy_taken_v1', '1'); } catch(e){}
+  [['workbench','amz_workbench_v1'],['remcol','amz_remcol_v1'],['sort','amz_sort_v1'],
+   ['cols','amz_cols_v1'],['remorder','amz_remorder_v1'],['theme','amz_theme_v1']].forEach(([k, gk]) => {
+    const v = safeGet(gk);
+    if(v != null && safeGet('amz_u_' + name + '__' + k) == null)
+      try { localStorage.setItem('amz_u_' + name + '__' + k, v); } catch(e){}
+  });
+}
+
+function saveDB(force){
+  if(!DB) return false;
+  _dataRev++;
+  let json;
+  try { json = JSON.stringify(DB); }
+  catch(e){ showStoreWarn('数据序列化失败：' + e.message + '，请立即导出备份'); return false; }
+  if(!force && json === lastSavedJSON && !saveFailed) return true; // 内容未变化则不重复写入（避免多标签页互相触发写循环）
+  try { snapshot('auto'); } catch(e){}
+  const ok = safeSet(ukey('workbench'), json);
+  if(ok){ lastSavedJSON = json; lastSaveAt = Date.now(); }
+  return ok;
+}
+function loadDB(opts){
+  opts = opts || {};
+  const raw = safeGet(ukey('workbench'));
+  let parsed = null, corrupt = false;
+  if(raw){
+    try { parsed = JSON.parse(raw); } catch(e){ corrupt = true; }
+    if(!corrupt && (!parsed || typeof parsed !== 'object' || Array.isArray(parsed) || !Array.isArray(parsed.products))) corrupt = true;
+  }
+  if(corrupt){
+    // 原始内容留档（截断保存，避免二次撑爆配额），优先从自动快照恢复
+    try { localStorage.setItem(ukey('corrupt'), String(raw).slice(0, 200000)); } catch(e){}
+    const bak = readSnapshot();
+    if(bak && bak.json){ try { parsed = JSON.parse(bak.json); } catch(e){ parsed = null; } }
+    toast(parsed ? '检测到数据异常，已自动从最近快照恢复' : '检测到数据异常，已重置为示例数据（原始内容已留档）', 'err');
+  }
+  DB = normalizeDB(parsed || seedDB());
+  purgeTrash(true); // 打开工作台即清理超过 3 天的回收站记录
+  _dataRev++;
+  const norm = JSON.stringify(DB);
+  const dirty = !parsed || corrupt || norm !== raw;
+  lastSavedJSON = norm;
+  // 首次写入 / 损坏恢复 / 规范化补齐过字段时持久化；其他标签页触发的同步只读不写，避免互相写回环
+  if(dirty && opts.persist !== false) saveDB(true);
+}
+function newRecord(){ return { createdAt: nowDT() }; }
+
+/* ================= 回收站（删除保留 3 天，到期彻底删除） ================= */
+function fmtStamp(ts){
+  const d = new Date(Number(ts) || 0);
+  if(isNaN(d.getTime()) || !d.getTime()) return '—';
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+/* 剩余可恢复时长文案 */
+function trashLeft(at){
+  const ms = (Number(at) || 0) + TRASH_TTL - Date.now();
+  if(ms <= 0) return '已到期';
+  const h = Math.floor(ms / 3600000), d = Math.floor(h / 24);
+  if(d >= 1) return d + ' 天 ' + (h % 24) + ' 小时';
+  const m = Math.floor((ms % 3600000) / 60000);
+  return (h > 0 ? h + ' 小时 ' : '') + m + ' 分钟';
+}
+/* 一条删除记录的可读摘要（写入时固化，避免后续字段调整导致旧记录显示为空） */
+function trashSummary(coll, r){
+  r = r || {};
+  const j = (arr) => [].concat(arr).filter(Boolean).join(' · ');
+  switch(coll){
+    case 'products':      return j([r.sku, r.type, r.shop]) || '未命名产品';
+    case 'promotions':    return j([r.type, r.parent, r.content]);
+    case 'sampling':      return j([r.sku, r.childAsin || r.msku, r.doneAt ? '已完成打样' : '开发中']);
+    case 'ads':           return j([r.sku || r.parent, ((r.keywords||[]).length + ' 个出单词'), ((r.hots||[]).length + ' 个热门词')]);
+    case 'creators':      return j([r.title, r.sku || r.parent, r.commission]);
+    case 'inventory':     return j([r.sku, r.color, 'FBA ' + num(r.fbaTotal)]);
+    case 'shipments':     return j([r.name || r.shipmentId, r.warehouse, r.method]);
+    case 'factoryOrders': return j([r.sku, r.color, num(r.qty) + ' 双', r.place]);
+    case 'skus':          return j([r.childAsin || r.msku, r.sku, r.shop]);
+  }
+  return '';
+}
+/* 到期清理：返回本次彻底删除的条数 */
+function purgeTrash(silent){
+  if(!DB || !Array.isArray(DB.trash) || !DB.trash.length) return 0;
+  const now = Date.now();
+  const kept = DB.trash.filter(t => t && (now - (Number(t.at) || 0)) < TRASH_TTL);
+  const n = DB.trash.length - kept.length;
+  if(n){ DB.trash = kept; if(!silent) toast('已彻底删除 ' + n + ' 条超过 ' + TRASH_DAYS + ' 天的回收站记录', 'ok'); }
+  return n;
+}
+/* 超量时从最旧的开始丢弃，保证回收站不会挤爆本地存储 */
+function trimTrash(){
+  let total = DB.trash.reduce((s, t) => s + (Number(t.size) || 0), 0);
+  while(DB.trash.length > 1 && (total > TRASH_BUDGET || DB.trash.length > TRASH_MAX)){
+    const last = DB.trash[DB.trash.length - 1];
+    total -= (Number(last.size) || 0);
+    DB.trash.pop();
+  }
+}
+function trashPush(item){
+  DB.trash = Array.isArray(DB.trash) ? DB.trash : [];
+  let size = 0;
+  try { const s = JSON.stringify(item.rec || item.val || ''); size = s ? s.length : 1; } catch(e){ size = 0; }
+  DB.trash.unshift(Object.assign({ tid: uid('tr'), at: Date.now(), size }, item, { size }));
+  purgeTrash(true);
+  trimTrash();
+}
+/* 删除一条业务记录 → 移入回收站（9 个业务模块统一入口） */
+function moveToTrash(coll, id){
+  const arr = DB && DB[coll];
+  if(!Array.isArray(arr)) return false;
+  const rec = arr.find(x => x && x.id === id);
+  if(!rec) return false;
+  let copy;
+  try { copy = JSON.parse(JSON.stringify(rec)); } catch(e){ copy = Object.assign({}, rec); }
+  DB[coll] = arr.filter(x => x.id !== id);
+  let label = '';
+  try { label = trashSummary(coll, copy); } catch(e){ label = ''; }
+  trashPush({ kind:'rec', coll, label: label || '（无摘要）', rec: copy });
+  invalidateIdx();
+  return true;
+}
+/* 广告出单词 / 热门搜索词删除 → 也进回收站（可恢复回原位置） */
+function moveTermToTrash(id, key, i){
+  const r = (DB.ads || []).find(x => x && x.id === id);
+  if(!r || !Array.isArray(r[key]) || i < 0 || i >= r[key].length) return false;
+  const val = r[key][i];
+  r[key].splice(i, 1);
+  trashPush({ kind:'term', coll:'ads', rid:id, field:key, idx:i, val, label:'广告' + (key === 'hots' ? '热门搜索词' : '出单词') + '：' + val });
+  return true;
+}
+function restoreTrash(tid){
+  const list = Array.isArray(DB && DB.trash) ? DB.trash : [];
+  const t = list.find(x => x && x.tid === tid);
+  if(!t) return;
+  if(Date.now() - (Number(t.at) || 0) >= TRASH_TTL){
+    purgeTrash(true); saveDB(); render();
+    toast('该记录已超过 ' + TRASH_DAYS + ' 天保留期，已彻底删除', 'err'); return;
+  }
+  if(t.kind === 'term'){
+    const r = (DB.ads || []).find(x => x && x.id === t.rid);
+    if(!r){ toast('原广告数据已被删除，该关键词无法单独恢复', 'err'); return; }
+    r[t.field] = Array.isArray(r[t.field]) ? r[t.field] : [];
+    r[t.field].splice(Math.min(t.idx, r[t.field].length), 0, t.val);
+  } else {
+    const arr = DB[t.coll];
+    if(!Array.isArray(arr)){ toast('目标模块不存在，无法恢复', 'err'); return; }
+    const rec = t.rec;
+    if(arr.some(x => x && x.id === rec.id)) rec.id = uid(String(t.coll).slice(0, 2)); // 同 ID 已存在时换新 ID，避免互相覆盖
+    arr.unshift(rec);
+  }
+  DB.trash = list.filter(x => x.tid !== tid);
+  invalidateIdx();
+  saveDB();
+  toast('已恢复到「' + (COLL_LABEL[t.coll] || '原模块') + '」', 'ok');
+  render();
+}
+function trashDel(tid){
+  const t = (DB.trash || []).find(x => x.tid === tid); if(!t) return;
+  confirmModal('彻底删除后无法恢复，确定立即删除「' + (t.label || '该记录') + '」吗？', () => {
+    DB.trash = (DB.trash || []).filter(x => x.tid !== tid);
+    saveDB(); toast('已彻底删除', 'ok'); render();
+  }, '彻底删除');
+}
+function trashClear(){
+  const n = (DB.trash || []).length;
+  if(!n){ toast('回收站已经是空的', 'ok'); return; }
+  confirmModal('确定清空回收站？\n共 ' + n + ' 条记录将被立即彻底删除，且无法恢复。', () => {
+    DB.trash = []; saveDB(); toast('回收站已清空，' + n + ' 条记录已彻底删除', 'ok'); render();
+  }, '清空回收站');
+}
+
+function seedDB(){
+  const t = new Date();
+  const d = n => { const x = new Date(t); x.setDate(x.getDate()+n); return iso(x); };
+  const dt = n => d(n) + 'T10:00';
+  const db = {
+    products: [
+      { id: uid('p'), createdAt: dt(-30), sku: 'YX-1001', type: '运动鞋', shop: '美国站', parent: 'B0TEST1001',
+        colors: [{ name:'黑色', img:'https://picsum.photos/seed/shoe-black/200/200', fabric:'飞织布 + 牛皮' }, { name:'白色', img:'https://picsum.photos/seed/shoe-white/200/200', fabric:'飞织布 + 牛皮' }],
+        spec: { craft:'注塑工艺', box:'33*22*12cm', weight:'350g/双', carton:'60*45*52cm / 20双' },
+        adjustments: [{ date: d(-5), content: '前掌加宽2mm，提升包裹性' }, { date: d(-15), content: '鞋舌减薄，减少磨脚' }],
+        done: { mainImage:true, ap:true, video:false, influencer:false, review:false, vine:true } },
+      { id: uid('p'), createdAt: dt(-20), sku: 'YX-1002', type: '休闲鞋', shop: '美国站', parent: 'B0TEST1002',
+        colors: [{ name:'米色', img:'https://picsum.photos/seed/shoe-beige/200/200', fabric:'头层牛皮' }],
+        spec: { craft:'冷粘工艺', box:'32*21*11cm', weight:'420g/双', carton:'58*44*50cm / 18双' },
+        adjustments: [{ date: d(-3), content: '大底防滑纹路调整' }],
+        done: { mainImage:true, ap:false, video:false, influencer:false, review:false, vine:false } }
+    ],
+    promotions: [
+      { id: uid('pr'), createdAt: dt(-3), shop:'美国站', parent:'B0TEST1001', sku:'YX-1001', type:'优惠券', content:'满$40减$8', start:d(0), end:d(7) },
+      { id: uid('pr'), createdAt: dt(-1), shop:'美国站', parent:'B0TEST1001', sku:'YX-1001', type:'秒杀', content:'LD秒杀 15% off', start:d(2), end:d(3) },
+      { id: uid('pr'), createdAt: dt(-8), shop:'美国站', parent:'B0TEST1002', sku:'YX-1002', type:'会员折扣', content:'Prime会员额外8折', start:d(-6), end:d(-1) }
+    ],
+    ads: [
+      { id: uid('ad'), createdAt: dt(-12), shop:'美国站', parent:'B0TEST1001', sku:'YX-1001',
+        keywords:['running shoes men','breathable sneakers'], hots:['lightweight running shoes','air cushion sneakers'] }
+    ],
+    sampling: [
+      { id: uid('sm'), createdAt: dt(-12), shop:'美国站', sku:'YX-1001', type:'运动鞋', parent:'B0TEST1001', childAsin:'B0C1001ABLK', msku:'YX-1001-BLK-9', requirement:'大底改用防滑橡胶，鞋头加固防撞', doneAt: d(-3), adjustments:[{ date: d(-5), content:'打样第2版：鞋楦前掌加宽' }, { date: d(-10), content:'打样第1版确认基本版型' }] },
+      { id: uid('sm'), createdAt: dt(-2), shop:'美国站', sku:'YX-1002', type:'休闲鞋', parent:'B0TEST1002', childAsin:'B0C1002ABEI', msku:'YX-1002-BEI-8', requirement:'米色配瑞典绿鞋带，参考样鞋B款工艺', doneAt:'', adjustments:[] }
+    ],
+    creators: [
+      { id: uid('cr'), createdAt: dt(-2), shop:'美国站', parent:'B0TEST1001', sku:'YX-1001', title:'秋季跑鞋测评合作', content:'Instagram Reels + YouTube Shorts 测评视频', commission:'15%', budget:500, start:d(-1), end:d(4), weeksDone:{} },
+      { id: uid('cr'), createdAt: dt(-9), shop:'美国站', parent:'B0TEST1002', sku:'YX-1002', title:'休闲鞋穿搭种草', content:'TikTok 穿搭博主种草', commission:'10%', budget:300, start:d(-8), end:d(-2), weeksDone:{} }
+    ],
+    inventory: [
+      { id: uid('iv'), createdAt: dt(-4), shop:'美国站', parent:'B0TEST1001', sku:'YX-1001', color:'黑色', fbaTotal:320, fbaSellable:300, transit:200 },
+      { id: uid('iv'), createdAt: dt(-4), shop:'美国站', parent:'B0TEST1001', sku:'YX-1001', color:'白色', fbaTotal:150, fbaSellable:120, transit:80 },
+      { id: uid('iv'), createdAt: dt(-4), shop:'美国站', parent:'B0TEST1002', sku:'YX-1002', color:'米色', fbaTotal:260, fbaSellable:180, transit:0 }
+    ],
+    shipments: (function(){
+      const t = new Date(); const off = t.getDay() === 0 ? 7 : 7 - t.getDay(); // 下周日
+      const ws = new Date(t); ws.setDate(t.getDate() + off);
+      const we = new Date(ws); we.setDate(ws.getDate() + 6);
+      return [
+        { id: uid('sh'), createdAt: dt(-20), shop:'美国站', sku:'YX-1001', parent:'B0TEST1001', name:'FBA18KQ2M-1-A', shipmentId:'FBA18KQ2M', warehouse:'ONT8', method:'海运', depart:d(-18), arrive:d(2), winStart:iso(ws), winEnd:iso(we), delivered:'' },
+        { id: uid('sh'), createdAt: dt(-30), shop:'美国站', sku:'YX-1002', parent:'B0TEST1002', name:'FBA17GHD3-B', shipmentId:'FBA17GHD3', warehouse:'LAX9', method:'空运', depart:d(-28), arrive:d(-2), winStart:d(-8), winEnd:d(-2), delivered:'' }
+      ];
+    })(),
+    factoryOrders: [
+      { id: uid('fo'), createdAt: dt(-10), shop:'美国站', sku:'YX-1001', parent:'B0TEST1001', color:'黑色', qty:500, place:'泉州', orderTime:dt(-10), shippedAt:'' },
+      { id: uid('fo'), createdAt: dt(-6), shop:'美国站', sku:'YX-1002', parent:'B0TEST1002', color:'米色', qty:300, place:'广州', orderTime:dt(-6), shippedAt:d(-1) }
+    ],
+    skus: [
+      { id: uid('sk'), createdAt: dt(-5), shop:'美国站', parent:'B0TEST1001', childAsin:'B0C1001ABLK', msku:'YX-1001-BLK-9', img:'', fbaQty:120, sku:'YX-1001', type:'运动鞋' },
+      { id: uid('sk'), createdAt: dt(-5), shop:'美国站', parent:'B0TEST1001', childAsin:'B0C1001AWHT', msku:'YX-1001-WHT-9', img:'', fbaQty:60, sku:'YX-1001', type:'运动鞋' }
+    ]
+  };
+  return db; // 由 loadDB 统一规范化并写入（带配额保护）
+}
+
+/* ================= 数据关联工具 ================= */
+/* 产品查找索引：库存/货件/SKU 页会按货号反复查找产品，线性查找在数据量大时是平方级开销 */
+let _idx = null, _idxRev = -1;
+function dataIdx(){
+  if(_idx && _idxRev === _dataRev) return _idx;
+  const bySku = new Map(), byParent = new Map();
+  ((DB && DB.products) || []).forEach(p => {
+    if(!p) return;
+    if(p.sku) bySku.set(p.sku, p);
+    if(p.parent && !byParent.has(p.parent)) byParent.set(p.parent, p);
+  });
+  _idx = { bySku, byParent }; _idxRev = _dataRev;
+  return _idx;
+}
+function invalidateIdx(){ _idx = null; _facIdx = null; }
+function findProduct(sku){ const i = dataIdx(); return (sku && i.bySku.get(sku)) || null; }
+function productImg(sku, color){
+  const p = findProduct(sku); if(!p) return '';
+  const cs = p.colors || [];
+  let c = color ? cs.find(x => x.name === color) : null;
+  c = c || cs[0];
+  return c ? (c.img || '') : '';
+}
+function parentImg(parent, skuHint){
+  if(skuHint){ const im = productImg(skuHint); if(im) return im; }
+  const p = dataIdx().byParent.get(parent);
+  const cs = (p && p.colors) || [];
+  return cs[0] ? (cs[0].img || '') : '';
+}
+function typeOfSku(sku){ const p = findProduct(sku); return p ? p.type : ''; }
+/* 工厂未出货数量：先建索引再查，避免库存页逐行扫描全部工厂订单（数据量增长后是平方级开销） */
+let _facIdx = null, _facIdxRev = -1;
+function factoryIdx(){
+  if(_facIdx && _facIdxRev === _dataRev) return _facIdx;
+  const byKey = new Map(), bySku = new Map();
+  (DB.factoryOrders || []).forEach(o => {
+    if(o.shippedAt) return;
+    const q = num(o.qty), sku = o.sku || '', k = sku + '|' + (o.color || '');
+    byKey.set(k, (byKey.get(k) || 0) + q);
+    bySku.set(sku, (bySku.get(sku) || 0) + q);
+  });
+  _facIdx = { byKey, bySku }; _facIdxRev = _dataRev;
+  return _facIdx;
+}
+function factoryUnshipped(sku, color){
+  try {
+    const idx = factoryIdx();
+    return color ? (idx.byKey.get(sku + '|' + color) || 0) : (idx.bySku.get(sku) || 0);
+  } catch(e){
+    return (DB.factoryOrders || []).filter(o => o.sku === sku && (!color || o.color === color) && !o.shippedAt)
+      .reduce((s, o) => s + num(o.qty), 0);
+  }
+}
+function propagateProductMeta(p){
+  // 货号/店铺/父ASIN 一处修改，全局同步
+  ['promotions','ads','sampling','creators','inventory','shipments','factoryOrders','skus'].forEach(k => {
+    (DB[k] || []).forEach(r => { if(r.sku === p.sku){ r.shop = p.shop; r.parent = p.parent; } });
+  });
+}
+function propagateSkuRename(oldSku, newSku){
+  ['promotions','ads','sampling','creators','inventory','shipments','factoryOrders','skus'].forEach(k => {
+    (DB[k] || []).forEach(r => { if(r.sku === oldSku) r.sku = newSku; });
+  });
+}
+function refreshDatalists(){
+  const set = (id, arr) => {
+    const el = document.getElementById(id); if(!el) return;
+    el.innerHTML = [...new Set((arr || []).filter(Boolean))].map(v => `<option value="${esc(v)}">`).join('');
+  };
+  const P = DB.products || [], SK = DB.skus || [], PR = DB.promotions || [];
+  set('skuList', P.map(p => p.sku));
+  set('parentList', [...P.map(p => p.parent), ...SK.map(s => s.parent)]);
+  set('shopList', [...P.map(p => p.shop), ...PR.map(r => r.shop)]);
+  set('typeList', P.map(p => p.type));
+  set('colorList', P.flatMap(p => (p.colors || []).map(c => c.name)));
+}
+function autoFromSku(el){
+  const p = findProduct(el.value.trim()); if(!p) return;
+  const box = el.closest('.modal-body') || document;
+  [['shop', p.shop], ['parent', p.parent], ['type', p.type]].forEach(([n, v]) => {
+    const f = box.querySelector(`[name="${n}"]`); if(f && !f.value && v) f.value = v;
+  });
+}
+
+/* ================= 路由与框架 ================= */
+const NAV = [
+  { key:'home', name:'首页', grp:'工作空间' },
+  { key:'products', name:'产品详情', grp:'业务模块' },
+  { key:'promotions', name:'促销活动', grp:'业务模块' },
+  { key:'sampling', name:'工厂打样情况', grp:'业务模块' },
+  { key:'ads', name:'广告数据', grp:'业务模块' },
+  { key:'creators', name:'创作者计划', grp:'业务模块' },
+  { key:'inventory', name:'产品库存情况', grp:'供应链协同' },
+  { key:'shipments', name:'FBA货件追踪', grp:'供应链协同' },
+  { key:'factory', name:'工厂下单', grp:'供应链协同' },
+  { key:'skus', name:'具体产品情况', grp:'数据档案' },
+  { key:'trash', name:'回收站', grp:'数据档案' }
+];
+const GRPS = ['工作空间','业务模块','供应链协同','数据档案'];
+const DESC = {
+  home:'汇总促销活动、产品完善度、创作者计划（按店铺）、即将到港、到港未送达、送达时段、工厂出货与新开发样鞋八类自动提醒，促销时间按美国时间计算。',
+  products:'管理产品基础信息、颜色图片与各颜色面料、规格参数与样鞋调整记录，一处修改全局同步。',
+  promotions:'以父体为维度管理优惠券、秒杀、Z划算等促销活动，支持同父体叠加多类型活动，活动时间按美国时间（太平洋时区）计算。',
+  sampling:'管理工厂打样开发进度，支持按父ASIN / 子ASIN / MSKU / 货号 / 店铺 / 产品类型搜索，未填写完成时间的样鞋每日提醒。',
+  ads:'维护各父体的出单词与热门搜索词，支持手动排序与批量维护。',
+  creators:'跟进创作者合作计划的标题、内容、佣金与预算执行情况。',
+  inventory:'按父ASIN汇总FBA库存、在途与工厂未出货数据，支持颜色细分与Excel导入。',
+  shipments:'追踪FBA货件离港、到港与送达全流程，支持周日至周六的预计送达时段管理，同天同货源货件相邻展示。',
+  factory:'管理工厂下单与出货进度，未出货订单自动提醒并与库存数据联动。',
+  skus:'维护子ASIN/MSKU明细库存，Excel导入需子ASIN与MSKU同时匹配成功方可更新，导入后可下载结果表格。',
+  trash:'删除的业务数据会先进入回收站并保留 ' + TRASH_DAYS + ' 天，期间可随时恢复；超过 ' + TRASH_DAYS + ' 天后自动彻底删除，也可在此手动彻底删除或清空。'
+};
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('collapsed'); }
+function toggleDrawer(force){
+  const sb = document.getElementById('sidebar'), bd = document.getElementById('drawerBackdrop');
+  const open = force === undefined ? !sb.classList.contains('open') : !!force;
+  sb.classList.toggle('open', open); bd.classList.toggle('show', open);
+}
+function closeDrawer(){ toggleDrawer(false); }
+function go(page){ closeDrawer(); S.page = page; if(location.hash.slice(1) !== page) location.hash = page; render(); }
+function render(){
+  try { renderInner(); }
+  catch(err){
+    console.error('[render]', err);
+    const c = document.getElementById('content');
+    if(c) c.innerHTML = `<div class="card"><div class="err-box">
+      <b>页面渲染出现异常（数据未受影响）</b>
+      <p>错误信息：${esc(err && err.message ? err.message : String(err))}</p>
+      <p class="err-hint">你的数据仍然安全保存在本地。可先返回首页继续使用，或导出备份留档后再排查。</p>
+      <div class="err-acts">
+        <button class="btn sm" onclick="go('home')">返回首页</button>
+        <button class="btn ghost sm" onclick="exportBackup()">导出数据备份</button>
+      </div></div></div>`;
+    toast('页面渲染异常，已自动拦截，数据未受影响', 'err');
+  }
+}
+function renderInner(){
+  invalidateIdx(); // 每次渲染重建派生索引，保证直接改动数据后查找结果不过期
+  purgeTrash(true); // 渲染前静默清理到期记录（超过 3 天）
+  document.getElementById('nav').innerHTML = GRPS.map(g =>
+    `<div class="nav-grp">${g}</div>` +
+    NAV.filter(n => n.grp === g).map(n =>
+      `<div class="nav-item ${S.page===n.key?'active':''}" onclick="go('${n.key}')" title="${n.name}">
+        <span class="nav-ico">${ICONS[n.key]}</span><span class="nav-txt">${n.name}</span></div>`).join('')
+  ).join('');
+  const cur = NAV.find(n => n.key === S.page) || NAV[0];
+  document.getElementById('crumb').innerHTML = `${cur.grp} / <b>${cur.name}</b>`;
+  refreshDatalists();
+  const rem = calcReminders();
+  const totalR = rem.promo.length + rem.incomplete.length + Object.keys(rem.creatorShops).length + rem.arrive.length + rem.overdue.length + rem.winNext.length + rem.factory.length + rem.sampling.length;
+  document.getElementById('bellDot').hidden = totalR === 0;
+  document.getElementById('bellDot2').hidden = totalR === 0;
+  const c = document.getElementById('content');
+  c.innerHTML = `<div class="page-head"><h1>${cur.name}</h1><p>${DESC[cur.key] || ''}</p></div><div id="pageBody"></div>`;
+  ({ home:renderHome, products:renderProducts, promotions:renderPromotions, sampling:renderSampling, ads:renderAds, creators:renderCreators,
+     inventory:renderInventory, shipments:renderShipments, factory:renderFactory, skus:renderSkus, trash:renderTrash }[S.page] || renderHome)(document.getElementById('pageBody'));
+  enhanceTables();
+  appendMoreRow();
+}
+/* 大表保护：数据层直接截断到 300 行，避免数据积累后先拼出几兆 HTML 再隐藏 */
+const ROW_LIMIT = 300;
+const rowExpanded = {};
+function listCap(list){
+  const p = S.page, total = list.length;
+  S.__total = S.__total || {};
+  S.__truncated = S.__truncated || {};
+  S.__total[p] = total;
+  const trunc = total > ROW_LIMIT && !rowExpanded[p];
+  S.__truncated[p] = trunc;
+  return trunc ? list.slice(0, ROW_LIMIT) : list;
+}
+/* 表格底部提示行：告知已折叠多少条，点击可展开全部 */
+function appendMoreRow(){
+  const p = S.page;
+  if(!S.__truncated || !S.__truncated[p]) return;
+  const body = document.getElementById('pageBody'); if(!body) return;
+  const tb = body.querySelector('table.tbl'); if(!tb) return;
+  const tbody = tb.querySelector('tbody'); if(!tbody) return;
+  const ths = tb.querySelectorAll('thead th').length || 1;
+  const total = S.__total[p] || 0;
+  const tr = document.createElement('tr');
+  tr.className = 'more-row';
+  tr.innerHTML = `<td colspan="${ths}"><button class="btn ghost sm" onclick="expandRows()">显示全部 ${total} 条（当前显示前 ${ROW_LIMIT} 条，排序只作用于显示行，建议先用搜索缩小范围）</button></td>`;
+  tbody.appendChild(tr);
+}
+function expandRows(){ rowExpanded[S.page] = true; render(); }
+/* 表格增强：应用用户自定义列顺序 + 注入 data-label（手机端卡片字段名）+ 挂载点击排序与列拖拽 */
+function enhanceTables(){
+  const mobile = window.matchMedia ? window.matchMedia('(max-width: 900px)').matches : window.innerWidth <= 900;
+  document.querySelectorAll('table.tbl').forEach(tb => {
+    if(tb.closest && tb.closest('.overlay, #modalRoot')) return; // 弹窗内明细表不参与
+    const headRow = tb.querySelector('thead tr');
+    if(!headRow) return;
+    const ths = [...headRow.children].filter(x => x.tagName === 'TH');
+    if(!ths.length) return;
+    // 原始列名单独记录：排序箭头写在 innerHTML 里，不能反过来污染列标签
+    ths.forEach(th => { if(!th.dataset.origLbl) th.dataset.origLbl = th.textContent.trim(); });
+    const orig = ths.map(th => th.dataset.origLbl); // 本次渲染的默认列顺序（冻结为基准）
+    let labels = orig;
+    const order = S.cols[S.page];
+    if(order && order.length){
+      // 应用用户拖拽的列顺序；新增列自动追加到末尾，已删除列自动忽略
+      labels = order.filter(l => orig.includes(l)).concat(orig.filter(l => !order.includes(l)));
+      const map = labels.map(l => orig.indexOf(l));
+      const hc = [...headRow.children];
+      map.forEach(oi => headRow.appendChild(hc[oi])); // 按新顺序重排表头
+      const tbody0 = tb.querySelector('tbody');
+      if(tbody0){
+        for(let i = 0; i < tbody0.rows.length; i++){
+          const tr = tbody0.rows[i];
+          if(tr.cells.length !== orig.length) continue; // 汇总/空行跳过
+          const cs = [...tr.cells];
+          map.forEach(oi => tr.appendChild(cs[oi])); // 单元格同步重排
+        }
+      }
+    }
+    const thNow = [...headRow.children].filter(x => x.tagName === 'TH');
+    thNow.forEach((th, ci) => {
+      th.dataset.lbl = labels[ci];
+      if(labels[ci] === '操作'){ th.removeAttribute('draggable'); th.onclick = null; return; } // 操作列固定不参与
+      th.classList.add('sortable');
+      th.title = '点击：按该字段排序（升 → 降 → 取消）；拖动：调整该列前后位置';
+      th.setAttribute('draggable', 'true');
+      th.onclick = () => { if(colJustDropped){ colJustDropped = false; return; } sortTableClick(S.page, ci); };
+      th.ondragstart = e => colDragStart(e, labels[ci]);
+      th.ondragover = e => colDragOver(e, th);
+      th.ondragleave = () => { th.classList.remove('drop-before', 'drop-after'); };
+      th.ondrop = e => colDrop(e, th);
+    });
+    // 移动端卡片布局才需要字段名标签；桌面端跳过，可省去整表数万次属性写入
+    const tbody = tb.querySelector('tbody');
+    if(tbody && mobile){
+      for(let i = 0; i < tbody.rows.length; i++){
+        const tr = tbody.rows[i];
+        if(tr.cells.length !== labels.length) continue;
+        for(let c = 0; c < tr.cells.length; c++){
+          const td = tr.cells[c];
+          if(td.tagName === 'TD' && labels[c]) td.dataset.label = labels[c];
+        }
+      }
+    }
+    const st = S.sort[S.page];
+    if(st && thNow[st.col] && labels[st.col] !== '操作'){ markSortTh(tb, st); applyTableSort(tb, st.col, st.dir); }
+  });
+}
+/* ===== 列拖拽（所有业务模块通用）===== */
+let dragColFrom = null, colJustDropped = false;
+function colDragStart(e, lbl){
+  dragColFrom = lbl;
+  e.dataTransfer.effectAllowed = 'move';
+  try{ e.dataTransfer.setData('text/plain', lbl); }catch(err){}
+}
+function colDragOver(e, th){
+  if(!dragColFrom || !th || th.dataset.lbl === '操作' || th.dataset.lbl === dragColFrom) return;
+  e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+  const r = th.getBoundingClientRect();
+  th.classList.toggle('drop-before', (e.clientX - r.left) <= r.width / 2);
+  th.classList.toggle('drop-after', (e.clientX - r.left) > r.width / 2);
+}
+function colDrop(e, th){
+  e.preventDefault();
+  th.classList.remove('drop-before', 'drop-after');
+  const from = dragColFrom; dragColFrom = null;
+  if(!from || !th || th.dataset.lbl === from || th.dataset.lbl === '操作') return;
+  const tb = th.closest('table');
+  const labels = [...tb.querySelectorAll('thead th')].map(t => t.dataset.lbl);
+  const r = th.getBoundingClientRect();
+  const after = (e.clientX - r.left) > r.width / 2; // 落点在目标列左半：插到其前；右半：插到其后
+  const next = colReorder(labels, from, th.dataset.lbl, after);
+  if(!next) return;
+  S.cols[S.page] = next;
+  delete S.sort[S.page]; saveSort(); // 列序变化后旧排序索引失效，清除
+  saveCols();
+  colJustDropped = true; // 防止部分浏览器拖放后再触发一次点击排序
+  setTimeout(() => { colJustDropped = false; }, 300);
+  render();
+}
+function colReorder(labels, from, to, after){
+  if(from === to) return null;
+  const arr = labels.slice();
+  const fi = arr.indexOf(from);
+  if(fi < 0) return null; // 源不存在（列已删除），不处理
+  arr.splice(fi, 1);
+  const ti = arr.indexOf(to);
+  if(ti < 0) return null;
+  arr.splice(after ? ti + 1 : ti, 0, from);
+  return arr;
+}
+/* 排序三态切换：升 → 降 → 取消（取消后恢复模块默认排序） */
+function sortTableClick(key, ci){
+  const st = S.sort[key];
+  if(st && st.col === ci){
+    if(st.dir === 1) S.sort[key] = { col: ci, dir: -1 };
+    else { delete S.sort[key]; saveSort(); render(); return; }
+  } else S.sort[key] = { col: ci, dir: 1 };
+  saveSort(); render();
+}
+function markSortTh(tb, st){
+  [...tb.querySelectorAll('thead th')].forEach((th, i) => {
+    th.innerHTML = th.dataset.lbl + (i === st.col ? `<span class="sort-ar">${st.dir === 1 ? '↑' : '↓'}</span>` : '');
+  });
+}
+/* 基于单元格文本的数值感知排序，空值恒排最后 */
+function applyTableSort(tb, col, dir){
+  const tbody = tb.querySelector('tbody'); if(!tbody) return;
+  const ths = tb.querySelectorAll('thead th').length;
+  const rows = [];
+  for(let i = 0; i < tbody.rows.length; i++){
+    const tr = tbody.rows[i];
+    if(tr.cells.length === ths) rows.push(tr);
+  }
+  if(rows.length < 2) return;
+  const coll = new Intl.Collator('zh', { numeric: true, sensitivity: 'base' });
+  const val = tr => { const c = tr.cells[col]; return c ? (c.textContent || '').trim() : ''; };
+  rows.sort((a, b) => {
+    const va = val(a), vb = val(b);
+    if(!va && !vb) return 0;
+    if(!va) return 1; if(!vb) return -1;
+    return dir * coll.compare(va, vb);
+  }).forEach(r => tbody.appendChild(r));
+}
+function keepFocus(){
+  const i = document.getElementById('searchBox');
+  if(!i) return;
+  try { i.focus(); } catch(e){}
+  try { const v = i.value; i.setSelectionRange(v.length, v.length); } catch(e){}
+}
+/* 搜索防抖：连打不会每个字符都重绘整页 */
+let searchTimer = null;
+function doSearch(page, el, immediate){
+  if(!el) return;
+  S.q[page] = el.value;
+  clearTimeout(searchTimer);
+  if(immediate){ render(); keepFocus(); return; }
+  searchTimer = setTimeout(() => { render(); keepFocus(); }, 180);
+}
+function searchBox(page, ph){
+  return `<div class="search-wrap">
+    <input id="searchBox" placeholder="${ph}" value="${esc(S.q[page]||'')}" oninput="doSearch('${page}',this)">
+    <button class="btn ghost" onclick="doSearch('${page}',document.getElementById('searchBox'),true)">🔍 搜索</button>
+  </div>`;
+}
+function imgCell(url, label){
+  if(url) return `<div class="thumb" style="background-image:url('${esc(url)}')" title="${esc(label||'')}"></div>`;
+  return `<div class="thumb thumb-empty" title="${esc(label||'')}">${esc(String(label||'').slice(0,2)) || '🖼'}</div>`;
+}
+
+/* ================= 图片字段：链接 / 本地文件上传 ================= */
+const IMG_STATE = {}; // key -> { mode:'url'|'local', url, data, name, ids }
+const isDataImg = v => /^data:image\//i.test(String(v || ''));
+function imgReg(key, val, ids){
+  IMG_STATE[key] = {
+    mode: isDataImg(val) ? 'local' : 'url',
+    url: isDataImg(val) ? '' : (val || ''),
+    data: isDataImg(val) ? val : '',
+    name: isDataImg(val) ? '已上传本地图片' : '',
+    ids: ids || {}
+  };
+  return IMG_STATE[key];
+}
+function imgVal(key){
+  const st = IMG_STATE[key];
+  if(!st) return '';
+  return st.mode === 'local' ? (st.data || '') : (st.url || '');
+}
+function syncImg(key){
+  const st = IMG_STATE[key]; if(!st) return;
+  const v = imgVal(key);
+  const $ = id => id ? document.getElementById(id) : null;
+  const hid = $(st.ids.val); if(hid) hid.value = v;
+  const pv = $(st.ids.prev);
+  if(pv){
+    if(v){ pv.style.backgroundImage = "url('" + v + "')"; if(pv.classList) pv.classList.remove('empty'); pv.textContent = ''; }
+    else { pv.style.backgroundImage = ''; if(pv.classList) pv.classList.add('empty'); pv.textContent = '🖼'; }
+  }
+  const ui = $(st.ids.url); if(ui) ui.hidden = st.mode !== 'url';
+  const lc = $(st.ids.local); if(lc) lc.hidden = st.mode !== 'local';
+  const tb = $(st.ids.tabUrl), tl = $(st.ids.tabLocal);
+  if(tb && tb.classList) tb.classList.toggle('on', st.mode === 'url');
+  if(tl && tl.classList) tl.classList.toggle('on', st.mode === 'local');
+  const tg = $(st.ids.tag); if(tg) tg.textContent = st.mode === 'local' ? '本地图片' : (st.url ? '链接图片' : '未设置');
+  const fn = $(st.ids.file); if(fn) fn.textContent = st.name || '支持 JPG / PNG / WebP，自动压缩';
+  const pk = $(st.ids.pick); if(pk) pk.textContent = st.name ? '重新选择' : '选择本地图片';
+}
+/* 通用图片字段：图片链接输入 + 本地上传，隐藏域承载最终值 */
+function imgf(key, label, val, opts){
+  opts = opts || {};
+  const st = imgReg(key, val, { prev:'imgfPrev_'+key, val:'imgfVal_'+key, url:'imgfUrl_'+key,
+    local:'imgfLocal_'+key, tabUrl:'imgfTabU_'+key, tabLocal:'imgfTabL_'+key, file:'imgfFile_'+key, pick:'imgfPick_'+key });
+  return `<div class="imgf" id="imgf_${key}">
+    <div class="imgf-prev ${val ? '' : 'empty'}" id="imgfPrev_${key}" ${val ? `style="background-image:url('${esc(val)}')"` : ''}>${val ? '' : '🖼'}</div>
+    <div class="imgf-main">
+      <div class="imgf-label">${esc(label || '')}</div>
+      <div class="imgf-tabs">
+        <button type="button" class="itab ${st.mode === 'url' ? 'on' : ''}" id="imgfTabU_${key}" onclick="imgfMode('${key}','url')">图片链接</button>
+        <button type="button" class="itab ${st.mode === 'local' ? 'on' : ''}" id="imgfTabL_${key}" onclick="imgfMode('${key}','local')">本地图片</button>
+      </div>
+      <input class="imgf-url" id="imgfUrl_${key}" placeholder="粘贴图片链接，如 https://..." value="${esc(st.url)}" ${st.mode === 'url' ? '' : 'hidden'} oninput="imgfUrlInput('${key}',this)">
+      <div class="imgf-local" id="imgfLocal_${key}" ${st.mode === 'local' ? '' : 'hidden'}>
+        <button type="button" class="btn ghost sm" id="imgfPick_${key}" onclick="pickImage('${key}')">${st.name ? '重新选择' : '选择本地图片'}</button>
+        <span class="imgf-file" id="imgfFile_${key}">${esc(st.name || '支持 JPG / PNG / WebP，自动压缩')}</span>
+      </div>
+      <input type="hidden" ${opts.name ? `name="${esc(opts.name)}"` : ''} id="imgfVal_${key}" value="${esc(val)}">
+    </div>
+  </div>`;
+}
+function imgfMode(key, mode){
+  const st = IMG_STATE[key]; if(!st) return;
+  st.mode = mode; syncImg(key);
+  if(mode === 'url'){ const i = document.getElementById('imgfUrl_' + key); if(i && i.focus) i.focus(); }
+}
+function imgfUrlInput(key, el){
+  const st = IMG_STATE[key]; if(!st) return;
+  st.url = el.value.trim();
+  if(st.mode === 'url') syncImg(key);
+}
+/* 产品编辑器颜色行的紧凑图片组 */
+function peImgUrl(i, el){
+  const key = 'pc' + i, st = IMG_STATE[key]; if(!st) return;
+  st.url = el.value.trim();
+  if(st.mode === 'url') syncImg(key);
+}
+function peImgMode(i){
+  const key = 'pc' + i, st = IMG_STATE[key]; if(!st) return;
+  if(st.mode === 'local'){ st.mode = 'url'; syncImg(key); }
+  else if(st.data){ st.mode = 'local'; syncImg(key); }
+  else pickImage(key);
+}
+/* 文件选择与压缩 */
+let imgPickKey = null;
+function pickImage(key){
+  imgPickKey = key;
+  const inp = document.getElementById('imgFileInput');
+  if(!inp) return;
+  try { inp.value = ''; } catch(e){}
+  inp.click();
+}
+function onImgFilePicked(input){
+  const f = input.files && input.files[0];
+  const key = imgPickKey;
+  if(!f || !key) return;
+  if(!/^image\//.test(f.type || '')){ toast('请选择图片文件（JPG / PNG / WebP）', 'err'); return; }
+  if(f.size > 15 * 1024 * 1024){ toast('图片超过 15MB，请先压缩后再上传', 'err'); return; }
+  const fr = new FileReader();
+  fr.onload = () => {
+    compressImage(fr.result, 640, 0.82, dataUrl => {
+      const st = IMG_STATE[key]; if(!st) return;
+      const str = String(dataUrl || '');
+      const kb = Math.max(1, Math.round(str.length / 1024));
+      // 硬性上限：单图过大既拖慢渲染也会撑爆本地存储
+      if(str.length > 500 * 1024){ toast('图片压缩后仍约 ' + kb + 'KB，超过 500KB 上限，请改用图片链接', 'err'); return; }
+      // 图片总量预算：本地存储上限约 5M，图片应留出足够空间给业务数据
+      if(imgUsageChars() + str.length > 1250000){ toast('本地图片总量已接近上限（约 1200K），请改用图片链接，或在账户设置里归档清理历史数据', 'err'); return; }
+      if(usageChars() + str.length > LS_LIMIT * 0.9){ toast('本地存储空间不足，无法保存该图片，请改用图片链接', 'err'); return; }
+      st.mode = 'local'; st.data = str; st.name = f.name + '（约 ' + kb + 'KB）';
+      syncImg(key);
+      toast('图片已上传（约 ' + kb + 'KB），保存后生效', 'ok');
+      if(kb > 350) toast('图片偏大，建议改用图片链接以节省本地存储', 'err');
+    });
+  };
+  fr.onerror = () => toast('图片读取失败，请重试', 'err');
+  fr.readAsDataURL(f);
+}
+function compressImage(src, maxSide, quality, cb){
+  try {
+    const im = new Image();
+    im.onload = () => {
+      try {
+        let w = im.width, h = im.height;
+        const sc = Math.min(1, maxSide / Math.max(w, h));
+        w = Math.max(1, Math.round(w * sc)); h = Math.max(1, Math.round(h * sc));
+        const cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(im, 0, 0, w, h);
+        cb(cv.toDataURL('image/jpeg', quality));
+      } catch(e){ cb(src); }
+    };
+    im.onerror = () => cb(src);
+    im.src = src;
+  } catch(e){ cb(src); }
+}
+
+/* ================= 通用模态框 ================= */
+function closeModal(){ document.getElementById('modalRoot').innerHTML = ''; }
+function openFormModal(opt){
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal ${opt.wide?'wide':''}">
+      <div class="modal-head"><h3>${esc(opt.title)}</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body" id="modalBody">${opt.body}</div>
+      <div class="modal-foot">
+        <button class="btn ghost" onclick="closeModal()">取消</button>
+        <button class="btn" id="modalOk">保存</button>
+      </div>
+    </div></div>`;
+  const okBtn = root.querySelector('#modalOk');
+  if(okBtn) okBtn.onclick = () => {
+    try{
+      const data = {};
+      root.querySelectorAll('#modalBody [name]').forEach(el => data[el.name] = String(el.value == null ? '' : el.value).trim());
+      if(opt.onSubmit(data)) closeModal();
+    }catch(err){
+      console.error('[save]', err);
+      toast('保存失败：' + (err && err.message ? err.message : '未知错误'), 'err');
+    }
+  };
+}
+function confirmModal(msg, onYes, okText){
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="width:400px">
+      <div class="modal-head"><h3>操作确认</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body" style="color:var(--txt);line-height:1.7;white-space:pre-wrap">${esc(msg)}</div>
+      <div class="modal-foot"><button class="btn ghost" onclick="closeModal()">取消</button>
+      <button class="btn danger" id="cfmYes">${esc(okText || '确认删除')}</button></div>
+    </div></div>`;
+  root.querySelector('#cfmYes').onclick = () => { onYes(); closeModal(); };
+}
+const F = {
+  text: (n, l, v='', ph='') => `<div class="field"><label>${l}</label><input name="${n}" value="${esc(v)}" placeholder="${ph}"></div>`,
+  list: (n, l, dl, v='', ph='') => `<div class="field"><label>${l}</label><input name="${n}" list="${dl}" value="${esc(v)}" placeholder="${ph}" oninput="autoFromSku(this)"></div>`,
+  date: (n, l, v='') => `<div class="field"><label>${l}</label><input type="date" name="${n}" value="${esc(v)}"></div>`,
+  dt: (n, l, v='') => `<div class="field"><label>${l}</label><input type="datetime-local" name="${n}" value="${esc(v)}"></div>`,
+  num: (n, l, v='') => `<div class="field"><label>${l}</label><input type="number" name="${n}" value="${esc(v)}"></div>`,
+  sel: (n, l, opts, v) => `<div class="field"><label>${l}</label><select name="${n}">${opts.map(o => `<option ${o===v?'selected':''}>${esc(o)}</option>`).join('')}</select></div>`,
+  ta: (n, l, v='', ph='') => `<div class="field"><label>${l}</label><textarea name="${n}" rows="2" placeholder="${ph}">${esc(v)}</textarea></div>`
+};
+function emptyRow(cols, txt){ return `<tr><td colspan="${cols}"><div class="empty">${txt}</div></td></tr>`; }
+
+/* ================= 主题系统 ================= */
+const THEMES = [
+  { key:'forest', name:'森林绿',   desc:'清新自然 · 经典默认', bg:'#f1efe9', side:'#f4f4ec', card:'#ffffff', acc:'#2e7d5b', sub:'#8a9188', warn:'#b7791f', line:'#e8e5db', pill:'#f7f6f1' },
+  { key:'sage',   name:'莫兰迪 · 灰绿',   desc:'低饱和灰绿 · 温柔治愈', bg:'#ebece6', side:'#f0f2ea', card:'#f8f9f5', acc:'#7f927c', sub:'#8b9088', warn:'#a8845c', line:'#dcded4', pill:'#f1f2ec' },
+  { key:'mist',   name:'莫兰迪 · 雾霾蓝', desc:'雾蓝灰调 · 沉静专注', bg:'#e8ebef', side:'#eef2f6', card:'#f7f9fb', acc:'#7b8fa5', sub:'#828b95', warn:'#a58a5e', line:'#dbe0e7', pill:'#eef1f5' },
+  { key:'rose',   name:'莫兰迪 · 豆沙粉', desc:'灰粉暖调 · 柔和高级', bg:'#efe9e8', side:'#f4edec', card:'#faf7f6', acc:'#ab8585', sub:'#948b8a', warn:'#ab8a62', line:'#e2d9d7', pill:'#f4efee' },
+  { key:'oat',    name:'莫兰迪 · 燕麦',   desc:'燕麦暖沙 · 温润耐看', bg:'#eee9e1', side:'#f4efe5', card:'#f9f6f1', acc:'#a58f6f', sub:'#8f887b', warn:'#b38b52', line:'#e0d9cd', pill:'#f3eee6' },
+  { key:'night',  name:'静谧夜',   desc:'深色模式 · 夜间护眼', bg:'#1c211e', side:'#1e241f', card:'#242a26', acc:'#7fae94', sub:'#96a097', warn:'#d0a866', line:'#333a34', pill:'#2b312c' }
+];
+function applyThemeQuiet(key){
+  if(!THEMES.some(t => t.key === key)) return;
+  document.documentElement.setAttribute('data-theme', key);
+  safeSet(ukey('theme'), key);
+}
+function applyTheme(key){
+  const t = THEMES.find(x => x.key === key); if(!t) return;
+  applyThemeQuiet(key);
+  openThemePanel(); // 刷新选中态
+  toast('已切换主题：' + t.name, 'ok');
+}
+function openThemePanel(){
+  const cur = document.documentElement.getAttribute('data-theme') || 'forest';
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="width:720px">
+      <div class="modal-head"><h3>主题风格</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body">
+        <div class="theme-grid">${THEMES.map(t => `
+          <div class="theme-card ${t.key === cur ? 'active' : ''}" onclick="applyTheme('${t.key}')">
+            <div class="theme-prev" style="background:${t.bg}">
+              <div class="tp-side" style="background:${t.side}">
+                <span class="tp-brand" style="background:${t.acc}"></span>
+                <span class="tp-dot" style="background:${t.acc}"></span>
+                <span class="tp-dot" style="background:${t.sub}"></span>
+              </div>
+              <div class="tp-main">
+                <div class="tp-bar" style="background:${t.card};border:1px solid ${t.line}">
+                  <span style="background:${t.sub}"></span><span style="background:${t.pill}"></span>
+                </div>
+                <div class="tp-pills">
+                  <span style="background:${t.acc}"></span><span style="background:${t.warn}"></span>
+                  <span style="background:${t.card};border:1px solid ${t.line}"></span>
+                </div>
+              </div>
+              ${t.key === cur ? '<span class="tp-check">✓</span>' : ''}
+            </div>
+            <div class="theme-meta"><b>${t.name}</b>${t.key === cur ? '<span class="tag ok">使用中</span>' : ''}<span class="theme-desc">${t.desc}</span></div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div></div>`;
+}
+
+/* ================= 1. 首页：智能提醒中心 ================= */
+const DONE_KEYS = [['mainImage','产品主图'],['ap','产品A+'],['video','产品视频'],['influencer','网红视频'],['review','直评'],['vine','VINE']];
+const FLASH_TYPES = ['秒杀','Z划算']; // 开始前2天提醒的活动类型
+function promoPhase(p){
+  const t = usToday(); // 促销活动时间以美国时间（太平洋时区）为准
+  const flash = FLASH_TYPES.includes(p.type);
+  if(!p.start || !p.end) return null;
+  if(t > p.end) return !flash && dayDiff(t, p.end) <= 1 ? { tag:'err', label:'已结束', remind:true } : null;
+  if(t >= p.start){
+    if(!flash && dayDiff(p.end, t) <= 2) return { tag:'warn', label:'即将结束', remind:true };
+    return { tag:'info', label:'进行中', remind:false };
+  }
+  if(flash){
+    const dd = dayDiff(p.start, t);
+    if(dd <= 2) return { tag:'warn', label: dd === 0 ? '今日开始' : '即将开始', remind:true };
+  }
+  return { tag:'gray', label:'未开始', remind:false };
+}
+function calcReminders(){
+  const t = today();
+  const r = { promo:[], incomplete:[], creatorShops:{}, arrive:[], overdue:[], winNext:[], factory:[], sampling:[] };
+  (DB.promotions || []).forEach(p => {
+    const ph = promoPhase(p);
+    if(ph && ph.remind) r.promo.push({ p, ph });
+  });
+  (DB.products || []).forEach(p => {
+    const done = p.done || {};
+    const miss = DONE_KEYS.filter(([k]) => !done[k]).map(([,n]) => n);
+    if(miss.length) r.incomplete.push({ p, miss });
+  });
+  const [ws, we] = weekRange(new Date()); const wk = weekKey(new Date());
+  (DB.creators || []).forEach(c => {
+    if(c.weeksDone && c.weeksDone[wk]) return;
+    if(c.start && c.end && c.start <= we && c.end >= ws){
+      const key = c.shop || '未填店铺';
+      (r.creatorShops[key] = r.creatorShops[key] || []).push(c); // 以店铺为维度汇总
+    }
+  });
+  (DB.shipments || []).forEach(s => {
+    if(s.delivered || !s.arrive) return;
+    const dd = dayDiff(s.arrive, t);
+    if(dd >= 0 && dd <= 3) r.arrive.push({ s, label: dd === 0 ? '今日到港' : dd + '天后到港', cls:'warn' });
+    else if(s.arrive < t) r.overdue.push(s); // 到港未送达，独立提醒
+  });
+  /* 送达时段在下周且未填写送达日期 → 每日提醒（时段以周日至下周六为一周）；
+     「标记本周完成」后当周不再提醒（winDone 按周记录，跨周未填写会重新提醒） */
+  const [nws, nwe] = nextSunWeek();
+  const wkNow = weekKey(new Date());
+  DB.shipments = DB.shipments || [];
+  DB.shipments.forEach(s => {
+    if(s.delivered || !s.winStart) return;
+    if(s.winDone && s.winDone[wkNow]) return; // 本周已标记完成，不再提醒
+    if(s.winStart >= nws && s.winStart <= nwe) r.winNext.push({ s, winLabel: winFmt(s) });
+  });
+  (DB.factoryOrders || []).forEach(o => { if(!o.shippedAt) r.factory.push(o); });
+  /* 新开发样鞋：未填写完成时间 → 每日提醒，按开发时间正序 */
+  r.sampling = (DB.sampling || []).filter(s => !s.doneAt)
+    .sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
+  return r;
+}
+function renderHome(c){
+  const r = calcReminders();
+  const totalR = r.promo.length + r.incomplete.length + Object.keys(r.creatorShops).length + r.arrive.length + r.overdue.length + r.winNext.length + r.factory.length + r.sampling.length;
+  const ongoing = DB.promotions.filter(p => { const ph = promoPhase(p); return ph && ph.label === '进行中'; }).length;
+  const transit = DB.shipments.filter(s => !s.delivered).length;
+  const stat = (cls, ico, label, numv, sub, act) =>
+    `<div class="stat-card clickable" ${act ? `onclick="${act}"` : ''} title="点击查看明细">
+      <div class="stat-ico ${cls}">${ico}</div><div><div class="stat-label">${label}</div><div class="stat-num">${numv}<span>${sub}</span></div></div></div>`;
+  const card = (key, title, items, page) => {
+    const col = !!S.remCol[key];
+    // 单卡最多渲染 40 条：数据积累后首页仍然秒开，其余请到对应模块处理
+    const shown = items.slice(0, 40);
+    const more = items.length > shown.length
+      ? `<div class="empty">还有 ${items.length - shown.length} 条未在此显示，点击「去处理」查看全部</div>` : '';
+    return `
+    <div class="card rem-card" data-remkey="${key}" ondragover="remDragOver(event)" ondrop="remDrop(event)">
+    <div class="card-head">
+      <h2><span class="h2-ico">${ICONS[key]}</span>${title} <span class="count-badge ${items.length?'':'zero'}">${items.length}</span></h2>
+      <div class="head-acts">
+        ${page ? `<button class="btn ghost sm" onclick="go('${page}')">去处理</button>` : ''}
+        <button class="btn ghost sm rem-toggle" onclick="toggleRemCard('${key}')" aria-expanded="${!col}" title="${col?'展开':'收起'}提醒列表">${col ? '▸ 展开' : '▾ 收起'}</button>
+        <span class="drag-handle" draggable="true" ondragstart="remDragStart(event,'${key}')" title="拖动调整提醒卡片位置">⠿</span>
+      </div>
+    </div>
+    <div class="rem-body ${col ? 'hidden' : ''}">${col && items.length ? `<div class="empty">已收起 ${items.length} 条提醒，点击「展开」查看</div>` : (items.length ? shown.join('') + more : '<div class="empty">暂无提醒 🎉</div>')}</div></div>`;
+  };
+  const item = (title, sub, tag, extra) => `
+    <div class="remind-item"><div class="r-txt">
+      <div class="r-title">${title}${extra || ''}</div><div class="r-sub">${sub}</div></div>${tag}</div>`;
+
+  const promoItems = r.promo.map(({p, ph}) =>
+    item(`${esc(p.type)} · ${esc(p.content || '')}（${esc(p.parent)}）`,
+      `${esc(p.start || '?')} ~ ${esc(p.end || '?')} · 美国时间`,
+      `<span class="tag ${ph.tag}">${ph.label}</span>`));
+  const incItems = r.incomplete.map(({p, miss}) =>
+    item(`货号 ${esc(p.sku)}（${esc(p.parent)}）`, '未完善：' + miss.map(m => `<span class="chip err">${m}</span>`).join(''),
+      `<span class="tag err">未完善</span>`,
+      ` <button class="link-btn" onclick="openProductEditor('${p.id}')">去完善</button>`));
+  const [ws, we] = weekRange(new Date());
+  const crItems = Object.entries(r.creatorShops).map(([shop, arr]) =>
+    item(`<b>${esc(shop)}</b> · 本周未完成 ${arr.length} 个计划`,
+      arr.map(cr => `${esc(cr.title)}（${esc(cr.parent)}，${esc(cr.start)} ~ ${esc(cr.end)}）`).join('；'),
+      `<span class="tag warn">本周未完成</span>`,
+      ` <button class="btn sm" onclick="markShopWeekDone('${jsq(shop)}')">标记本周完成</button>`));
+  const arrItems = r.arrive.map(({s, label, cls}) =>
+    item(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`, `到港日期 ${esc(s.arrive)}`, `<span class="tag ${cls}">${label}</span>`));
+  const foItems = r.factory.map(o =>
+    item(`货号 ${esc(o.sku)} · ${esc(o.color || '未填颜色')} × ${o.qty}`, `下单时间 ${fmtDT(o.orderTime)} · 做货地 ${esc(o.place || '未填')}`, `<span class="tag warn">未出货</span>`));
+  const odItems = r.overdue.map(s =>
+    item(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`,
+      `到港日期 ${esc(s.arrive)}，已超 ${dayDiff(today(), s.arrive)} 天未填写送达日期`,
+      `<span class="tag err">未送达</span>`));
+  const [nwsL, nweL] = nextSunWeek();
+  const wnItems = r.winNext.map(({s, winLabel}) =>
+    item(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`,
+      `送达时段 ${esc(winLabel)} · 尚未填写送达日期（本周须确认下周${nwsL.slice(5).replace('-','/')} ~ ${nweL.slice(5).replace('-','/')}送达的货件）`,
+      `<span class="tag warn">下周送达</span>`,
+      ` <button class="link-btn" onclick="shForm('${s.id}')">填写时段</button> <button class="btn sm" onclick="markWinDone('${s.id}')" title="标记后本周不再提醒，跨周仍未填写送达日期将重新提醒">标记本周完成</button>`));
+  const smItems = r.sampling.map(s =>
+    item(`货号 ${esc(s.sku || '未填')}（${esc(s.shop || '未填店铺')}）`,
+      `开发时间 ${fmtDT(s.createdAt)} · 要求：${esc(s.requirement || '未填')}`,
+      `<span class="tag err">未完成打样</span>`,
+      ` <button class="link-btn" onclick="smForm('${s.id}')">去完善</button>`));
+
+  c.innerHTML = `
+    <div class="stat-grid">
+      ${stat('s-green', ICONS.home, '今日提醒', totalR, '项待处理', `openStatModal('reminders')`)}
+      ${stat('s-blue', ICONS.promotions, '进行中活动', ongoing, '个促销', `openStatModal('ongoing')`)}
+      ${stat('s-orange', ICONS.shipments, '在途货件', transit, '票未送达', `openStatModal('transit')`)}
+      ${stat('s-red', ICONS.products, '待完善产品', r.incomplete.length, '个需补充', `openStatModal('incomplete')`)}
+    </div>
+    <div class="remind-grid">
+      ${(() => { // 支持拖拽调整提醒卡顺序（S.remOrder 持久化），未记录的新卡自动追加
+        const defs = [
+          ['promotions','促销活动提醒', promoItems, 'promotions'],
+          ['products','产品未完善提醒', incItems, 'products'],
+          ['creators','创作者计划提醒', crItems, 'creators'],
+          ['shipments','产品即将到港提醒', arrItems, 'shipments'],
+          ['clock','产品到港未送达提醒', odItems, 'shipments'],
+          ['calwin','送达时段提醒', wnItems, 'shipments'],
+          ['factory','工厂未出货提醒', foItems, 'factory'],
+          ['sampling','新开发样鞋提醒', smItems, 'sampling']
+        ];
+        const o = (S.remOrder || []).filter(k => defs.some(d => d[0] === k));
+        const ordered = o.map(k => defs.find(d => d[0] === k)).concat(defs.filter(d => !o.includes(d[0])));
+        return ordered.map(([k, t, i, p]) => card(k, t, i, p)).join('');
+      })()}
+    </div>`;
+}
+/* ===== 首页提醒卡片拖拽换序 ===== */
+let dragRemFrom = null;
+function remDragStart(e, key){
+  dragRemFrom = key;
+  e.dataTransfer.effectAllowed = 'move';
+  try{
+    e.dataTransfer.setData('text/plain', key);
+    const cardEl = e.target.closest('.rem-card');
+    if(cardEl) e.dataTransfer.setDragImage(cardEl, 20, 20); // 拖动整卡影像
+  }catch(err){}
+}
+function remDragOver(e){
+  if(!dragRemFrom) return;
+  e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+}
+function remDrop(e){
+  e.preventDefault();
+  const from = dragRemFrom; dragRemFrom = null;
+  const cardEl = e.target.closest('.rem-card');
+  if(!from || !cardEl || cardEl.dataset.remkey === from) return;
+  const cur = [...document.querySelectorAll('.rem-card')].map(el => el.dataset.remkey);
+  const r = cardEl.getBoundingClientRect();
+  const after = (e.clientY - r.top) > r.height / 2; // 上半：插其前；下半：插其后
+  S.remOrder = remReorder(cur, from, cardEl.dataset.remkey, after);
+  saveRemOrder(); render();
+}
+function remReorder(keys, from, to, after){
+  if(from === to) return keys;
+  const arr = keys.slice();
+  const fi = arr.indexOf(from);
+  if(fi < 0) return keys; // 源不存在，兜底不处理
+  arr.splice(fi, 1);
+  const ti = arr.indexOf(to);
+  if(ti < 0) return arr;
+  arr.splice(after ? ti + 1 : ti, 0, from);
+  return arr;
+}
+function markShopWeekDone(shop){
+  const wk = weekKey(new Date());
+  DB.creators.forEach(c => {
+    if(c.shop === shop){ c.weeksDone = c.weeksDone || {}; c.weeksDone[wk] = true; }
+  });
+  saveDB(); toast(shop + ' 本周已全部标记完成', 'ok'); render();
+}
+function markWinDone(id){
+  const s = DB.shipments.find(x => x.id === id);
+  if(!s) return;
+  s.winDone = s.winDone || {};
+  s.winDone[weekKey(new Date())] = true; // 按周记录，仅当周生效
+  saveDB(); toast('货件 ' + (s.shipmentId || s.name || '') + ' 本周已标记完成，跨周未填写将重新提醒', 'ok'); render();
+}
+/* ===== 首页汇总框明细弹窗（可跳转至具体内容） ===== */
+function openStatModal(type){
+  const r = calcReminders();
+  const it = (title, sub, tag, act) => `<div class="remind-item"><div class="r-txt">
+    <div class="r-title">${title}${act ? ' ' + act : ''}</div><div class="r-sub">${sub}</div></div>${tag || ''}</div>`;
+  const jb = p => `<button class="btn ghost sm" onclick="closeModal();go('${p}')">去处理</button>`;
+  const sec = (h, n, page, items) => {
+    const shown = items.slice(0, 100); // 单组最多 100 条，避免提醒过多时弹窗卡死
+    const more = items.length > shown.length
+      ? `<div class="empty" style="padding:8px 12px">还有 ${items.length - shown.length} 条未显示，点击右侧「去处理」查看全部</div>` : '';
+    return `<div style="margin-bottom:14px">
+    <div style="display:flex;align-items:center;gap:8px;margin:4px 0 8px">
+      <b style="font-size:13px">${h}</b><span class="count-badge ${n?'':'zero'}">${n}</span>
+      <span style="flex:1"></span>${page ? jb(page) : ''}</div>
+    ${items.length ? shown.join('') + more : '<div class="empty" style="padding:8px 12px">暂无数据 🎉</div>'}</div>`;
+  };
+  let title = '', body = '';
+  if(type === 'reminders'){
+    title = '今日提醒明细（' + (r.promo.length + r.incomplete.length + Object.keys(r.creatorShops).length + r.arrive.length + r.overdue.length + r.winNext.length + r.factory.length + r.sampling.length) + ' 项）';
+    body = sec('促销活动提醒', r.promo.length, 'promotions', r.promo.map(({p, ph}) =>
+        it(`${esc(p.type)} · ${esc(p.content || '')}（${esc(p.parent)}）`, `${esc(p.start || '?')} ~ ${esc(p.end || '?')} · 美国时间`, `<span class="tag ${ph.tag}">${ph.label}</span>`)))
+      + sec('产品未完善提醒', r.incomplete.length, 'products', r.incomplete.map(({p, miss}) =>
+        it(`货号 ${esc(p.sku)}（${esc(p.parent)}）`, '未完善：' + miss.map(m => `<span class="chip err">${m}</span>`).join(''), `<span class="tag err">未完善</span>`,
+          `<button class="link-btn" onclick="closeModal();openProductEditor('${p.id}')">去完善</button>`)))
+      + sec('创作者计划提醒（按店铺）', Object.keys(r.creatorShops).length, 'creators', Object.entries(r.creatorShops).map(([shop, arr]) =>
+        it(`<b>${esc(shop)}</b> · 本周未完成 ${arr.length} 个计划`, arr.map(cr => `${esc(cr.title)}`).join('；'), `<span class="tag warn">本周未完成</span>`)))
+      + sec('产品即将到港提醒', r.arrive.length, 'shipments', r.arrive.map(({s, label, cls}) =>
+        it(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`, `到港日期 ${esc(s.arrive)}`, `<span class="tag ${cls}">${label}</span>`)))
+      + sec('产品到港未送达提醒', r.overdue.length, 'shipments', r.overdue.map(s =>
+        it(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`, `到港日期 ${esc(s.arrive)}，已超 ${dayDiff(today(), s.arrive)} 天未填写送达日期`, `<span class="tag err">未送达</span>`)))
+      + sec('送达时段提醒', r.winNext.length, 'shipments', r.winNext.map(({s, winLabel}) =>
+        it(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`, `送达时段 ${esc(winLabel)} · 尚未填写送达日期`, `<span class="tag warn">下周送达</span>`)))
+      + sec('工厂未出货提醒', r.factory.length, 'factory', r.factory.map(o =>
+        it(`货号 ${esc(o.sku)} · ${esc(o.color || '未填颜色')} × ${o.qty}`, `下单时间 ${fmtDT(o.orderTime)} · 做货地 ${esc(o.place || '未填')}`, `<span class="tag warn">未出货</span>`)))
+      + sec('新开发样鞋提醒', r.sampling.length, 'sampling', r.sampling.map(s =>
+        it(`货号 ${esc(s.sku || '未填')}（${esc(s.shop || '未填店铺')}）`, `开发时间 ${fmtDT(s.createdAt)} · 要求：${esc(s.requirement || '未填')}`, `<span class="tag err">未完成打样</span>`)));
+  } else if(type === 'ongoing'){
+    const list = DB.promotions.filter(p => { const ph = promoPhase(p); return ph && ph.label === '进行中'; })
+      .sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||''));
+    title = '进行中的促销活动（' + list.length + ' 个）';
+    body = sec('进行中活动', list.length, 'promotions', list.map(p =>
+      it(`${esc(p.type)} · ${esc(p.content || '')}（${esc(p.parent)}）`, `${esc(p.start)} ~ ${esc(p.end)} · 美国时间`, `<span class="tag info">进行中</span>`)));
+  } else if(type === 'transit'){
+    const list = DB.shipments.filter(s => !s.delivered)
+      .sort((a,b) => (a.arrive||'9999').localeCompare(b.arrive||'9999'));
+    title = '在途货件（' + list.length + ' 票未送达）';
+    body = sec('在途货件', list.length, 'shipments', list.map(s =>
+      it(`货件 ${esc(s.shipmentId || s.name || '')}（${esc(s.sku)} → ${esc(s.warehouse)}）`, `到港日期 ${esc(s.arrive || '未填')}${s.winStart ? ' · 送达时段 ' + esc(winFmt(s)) : ''}`, shipStatus(s))));
+  } else if(type === 'incomplete'){
+    title = '待完善产品（' + r.incomplete.length + ' 个需补充）';
+    body = sec('待完善产品', r.incomplete.length, 'products', r.incomplete.map(({p, miss}) =>
+      it(`货号 ${esc(p.sku)}（${esc(p.parent)}）`, '未完善：' + miss.map(m => `<span class="chip err">${m}</span>`).join(''), `<span class="tag err">未完善</span>`,
+        `<button class="link-btn" onclick="closeModal();openProductEditor('${p.id}')">去完善</button>`)));
+  }
+  openFormModal({ title, wide:true, body: `<div style="max-height:60vh;overflow:auto">${body}</div>`, onSubmit(){ return true; } });
+  document.getElementById('modalOk').style.display = 'none';
+}
+
+/* ================= 2. 产品详情 ================= */
+let PE = null; // 产品编辑器草稿
+function renderProducts(c){
+  const q = S.q.products || '';
+  const list = listCap(DB.products.filter(p => matchQ(q, p.sku, p.type, p.shop, p.parent, ...(p.colors||[]).map(cl => cl.name), ...(p.colors||[]).map(cl => cl.fabric || ''))));
+  const doneChips = p => { const d = p.done || {}; return DONE_KEYS.map(([k, n]) => `<span class="chip ${d[k]?'ok':'err'}">${n}${d[k]?'✓':'✗'}</span>`).join(''); };
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.products}</span>产品详情 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('products','按货号 / 产品类型 / 面料搜索')}</div>
+      <div class="toolbar"><button class="btn" onclick="openProductEditor()">＋ 添加产品</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>产品图片</th><th>货号</th><th>产品类型</th><th>店铺</th><th>颜色</th><th>完成状态</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(p => `
+        <tr>
+          <td>${imgCell(productImg(p.sku), p.sku)}</td>
+          <td style="font-weight:600">${esc(p.sku)}</td>
+          <td>${esc(p.type)}</td><td>${esc(p.shop)}</td>
+          <td><div class="color-cells">${(p.colors||[]).map((cl, ci) => `<div class="color-cell clickable" onclick="colorDetail('${p.id}',${ci})" title="点击查看颜色详情">${imgCell(cl.img, cl.name)}<span>${esc(cl.name)}</span></div>`).join('') || '<span class="tag gray">未设置</span>'}</div></td>
+          <td>${doneChips(p)}</td>
+          <td><button class="link-btn" onclick="openAdjModal('${p.id}')">记录(${(p.adjustments||[]).length})</button>
+              <button class="link-btn" onclick="openProductEditor('${p.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delProduct('${p.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(7,'暂无产品，点击右上角「添加产品」新增') }</tbody>
+    </table></div>
+  </div>`;
+}
+function delProduct(id){
+  const p = DB.products.find(x => x.id === id); if(!p) return;
+  confirmModal(`确定删除产品「${p.sku}」吗？\n注意：该产品在其他模块（活动/库存/货件等）的关联数据不会被删除，但会失去图片等关联信息。\n删除后可在「回收站」保留 ${TRASH_DAYS} 天，期间可随时恢复。`, () => {
+    if(moveToTrash('products', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+function openProductEditor(id){
+  const src = id ? DB.products.find(x => x.id === id) : null;
+  PE = {
+    isNew: !src,
+    oldSku: src ? src.sku : '',
+    p: src ? JSON.parse(JSON.stringify(src)) : {
+      id: uid('p'), createdAt: nowDT(), sku:'', type:'', shop:'', parent:'',
+      colors:[], spec:{craft:'',box:'',weight:'',carton:''}, adjustments:[],
+      done:{ mainImage:false, ap:false, video:false, influencer:false, review:false, vine:false }
+    }
+  };
+  PE.p.adjustments = (PE.p.adjustments || [])
+    .sort((a,b) => (b.date||'').localeCompare(a.date||'')); // 先排序，保证显示序 = 数组序
+  drawProductEditor();
+}
+function drawProductEditor(){
+  const p = PE.p;
+  const colorRows = p.colors.map((cl, i) => {
+    const key = 'pc' + i;
+    const st = imgReg(key, cl.img, { prev:'pcp_'+i, val:'pcv_'+i, url:'pcu_'+i, tag:'pct_'+i });
+    return `
+    <div class="pe-row">
+      <div class="thumb ${cl.img ? '' : 'thumb-empty'}" id="pcp_${i}" ${cl.img ? `style="background-image:url('${esc(cl.img)}')"` : ''}>${cl.img ? '' : (esc(String(cl.name || '').slice(0, 2)) || '🖼')}</div>
+      <input class="pe-cn" data-i="${i}" placeholder="颜色名" value="${esc(cl.name)}" list="colorList">
+      <div class="pe-img">
+        <input class="pe-cur" id="pcu_${i}" data-i="${i}" placeholder="粘贴图片链接" value="${esc(st.url)}" ${st.mode === 'local' ? 'hidden' : ''} oninput="peImgUrl(${i},this)">
+        <button type="button" class="pe-up" title="从电脑选择图片，自动压缩后保存" onclick="pickImage('${key}')">⬆ 本地上传</button>
+        <span class="pe-tag" id="pct_${i}" title="点击切换：图片链接 / 本地图片" onclick="peImgMode(${i})">${st.mode === 'local' ? '本地图片' : (st.url ? '链接图片' : '未设置')}</span>
+      </div>
+      <input class="pe-cf" data-i="${i}" placeholder="该颜色面料，如 飞织布+牛皮" value="${esc(cl.fabric || '')}">
+      <button class="row-del" title="删除颜色" onclick="peDelColor(${i})">✕</button>
+      <input type="hidden" class="pe-ci" data-i="${i}" id="pcv_${i}" value="${esc(cl.img)}">
+    </div>`;
+  }).join('') || '<div class="empty" style="padding:10px">暂无颜色</div>';
+  const adjs = p.adjustments.map((a, i) => `
+    <div class="pe-row adj">
+      <input type="date" class="pe-ad" data-i="${i}" value="${esc(a.date)}">
+      <input class="pe-ac" data-i="${i}" placeholder="调整内容" value="${esc(a.content)}">
+      <button class="row-del" title="删除记录" onclick="peDelAdj('${esc(a.date)}',${i})">✕</button>
+    </div>`).join('') || '<div class="empty" style="padding:10px">暂无记录</div>';
+  const doneSel = DONE_KEYS.map(([k, n]) => F.sel('done_' + k, n, ['否','是'], p.done[k] ? '是' : '否')).join('');
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal xl">
+      <div class="modal-head"><h3>${PE.isNew ? '添加产品' : '编辑产品 · ' + esc(PE.oldSku)}</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body">
+        <div class="pe-sec"><h4>基础信息</h4>
+          <div class="form-grid">
+            ${F.list('sku','货号','skuList', p.sku,'如 YX-1001')}
+            ${F.list('type','产品类型','typeList', p.type,'如 运动鞋')}
+            ${F.list('shop','店铺','shopList', p.shop,'如 美国站')}
+            ${F.list('parent','父ASIN','parentList', p.parent,'如 B0XXXXXXXX')}
+          </div></div>
+        <div class="pe-sec"><h4>颜色分类（每个颜色独立产品图片与面料）</h4>
+          <div id="peColors">${colorRows}</div>
+          <button class="btn ghost sm" onclick="peAddColor()">＋ 添加颜色</button></div>
+        <div class="pe-sec"><h4>规格参数</h4>
+          <div class="form-grid">
+            ${F.text('craft','具体工艺', p.spec.craft)}${F.text('box','鞋盒规格', p.spec.box)}
+            ${F.text('weight','重量规格', p.spec.weight)}${F.text('carton','外箱规格', p.spec.carton)}
+          </div></div>
+        <div class="pe-sec"><h4>样鞋调整记录（按日期倒序，最新置顶）</h4>
+          <div id="peAdjs">${adjs}</div>
+          <button class="btn ghost sm" onclick="peAddAdj()">＋ 添加记录</button></div>
+        <div class="pe-sec"><h4>完成状态项</h4><div class="form-grid">${doneSel}</div></div>
+      </div>
+      <div class="modal-foot"><button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="peSave()">保存</button></div>
+    </div></div>`;
+}
+function peSyncDom(){
+  const root = document.getElementById('modalRoot');
+  const g = n => { const el = root.querySelector(`[name="${n}"]`); return el ? el.value.trim() : ''; };
+  PE.p.sku = g('sku'); PE.p.type = g('type'); PE.p.shop = g('shop'); PE.p.parent = g('parent');
+  PE.p.spec = { craft:g('craft'), box:g('box'), weight:g('weight'), carton:g('carton') };
+  root.querySelectorAll('.pe-cn').forEach(el => PE.p.colors[+el.dataset.i].name = el.value.trim());
+  root.querySelectorAll('.pe-ci').forEach(el => PE.p.colors[+el.dataset.i].img = el.value.trim());
+  root.querySelectorAll('.pe-cf').forEach(el => PE.p.colors[+el.dataset.i].fabric = el.value.trim());
+  const adRows = [...root.querySelectorAll('.pe-ad')];
+  adRows.forEach((el, idx) => { const i = +el.dataset.i; PE.p.adjustments[i].date = el.value; PE.p.adjustments[i].content = root.querySelector(`.pe-ac[data-i="${i}"]`).value.trim(); });
+  DONE_KEYS.forEach(([k]) => PE.p.done[k] = g('done_' + k) === '是');
+}
+function peAddColor(){ peSyncDom(); PE.p.colors.push({ name:'', img:'', fabric:'' }); drawProductEditor(); }
+function peDelColor(i){ peSyncDom(); PE.p.colors.splice(i, 1); drawProductEditor(); }
+function peAddAdj(){ peSyncDom(); PE.p.adjustments.push({ date: today(), content:'' }); drawProductEditor(); }
+function peDelAdj(date, i){ peSyncDom(); PE.p.adjustments.splice(i, 1); drawProductEditor(); }
+function peSave(){
+  peSyncDom();
+  const p = PE.p;
+  if(!p.sku){ toast('请填写货号', 'err'); return false; }
+  if(!PE.isNew && PE.oldSku !== p.sku){
+    if(findProduct(p.sku)){ toast('该货号已存在', 'err'); return false; }
+    propagateSkuRename(PE.oldSku, p.sku);
+  }
+  p.adjustments = p.adjustments.filter(a => a.date || a.content)
+    .sort((a,b) => (b.date||'').localeCompare(a.date||'')); // 日期倒序
+  const exist = DB.products.findIndex(x => x.id === p.id);
+  if(exist >= 0) DB.products[exist] = p; else DB.products.unshift(p);
+  propagateProductMeta(p); // 数据互通：店铺/父ASIN 全局同步
+  saveDB(); toast('已保存，关联数据已同步', 'ok'); render(); closeModal();
+}
+
+/* ===== 颜色详情弹窗（产品图片 / 颜色 / 面料 / 具体工艺） ===== */
+function colorDetail(pid, ci){
+  const p = DB.products.find(x => x.id === pid); if(!p || !p.colors[ci]) return;
+  const cl = p.colors[ci];
+  const html = `
+    ${cl.img
+      ? `<div class="det-img" style="background-image:url('${esc(cl.img)}')"></div>`
+      : `<div class="det-img noimg">暂无产品图片</div>`}
+    <div class="det-grid">
+      <span class="k">货号</span><span class="v">${esc(p.sku)}</span>
+      <span class="k">颜色</span><span class="v">${esc(cl.name)}</span>
+      <span class="k">产品面料</span><span>${esc(cl.fabric || '未填')}</span>
+      <span class="k">具体工艺</span><span>${esc((p.spec || {}).craft || '未填')}</span>
+    </div>`;
+  openFormModal({ title:'颜色详情 · ' + esc(p.sku), body: html, onSubmit(){ return true; } });
+  document.getElementById('modalOk').style.display = 'none';
+}
+
+/* ===== 样鞋调整记录详情弹窗（日期倒序，支持增删改） ===== */
+let ADJ = null;
+function openAdjModal(pid){
+  const p = DB.products.find(x => x.id === pid); if(!p) return;
+  ADJ = { pid, sku: p.sku, list: JSON.parse(JSON.stringify(p.adjustments || [])) };
+  ADJ.list.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  drawAdjModal();
+}
+function drawAdjModal(){
+  const rows = ADJ.list.map((a, i) => `
+    <div class="pe-row adj">
+      <input type="date" class="aj-d" data-i="${i}" value="${esc(a.date)}">
+      <input class="aj-c" data-i="${i}" placeholder="调整内容" value="${esc(a.content)}">
+      <button class="row-del" title="删除该条记录" onclick="adjDel(${i})">✕</button>
+    </div>`).join('') || '<div class="empty" style="padding:10px">暂无记录</div>';
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal wide">
+      <div class="modal-head"><h3>样鞋调整记录 · ${esc(ADJ.sku)}（按日期倒序，最新置顶）</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body">
+        ${rows}
+        <button class="btn ghost sm" onclick="adjAdd()">＋ 添加记录</button>
+      </div>
+      <div class="modal-foot"><button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="adjSave()">保存</button></div>
+    </div></div>`;
+}
+function adjSync(){
+  const root = document.getElementById('modalRoot');
+  root.querySelectorAll('.aj-d').forEach(el => { ADJ.list[+el.dataset.i].date = el.value; });
+  root.querySelectorAll('.aj-c').forEach(el => { ADJ.list[+el.dataset.i].content = el.value.trim(); });
+}
+function adjAdd(){ adjSync(); ADJ.list.push({ date: today(), content: '' }); drawAdjModal(); }
+function adjDel(i){ adjSync(); ADJ.list.splice(i, 1); drawAdjModal(); }
+function adjSave(){
+  adjSync();
+  ADJ.list = ADJ.list.filter(a => a.date || a.content).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  const p = DB.products.find(x => x.id === ADJ.pid);
+  p.adjustments = ADJ.list;
+  saveDB(); toast('调整记录已保存', 'ok'); render(); closeModal();
+}
+
+/* ================= 3. 促销活动 ================= */
+const PROMO_TYPES = ['优惠券','会员折扣','秒杀','Z划算','促销码折扣'];
+function renderPromotions(c){
+  const q = S.q.promotions || '';
+  const recs = DB.promotions.filter(r => matchQ(q, r.parent, r.sku, r.shop, r.type, typeOfSku(r.sku)))
+    .sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||''));
+  const groups = new Map();
+  recs.forEach(r => {
+    if(!groups.has(r.parent)) groups.set(r.parent, { shop:r.shop, skus:new Set(), list:[] });
+    const g = groups.get(r.parent); g.list.push(r); if(r.sku) g.skus.add(r.sku);
+  });
+  const groupList = listCap([...groups.entries()]); // 按父体聚合后仍可能很多，同样做截断保护
+  const cell = (parent, type) => {
+    const items = (groups.get(parent) ? groups.get(parent).list : []).filter(r => r.type === type);
+    if(!items.length) return '<span class="tag gray">—</span>';
+    return items.map(r => {
+      const ph = promoPhase(r);
+      return `<div class="act-mini">
+        <div>${esc(r.content || '（未填内容）')}</div>
+        <div class="am-meta"><span>${esc(r.start||'?')} ~ ${esc(r.end||'?')}</span>
+          ${ph ? `<span class="tag ${ph.tag}">${ph.label}</span>` : '<span class="tag gray">未到提醒期</span>'}
+          <button class="mini-btn" onclick="promoForm('${r.id}')">编辑</button>
+          <button class="mini-btn" onclick="delPromo('${r.id}')">删除</button>
+        </div></div>`;
+    }).join('');
+  };
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.promotions}</span>促销活动 <span class="count-badge ${recs.length?'':'zero'}">${S.__total.promotions || recs.length}</span></h2>
+      ${searchBox('promotions','按父ASIN / 货号 / 店铺 / 产品类型搜索')}</div>
+      <div class="toolbar"><button class="btn" onclick="promoForm()">＋ 添加活动</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>父ASIN</th><th>产品图片</th><th>优惠券</th><th>会员折扣</th><th>秒杀</th><th>Z划算</th><th>促销码折扣</th><th>汇总时间</th><th>操作</th></tr></thead>
+      <tbody>${ groupList.length ? groupList.map(([parent, g]) => {
+        const times = g.list.map(r => [r.start, r.end]).flat().filter(Boolean).sort();
+        return `<tr>
+          <td>${esc(g.shop)}</td>
+          <td style="font-weight:600">${esc(parent)}<div style="font-size:11px;color:var(--sub)">货号：${[...g.skus].map(esc).join('、') || '—'}</div></td>
+          <td>${imgCell(parentImg(parent, [...g.skus][0]), parent)}</td>
+          ${PROMO_TYPES.map(t => `<td>${cell(parent, t)}</td>`).join('')}
+          <td style="font-size:12px">${times.length ? esc(times[0]).slice(0,10) + '<br>~ ' + esc(times[times.length-1]).slice(0,10) : '—'}</td>
+          <td><button class="btn ghost sm" onclick="promoForm(null,'${esc(parent)}')">＋活动</button></td>
+        </tr>`;
+      }).join('') : emptyRow(10,'暂无促销活动，点击右上角「添加活动」新增') }</tbody>
+    </table></div>
+  </div>`;
+}
+function promoForm(id, presetParent){
+  const r = id ? DB.promotions.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改促销活动' : '添加促销活动（同一父体可叠加多个不同类型活动）',
+    body: `<div class="form-grid">
+      ${F.sel('type','活动类型（请先选择）', PROMO_TYPES, r ? r.type : '')}
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : (presetParent||''),'参与父体')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '','自动带出店铺等')}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.date('start','活动开始时间', r ? r.start : '')}${F.date('end','活动到期时间', r ? r.end : '')}
+      <div class="full">${F.ta('content','活动内容', r ? (r.content||'') : '','如 满$40减$8 / 15% off')}</div>
+    </div>`,
+    onSubmit(d){
+      if(!d.parent){ toast('请填写父ASIN', 'err'); return false; }
+      if(!d.start || !d.end){ toast('请填写活动开始/到期时间', 'err'); return false; }
+      if(d.end < d.start){ toast('到期时间不能早于开始时间', 'err'); return false; }
+      if(r){ Object.assign(r, d); } else { DB.promotions.unshift(Object.assign(newRecord(), d, { id: uid('pr') })); }
+      DB.promotions.forEach(x => { const p = findProduct(x.sku); if(p) propagateProductMeta(p); });
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function delPromo(id){
+  const r = DB.promotions.find(x => x.id === id);
+  confirmModal(`确定删除该${r ? esc(r.type) : ''}活动吗？\n删除后可在「回收站」保留 ${TRASH_DAYS} 天，期间可随时恢复。`, () => {
+    if(moveToTrash('promotions', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 4. 广告数据 ================= */
+function renderAds(c){
+  const q = S.q.ads || '';
+  const list = listCap(DB.ads.filter(r => matchQ(q, r.parent, r.sku, r.shop, typeOfSku(r.sku),
+    (r.keywords||[]).join(' '), (r.hots||[]).join(' ')))
+    .sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||'')));
+  const termList = (rec, key) => {
+    const arr = rec[key] || [];
+    return arr.length ? arr.map((t, i) => `
+      <div class="term"><span class="t-txt">${esc(t)}</span>
+        <button class="mini-btn" ${i===0?'disabled style="opacity:.4"':''} onclick="adMove('${rec.id}','${key}',${i},-1)">↑</button>
+        <button class="mini-btn" ${i===arr.length-1?'disabled style="opacity:.4"':''} onclick="adMove('${rec.id}','${key}',${i},1)">↓</button>
+        <button class="mini-btn" onclick="adTermEdit('${rec.id}','${key}',${i})">✏</button>
+        <button class="mini-btn" onclick="adTermDel('${rec.id}','${key}',${i})">✕</button>
+      </div>`).join('') : '<div class="empty" style="padding:6px;font-size:12px">暂无数据</div>';
+  };
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.ads}</span>广告数据 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('ads','按父ASIN / 货号 / 店铺 / 产品类型 / 关键词搜索')}</div>
+      <div class="toolbar"><button class="btn" onclick="adForm()">＋ 添加</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>父ASIN</th><th>产品图片</th><th>出单词（↑↓调整顺序）</th><th>热门搜索词（↑↓调整顺序）</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(r => `
+        <tr>
+          <td>${esc(r.shop)}</td>
+          <td style="font-weight:600">${esc(r.parent)}<div style="font-size:11px;color:var(--sub)">${esc(r.sku)}</div></td>
+          <td>${imgCell(parentImg(r.parent, r.sku), r.parent)}</td>
+          <td style="min-width:230px"><div class="term-list">${termList(r,'keywords')}
+            <div class="term-add"><input placeholder="＋ 添加出单词，回车确认" onkeydown="if(event.key==='Enter'){adTermAdd('${r.id}','keywords',this)}"></div></div></td>
+          <td style="min-width:230px"><div class="term-list">${termList(r,'hots')}
+            <div class="term-add"><input placeholder="＋ 添加热门搜索词，回车确认" onkeydown="if(event.key==='Enter'){adTermAdd('${r.id}','hots',this)}"></div></div></td>
+          <td><button class="link-btn" onclick="adForm('${r.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delAd('${r.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(6,'暂无数据，点击右上角「添加」新增') }</tbody>
+    </table></div>
+  </div>`;
+}
+function adForm(id){
+  const r = id ? DB.ads.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改广告数据' : '添加广告数据',
+    body: `<div class="form-grid">
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : '')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '')}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+    </div><p style="margin-top:10px;color:var(--sub);font-size:12px">出单词与热门搜索词请在列表页中添加、排序、修改。</p>`,
+    onSubmit(d){
+      if(!d.parent){ toast('请填写父ASIN', 'err'); return false; }
+      if(r){ Object.assign(r, d); } else { DB.ads.unshift(Object.assign(newRecord(), d, { id: uid('ad'), keywords:[], hots:[] })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function adTermAdd(id, key, el){
+  const v = el.value.trim(); if(!v) return;
+  const r = DB.ads.find(x => x.id === id); r[key] = r[key] || []; r[key].push(v);
+  saveDB(); render();
+}
+function adTermDel(id, key, i){
+  if(moveTermToTrash(id, key, i)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+}
+function adMove(id, key, i, dir){
+  const r = DB.ads.find(x => x.id === id); const j = i + dir;
+  if(j < 0 || j >= r[key].length) return;
+  [r[key][i], r[key][j]] = [r[key][j], r[key][i]];
+  saveDB(); render();
+}
+function adTermEdit(id, key, i){
+  const r = DB.ads.find(x => x.id === id);
+  openFormModal({
+    title: key === 'keywords' ? '修改出单词' : '修改热门搜索词',
+    body: F.text('t','', r[key][i]),
+    onSubmit(d){
+      if(!d.t){ toast('内容不能为空', 'err'); return false; }
+      r[key][i] = d.t; saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function delAd(id){
+  confirmModal('确定删除该条广告数据吗？（含其下所有出单词、热门搜索词）\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('ads', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 5. 工厂打样情况 ================= */
+function renderSampling(c){
+  const q = S.q.sampling || '';
+  const list = listCap(DB.sampling.filter(r => matchQ(q, r.parent, r.childAsin, r.msku, r.sku, r.shop, r.type))
+    .sort((a,b) => (a.createdAt||'').localeCompare(b.createdAt||''))); // 按开发时间正序
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.sampling}</span>工厂打样情况 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('sampling','按父ASIN / 子ASIN / MSKU / 货号 / 店铺 / 产品类型搜索')}</div>
+      <div class="toolbar"><button class="btn" onclick="smForm()">＋ 添加打样</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>开发时间</th><th>货号</th><th>产品图片</th><th>要求内容</th><th>完成时间</th><th>调整记录</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(r => `
+        <tr>
+          <td style="white-space:nowrap">${fmtDT(r.createdAt)}</td>
+          <td style="font-weight:600">${esc(r.sku)}<div style="font-size:11px;color:var(--sub)">${esc(r.parent || '未填父ASIN')}${r.msku ? ' · ' + esc(r.msku) : ''}</div></td>
+          <td>${imgCell(r.img || productImg(r.sku), r.sku)}</td>
+          <td style="max-width:260px">${esc(r.requirement || '—')}</td>
+          <td style="white-space:nowrap">${r.doneAt ? `<span class="tag ok">${esc(r.doneAt)}</span>` : '<span class="tag err">未完成</span>'}</td>
+          <td><button class="link-btn" onclick="smAdjModal('${r.id}')">记录(${(r.adjustments||[]).length})</button></td>
+          <td><button class="link-btn" onclick="smForm('${r.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delSm('${r.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(7,'暂无打样记录，点击右上角「添加打样」新增') }</tbody>
+    </table></div>
+  </div>`;
+}
+function smForm(id){
+  const r = id ? DB.sampling.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改打样记录' : '添加打样记录',
+    body: `<div class="form-grid">
+      ${F.dt('createdAt','开发时间', r ? r.createdAt : nowDT())}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '','自动带出店铺等')}
+      ${F.list('type','产品类型','typeList', r ? (r.type||'') : '')}
+      ${F.list('parent','父ASIN','parentList', r ? (r.parent||'') : '')}
+      ${F.text('childAsin','子ASIN', r ? (r.childAsin||'') : '')}
+      ${F.text('msku','MSKU', r ? (r.msku||'') : '')}
+      <div class="full">${F.ta('requirement','要求内容', r ? (r.requirement||'') : '','如 大底改防滑橡胶、鞋头加固')}</div>
+      ${F.date('doneAt','完成时间（未完成留空）', r ? (r.doneAt||'') : '')}
+    </div>`,
+    onSubmit(d){
+      if(!d.sku){ toast('请填写货号', 'err'); return false; }
+      if(r){ Object.assign(r, d); } else { DB.sampling.unshift(Object.assign(newRecord(), d, { id: uid('sm'), adjustments: [] })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function delSm(id){
+  confirmModal('确定删除该打样记录吗？（含其下所有调整记录）\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('sampling', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+/* 打样调整记录弹窗（按日期倒序，最新置顶，支持增删改） */
+let SADJ = null;
+function smAdjModal(id){
+  const r = DB.sampling.find(x => x.id === id); if(!r) return;
+  SADJ = { id, sku: r.sku || '未填货号', list: JSON.parse(JSON.stringify(r.adjustments || [])) };
+  SADJ.list.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  drawSmAdj();
+}
+function drawSmAdj(){
+  const rows = SADJ.list.map((a, i) => `
+    <div class="pe-row adj">
+      <input type="date" class="aj-d" data-i="${i}" value="${esc(a.date)}">
+      <input class="aj-c" data-i="${i}" placeholder="调整内容" value="${esc(a.content)}">
+      <button class="row-del" title="删除该条记录" onclick="smAdjDel(${i})">✕</button>
+    </div>`).join('') || '<div class="empty" style="padding:10px">暂无记录</div>';
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal wide">
+      <div class="modal-head"><h3>打样调整记录 · ${esc(SADJ.sku)}（按日期倒序，最新置顶）</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body">${rows}<button class="btn ghost sm" onclick="smAdjAdd()">＋ 添加记录</button></div>
+      <div class="modal-foot"><button class="btn ghost" onclick="closeModal()">取消</button><button class="btn" onclick="smAdjSave()">保存</button></div>
+    </div></div>`;
+}
+function smAdjSync(){
+  const root = document.getElementById('modalRoot');
+  root.querySelectorAll('.aj-d').forEach(el => { SADJ.list[+el.dataset.i].date = el.value; });
+  root.querySelectorAll('.aj-c').forEach(el => { SADJ.list[+el.dataset.i].content = el.value.trim(); });
+}
+function smAdjAdd(){ smAdjSync(); SADJ.list.push({ date: today(), content: '' }); drawSmAdj(); }
+function smAdjDel(i){ smAdjSync(); SADJ.list.splice(i, 1); drawSmAdj(); }
+function smAdjSave(){
+  smAdjSync();
+  SADJ.list = SADJ.list.filter(a => a.date || a.content).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  const r = DB.sampling.find(x => x.id === SADJ.id);
+  if(r) r.adjustments = SADJ.list;
+  saveDB(); toast('调整记录已保存', 'ok'); render(); closeModal();
+}
+
+/* ================= 6. 创作者计划 ================= */
+function renderCreators(c){
+  const q = S.q.creators || '';
+  const t = today(); const wk = weekKey(new Date());
+  const list = listCap(DB.creators.filter(r => matchQ(q, r.parent, r.sku, r.shop, r.title, r.content, typeOfSku(r.sku)))
+    .sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||'')));
+  const status = cr => {
+    if(cr.weeksDone && cr.weeksDone[wk]) return `<span class="tag ok">本周已完成</span>`;
+    if(!cr.start || !cr.end) return '<span class="tag gray">时间未填</span>';
+    if(t < cr.start) return '<span class="tag warn">未开始</span>';
+    if(t > cr.end) return '<span class="tag gray">已结束</span>';
+    return '<span class="tag info">进行中</span>';
+  };
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.creators}</span>创作者计划 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('creators','按父ASIN / 货号 / 店铺 / 产品类型搜索')}</div>
+      <div class="toolbar"><button class="btn" onclick="crForm()">＋ 添加计划</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>父ASIN</th><th>产品图片</th><th>计划标题</th><th>计划内容</th><th>佣金比例</th><th>预算费用</th><th>开始时间</th><th>结束时间</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(r => `
+        <tr>
+          <td>${esc(r.shop)}</td>
+          <td style="font-weight:600">${esc(r.parent)}<div style="font-size:11px;color:var(--sub)">${esc(r.sku)}</div></td>
+          <td>${imgCell(parentImg(r.parent, r.sku), r.parent)}</td>
+          <td style="min-width:130px">${esc(r.title)} <button class="mini-btn" title="复制计划标题" onclick="copyText(this)" data-t="${esc(r.title)}">复制</button></td>
+          <td style="max-width:240px">${esc(r.content)} <button class="mini-btn" title="复制计划内容" onclick="copyText(this)" data-t="${esc(r.content)}">复制</button></td>
+          <td>${esc(r.commission)}</td>
+          <td>$${esc(r.budget)}</td>
+          <td>${esc(r.start||'—')}</td><td>${esc(r.end||'—')}</td>
+          <td>${status(r)}</td>
+          <td><button class="link-btn" onclick="crForm('${r.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delCr('${r.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(11,'暂无计划，点击右上角「添加计划」新增') }</tbody>
+    </table></div>
+  </div>`;
+}
+function crForm(id){
+  const r = id ? DB.creators.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改创作者计划' : '添加创作者计划',
+    body: `<div class="form-grid">
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : '')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '')}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.text('commission','佣金比例', r ? (r.commission||'') : '','如 15%')}
+      ${F.num('budget','预算费用($)', r ? r.budget : '')}
+      <div class="full">${F.text('title','创作者计划标题', r ? r.title : '')}</div>
+      <div class="full">${F.ta('content','创作者计划内容', r ? (r.content||'') : '')}</div>
+      ${F.date('start','开始时间', r ? r.start : '')}${F.date('end','结束时间', r ? r.end : '')}
+    </div>`,
+    onSubmit(d){
+      if(!d.title){ toast('请填写计划标题', 'err'); return false; }
+      if(r){ Object.assign(r, d); } else { DB.creators.unshift(Object.assign(newRecord(), d, { id: uid('cr'), weeksDone:{} })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function delCr(id){
+  confirmModal('确定删除该创作者计划吗？\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('creators', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 6. 产品库存情况 ================= */
+function renderInventory(c){
+  const q = S.q.inventory || '';
+  const recs = DB.inventory.filter(r => matchQ(q, r.parent, r.sku, r.shop, r.color, typeOfSku(r.sku)));
+  const groups = new Map();
+  recs.forEach(r => {
+    if(!groups.has(r.parent)) groups.set(r.parent, { shop:r.shop, sku:r.sku, type:typeOfSku(r.sku) || (findProduct(r.sku)||{}).type || '', rows:[] });
+    groups.get(r.parent).rows.push(r);
+  });
+  const sum = (rows, k) => rows.reduce((s, r) => s + num(r[k]), 0);
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.inventory}</span>产品库存情况 <span class="count-badge ${recs.length?'':'zero'}">${recs.length}</span></h2>
+      ${searchBox('inventory','按父ASIN / 货号 / 店铺 / 产品类型搜索')}</div>
+      <div class="toolbar"><button class="btn ghost" onclick="downloadTpl('inventory')">⬇ 导入模板</button>
+      <button class="btn ghost" onclick="doExcelImport('inventory')">📥 Excel导入</button>
+      <button class="btn" onclick="ivForm()">＋ 添加库存</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>产品类型</th><th>父ASIN</th><th>货号</th><th>产品图片</th><th>FBA库存总数</th><th>FBA在售</th><th>在途库存</th><th>工厂未出货</th><th>操作</th></tr></thead>
+      <tbody>${ groups.size ? [...groups.entries()].map(([parent, g]) => {
+        const rows = g.rows;
+        const best = [...rows].sort((a,b) => num(b.fbaTotal) - num(a.fbaTotal))[0];
+        const fu = rows.reduce((s, r) => s + factoryUnshipped(r.sku, r.color), 0);
+        return `<tr>
+          <td>${esc(g.shop)}</td><td>${esc(g.type)}</td>
+          <td style="font-weight:600">${esc(parent)}</td><td>${esc(g.sku)}</td>
+          <td>${imgCell(productImg(best.sku, best.color), best.sku + ' ' + best.color)}</td>
+          <td style="font-weight:600;color:var(--acc)">${sum(rows,'fbaTotal')}</td>
+          <td>${sum(rows,'fbaSellable')}</td><td>${sum(rows,'transit')}</td>
+          <td>${fu ? `<span class="tag warn">${fu}</span>` : '0'}</td>
+          <td><button class="btn ghost sm" onclick="ivDetail('${esc(parent)}')">详情</button></td>
+        </tr>`;
+      }).join('') : emptyRow(10,'暂无库存数据，可手动添加或Excel导入') }</tbody>
+    </table></div>
+  </div>`;
+}
+function ivDetail(parent){
+  const rows = DB.inventory.filter(r => r.parent === parent);
+  if(!rows.length) return;
+  const g = rows[0];
+  const html = `
+    <table class="desc-list tbl"><thead><tr><th>颜色</th><th>FBA总数</th><th>FBA在售</th><th>在途</th><th>工厂未出货</th><th>操作</th></tr></thead>
+    <tbody>${rows.map(r => `
+      <tr><td style="font-weight:600">${esc(r.color || '未填')}</td>
+      <td>${num(r.fbaTotal)}</td><td>${num(r.fbaSellable)}</td><td>${num(r.transit)}</td>
+      <td>${factoryUnshipped(r.sku, r.color)}</td>
+      <td><button class="link-btn" onclick="ivForm('${r.id}')">修改</button>
+          <button class="link-btn" style="color:var(--err)" onclick="delIv('${r.id}')">删除</button></td></tr>`).join('')}
+    </tbody></table>
+    <p style="margin-top:12px;color:var(--sub);font-size:12px">货号：${esc(g.sku)} · 店铺：${esc(g.shop)} · 工厂未出货 = 该货号+颜色下未填写「已出货时间」的工厂订单数量合计</p>`;
+  openFormModal({ title:'库存详情 · 父ASIN ' + esc(parent), wide:true, body: html,
+    onSubmit(){ return true; } });
+  document.getElementById('modalOk').style.display = 'none';
+}
+function ivForm(id, presetParent){
+  const r = id ? DB.inventory.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改库存数据' : '添加库存数据（按颜色细分）',
+    body: `<div class="form-grid">
+      ${F.list('sku','货号','skuList', r ? r.sku : '')}
+      ${F.list('color','颜色','colorList', r ? (r.color||'') : '','如 黑色')}
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : (presetParent||''))}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.num('fbaTotal','FBA总数', r ? r.fbaTotal : '')}
+      ${F.num('fbaSellable','FBA在售', r ? r.fbaSellable : '')}
+      ${F.num('transit','在途库存', r ? r.transit : '')}
+      ${F.date('time','数据时间（选填，用于导入覆盖判断）', r ? (r.updatedAt||'') : '')}
+    </div>`,
+    onSubmit(d){
+      if(!d.sku || !d.color){ toast('请填写货号和颜色', 'err'); return false; }
+      if(r){ Object.assign(r, d, { fbaTotal:num(d.fbaTotal), fbaSellable:num(d.fbaSellable), transit:num(d.transit), updatedAt: d.time || today() }); }
+      else { DB.inventory.unshift(Object.assign(newRecord(), d, { id: uid('iv'), fbaTotal:num(d.fbaTotal), fbaSellable:num(d.fbaSellable), transit:num(d.transit), updatedAt: d.time || today() })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function delIv(id){
+  confirmModal('确定删除该颜色的库存数据吗？\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('inventory', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 7. FBA货件追踪 ================= */
+function shipStatus(s){
+  const t = today();
+  if(s.delivered) return '<span class="tag ok">已送达</span>';
+  if(s.arrive){
+    const dd = dayDiff(s.arrive, t);
+    if(s.arrive < t) return `<span class="tag err">超${Math.abs(dd)}天未送达</span>`;
+    if(dd <= 3) return `<span class="tag warn">${dd === 0 ? '今日到港' : dd + '天后到港'}</span>`;
+  }
+  return '<span class="tag info">运输中</span>';
+}
+function renderShipments(c){
+  const q = S.q.shipments || '';
+  const list = listCap(DB.shipments.filter(r => matchQ(q, r.parent, r.sku, r.shop, r.shipmentId, r.name, r.warehouse, r.method, r.winStart, r.winEnd, winFmt(r)))
+    .sort((a,b) => { // 创建时间倒序；同一天创建且货件名相同的相邻展示
+      const da = String(a.createdAt||'').slice(0,10), db = String(b.createdAt||'').slice(0,10);
+      if(da !== db) return db.localeCompare(da);
+      const na = a.name || '', nb = b.name || '';
+      if(na !== nb) return na.localeCompare(nb);
+      return (b.createdAt||'').localeCompare(a.createdAt||'');
+    }));
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.shipments}</span>FBA货件追踪 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('shipments','按父ASIN / 货号 / 店铺 / 货件ID / 送达时段搜索')}</div>
+      <div class="toolbar"><button class="btn ghost" onclick="downloadTpl('shipments')">⬇ 导入模板</button>
+      <button class="btn ghost" onclick="doExcelImport('shipments')">📥 Excel导入</button>
+      <button class="btn" onclick="shForm()">＋ 添加货件</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>创建时间</th><th>产品图片</th><th>FBA货件名</th><th>FBA货件ID</th><th>FBA仓</th><th>货代方式</th><th>离港时间</th><th>到港时间</th><th>预计送达时段</th><th>送达时间</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(r => `
+        <tr>
+          <td>${esc(r.shop)}</td>
+          <td style="white-space:nowrap">${fmtDT(r.createdAt)}</td>
+          <td>${imgCell(productImg(r.sku), r.sku)}</td>
+          <td>${esc(r.name)}</td>
+          <td style="font-weight:600">${esc(r.shipmentId)}</td>
+          <td>${esc(r.warehouse)}</td><td>${esc(r.method)}</td>
+          <td>${esc(r.depart||'—')}</td><td>${esc(r.arrive||'—')}</td>
+          <td style="white-space:nowrap">${r.winStart || r.winEnd ? `<span class="tag info" style="cursor:default">${esc(winFmt(r))}</span>` : '<span style="color:var(--sub)">未设置</span>'}</td>
+          <td>${esc(r.delivered||'—')}</td>
+          <td>${shipStatus(r)}</td>
+          <td><button class="link-btn" onclick="shForm('${r.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delSh('${r.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(13,'暂无货件，可手动添加或Excel导入（需FBA货件ID与FBA仓同时匹配方可更新）') }</tbody>
+    </table></div>
+  </div>`;
+}
+function shForm(id){
+  const r = id ? DB.shipments.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改货件' : '添加货件',
+    body: `<div class="form-grid">
+      ${F.dt('createdAt','创建时间', r ? r.createdAt : nowDT())}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '')}
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : '')}
+      ${F.text('name','FBA货件名', r ? (r.name||'') : '')}
+      ${F.text('shipmentId','FBA货件ID', r ? r.shipmentId : '','唯一标识')}
+      ${F.text('warehouse','FBA仓', r ? (r.warehouse||'') : '','如 ONT8')}
+      ${F.list('method','货代方式','colorList', r ? (r.method||'') : '','海运/空运/快递')}
+      ${F.date('depart','离港时间', r ? (r.depart||'') : '')}
+      ${F.date('arrive','到港时间', r ? (r.arrive||'') : '')}
+      ${F.date('winStart','预计送达时段开始（周日）', r ? (r.winStart||'') : '')}
+      ${F.date('winEnd','预计送达时段结束（周六）', r ? (r.winEnd||'') : '')}
+      <div class="field full" style="grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <label style="margin:0">时段快捷填充：</label>
+        <button type="button" class="btn ghost sm" onclick="fillWin('this')">填充本周（周日~周六）</button>
+        <button type="button" class="btn ghost sm" onclick="fillWin('next')">填充下周（周日~下周六）</button>
+        <button type="button" class="btn ghost sm" onclick="fillWin('clear')">清空时段</button>
+      </div>
+      ${F.date('delivered','送达时间（已送达才填）', r ? (r.delivered||'') : '')}
+    </div>`,
+    onSubmit(d){
+      if(!d.shipmentId){ toast('请填写FBA货件ID', 'err'); return false; }
+      if(r){ Object.assign(r, d); } else { DB.shipments.unshift(Object.assign(newRecord(), d, { id: uid('sh'), createdAt: d.createdAt || nowDT() })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+/* 预计送达时段快捷填充（周日至下周六为一时段） */
+function fillWin(mode){
+  const root = document.getElementById('modalBody');
+  const set = (n, v) => { const el = root.querySelector(`[name="${n}"]`); if(el) el.value = v; };
+  if(mode === 'clear'){ set('winStart',''); set('winEnd',''); toast('已清空送达时段'); return; }
+  const [a, b] = mode === 'this' ? sunWeek(new Date()) : nextSunWeek();
+  set('winStart', a); set('winEnd', b);
+  toast(`已填充${mode === 'this' ? '本周' : '下周'}时段：${a} ~ ${b}`, 'ok');
+}
+function delSh(id){
+  confirmModal('确定删除该货件记录吗？\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('shipments', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 8. 工厂下单 ================= */
+function renderFactory(c){
+  const q = S.q.factory || '';
+  const list = listCap(DB.factoryOrders.filter(r => matchQ(q, r.parent, r.sku, r.shop, r.color, r.place))
+    .sort((a,b) => (b.orderTime||'').localeCompare(a.orderTime||''))); // 下单时间倒序
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.factory}</span>工厂下单 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('factory','按父ASIN / 货号 / 店铺搜索')}</div>
+      <div class="toolbar"><button class="btn" onclick="foForm()">＋ 添加订单</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>下单时间</th><th>货号</th><th>产品图片</th><th>下单颜色</th><th>下单数量</th><th>做货地</th><th>已出货时间</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(r => `
+        <tr>
+          <td>${esc(r.shop)}</td>
+          <td style="white-space:nowrap">${fmtDT(r.orderTime)}</td>
+          <td style="font-weight:600">${esc(r.sku)}</td>
+          <td>${imgCell(productImg(r.sku, r.color), r.sku)}</td>
+          <td>${esc(r.color||'未填')}</td>
+          <td style="font-weight:600">${num(r.qty)}</td>
+          <td>${esc(r.place||'未填')}</td>
+          <td>${esc(r.shippedAt||'—')}</td>
+          <td>${r.shippedAt ? '<span class="tag ok">已出货</span>' : '<span class="tag warn">未出货</span>'}</td>
+          <td><button class="link-btn" onclick="foForm('${r.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delFo('${r.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(10,'暂无订单，点击右上角「添加订单」新增') }</tbody>
+    </table></div>
+  </div>`;
+}
+function foForm(id){
+  const r = id ? DB.factoryOrders.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改工厂订单' : '添加工厂订单',
+    body: `<div class="form-grid">
+      ${F.dt('orderTime','下单时间', r ? r.orderTime : nowDT())}
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '')}
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : '')}
+      ${F.list('color','下单颜色','colorList', r ? (r.color||'') : '')}
+      ${F.num('qty','下单数量', r ? r.qty : '')}
+      ${F.text('place','做货地', r ? (r.place||'') : '','如 泉州')}
+      ${F.date('shippedAt','已出货时间（未出货留空）', r ? (r.shippedAt||'') : '')}
+    </div>`,
+    onSubmit(d){
+      if(!d.sku){ toast('请填写货号', 'err'); return false; }
+      if(r){ Object.assign(r, d, { qty: num(d.qty) }); } else { DB.factoryOrders.unshift(Object.assign(newRecord(), d, { id: uid('fo'), qty: num(d.qty) })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存（库存页「工厂未出货」已联动更新）', 'ok'); render(); return true;
+    }
+  });
+}
+function delFo(id){
+  confirmModal('确定删除该工厂订单吗？\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('factoryOrders', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 9. 具体产品情况（SKU） ================= */
+function renderSkus(c){
+  const q = S.q.skus || '';
+  const list = listCap(DB.skus.filter(r => matchQ(q, r.parent, r.sku, r.shop, r.childAsin, r.msku, r.type, r.color))
+    .sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||'')));
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.skus}</span>具体产品情况 <span class="count-badge ${list.length?'':'zero'}">${S.__total[S.page] || list.length}</span></h2>
+      ${searchBox('skus','按父ASIN / 货号 / 店铺 / 子ASIN / MSKU / 颜色搜索')}</div>
+      <div class="toolbar"><button class="btn ghost" onclick="downloadTpl('skus')">⬇ 导入模板</button>
+      <button class="btn ghost" onclick="doExcelImport('skus')">📥 Excel导入</button>
+      <button class="btn" onclick="skuForm()">＋ 添加SKU</button></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>店铺</th><th>父ASIN</th><th>子ASIN</th><th>MSKU</th><th>颜色</th><th>产品图片</th><th>FBA库存数量</th><th>货号</th><th>产品类型</th><th>操作</th></tr></thead>
+      <tbody>${ list.length ? list.map(r => `
+        <tr>
+          <td>${esc(r.shop)}</td>
+          <td style="font-weight:600">${esc(r.parent)}</td>
+          <td>${esc(r.childAsin)}</td>
+          <td>${esc(r.msku)}</td>
+          <td>${esc(r.color || '未填')}</td>
+          <td>${imgCell(r.img || productImg(r.sku, r.color), r.sku)}</td>
+          <td style="font-weight:600;color:var(--acc)">${num(r.fbaQty)}</td>
+          <td>${esc(r.sku)}</td><td>${esc(r.type)}</td>
+          <td><button class="link-btn" onclick="skuForm('${r.id}')">编辑</button>
+              <button class="link-btn" style="color:var(--err)" onclick="delSku('${r.id}')">删除</button></td>
+        </tr>`).join('') : emptyRow(10,'暂无SKU数据，可手动添加或Excel导入（需子ASIN与MSKU同时匹配成功方可更新）') }</tbody>
+    </table></div>
+  </div>`;
+}
+function skuForm(id){
+  const r = id ? DB.skus.find(x => x.id === id) : null;
+  openFormModal({
+    title: r ? '修改SKU' : '添加SKU',
+    body: `<div class="form-grid">
+      ${F.text('shop','店铺', r ? r.shop : '')}
+      ${F.list('parent','父ASIN','parentList', r ? r.parent : '')}
+      ${F.text('childAsin','子ASIN', r ? r.childAsin : '')}
+      ${F.text('msku','MSKU', r ? r.msku : '')}
+      ${F.list('color','颜色','colorList', r ? (r.color||'') : '')}
+      ${F.list('sku','货号','skuList', r ? r.sku : '')}
+      ${F.list('type','产品类型','typeList', r ? (r.type||'') : '')}
+      ${F.num('fbaQty','FBA库存数量', r ? r.fbaQty : '')}
+      ${imgf('img', '产品图片（选填，默认取产品颜色图）', r ? (r.img || '') : '', { name:'img' })}
+    </div>`,
+    onSubmit(d){
+      if(!d.childAsin && !d.msku){ toast('子ASIN与MSKU至少填写一项', 'err'); return false; }
+      if(r){ Object.assign(r, d, { fbaQty: num(d.fbaQty) }); } else { DB.skus.unshift(Object.assign(newRecord(), d, { id: uid('sk'), fbaQty: num(d.fbaQty) })); }
+      const p = findProduct(d.sku); if(p) propagateProductMeta(p);
+      saveDB(); toast('已保存', 'ok'); render(); return true;
+    }
+  });
+}
+function delSku(id){
+  confirmModal('确定删除该SKU数据吗？\n删除后可在「回收站」保留 ' + TRASH_DAYS + ' 天，期间可随时恢复。', () => {
+    if(moveToTrash('skus', id)){ saveDB(); toast('已移入回收站（保留 ' + TRASH_DAYS + ' 天）', 'ok'); render(); }
+  });
+}
+
+/* ================= 回收站 ================= */
+function renderTrash(c){
+  const q = S.q.trash || '';
+  const all = (DB.trash || []).slice().sort((a, b) => (Number(b.at) || 0) - (Number(a.at) || 0));
+  const list = all.filter(t => matchQ(q, t.label, COLL_LABEL[t.coll], trashSummary(t.coll, t.rec), t.val));
+  const shown = listCap(list);
+  const soon = all.filter(t => (Number(t.at) || 0) + TRASH_TTL - Date.now() < 24 * 3600 * 1000).length;
+  c.innerHTML = `
+  <div class="card">
+    <div class="card-head">
+      <div class="head-left"><h2><span class="h2-ico">${ICONS.trash}</span>回收站 <span class="count-badge ${all.length ? '' : 'zero'}">${S.__total.trash || all.length}</span></h2>
+      ${searchBox('trash','按模块 / 数据摘要搜索')}</div>
+      <div class="toolbar">
+        <span class="tag ${soon ? 'warn' : 'gray'}">删除后保留 ${TRASH_DAYS} 天${soon ? ' · ' + soon + ' 条 24 小时内到期' : ''}</span>
+        <button class="btn ghost" onclick="trashClear()">清空回收站</button>
+      </div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>所属模块</th><th>数据摘要</th><th>删除时间</th><th>剩余可恢复</th><th>操作</th></tr></thead>
+      <tbody>${ shown.length ? shown.map(t => {
+        const left = (Number(t.at) || 0) + TRASH_TTL - Date.now();
+        return `<tr>
+          <td><span class="tag gray">${esc(COLL_LABEL[t.coll] || '—')}</span></td>
+          <td style="font-weight:600">${esc(t.label || trashSummary(t.coll, t.rec) || '—')}</td>
+          <td style="font-size:12px;color:var(--sub)">${esc(fmtStamp(t.at))}</td>
+          <td><span class="tag ${left < 24 * 3600 * 1000 ? 'warn' : 'ok'}">${esc(trashLeft(t.at))}</span></td>
+          <td><button class="btn ghost sm" onclick="restoreTrash('${t.tid}')">恢复</button>
+              <button class="mini-btn" style="color:var(--err)" onclick="trashDel('${t.tid}')">彻底删除</button></td>
+        </tr>`;
+      }).join('') : emptyRow(5, '回收站为空。删除的业务数据会在这里保留 ' + TRASH_DAYS + ' 天，期间可随时恢复') }</tbody>
+    </table></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-head"><div class="head-left"><h2>回收规则</h2></div></div>
+    <div style="padding:14px 20px;color:var(--sub);font-size:13px;line-height:2">
+      · 在任意业务模块删除记录后，数据不会立即消失，而是进入回收站并保留 <b>${TRASH_DAYS} 天</b>，到期后自动彻底删除。<br>
+      · 保留期内点击「恢复」，整条记录（含颜色图片、面料、调整记录、广告词等明细）会放回原模块顶部。<br>
+      · 「彻底删除」「清空回收站」立即生效且不可撤销；回收站内容同样占用本地存储空间。<br>
+      · 回收站最多保留 ${TRASH_MAX} 条、约 ${Math.round(TRASH_BUDGET / 10000) / 100} 万字符，超出时自动丢弃最旧的记录。
+    </div>
+  </div>`;
+}
+
+/* ================= Excel 导入 / 模板 ================= */
+const TPL = {
+  inventory: ['货号','颜色','父ASIN','店铺','FBA库存总数','FBA在售','在途库存','时间'],
+  shipments: ['店铺','创建时间','货号','父ASIN','FBA货件名','FBA货件ID','FBA仓','货代方式','离港时间','到港时间','预计送达时段开始','预计送达时段结束','送达时间'],
+  skus: ['店铺','父ASIN','子ASIN','MSKU','颜色','产品图片','FBA库存数量','货号','产品类型']
+};
+function pick(row, names){
+  for(const n of names){
+    if(!row || row[n] === undefined || row[n] === null) continue;
+    const raw = row[n];
+    if(typeof raw === 'string' && raw.trim() === '') continue;
+    if(raw instanceof Date){
+      const d = raw, pad = x => String(x).padStart(2, '0');
+      if(isNaN(d.getTime())) continue;
+      const day = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      return (d.getHours() || d.getMinutes()) ? day + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()) : day;
+    }
+    // Excel 日期序列号（单元格未套用日期格式时）
+    if(typeof raw === 'number' && /时间|日期/.test(names.join('')) && raw > 20000 && raw < 80000){
+      const d = new Date(Math.round((raw - 25569) * 86400000));
+      const pad = x => String(x).padStart(2, '0');
+      return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+    }
+    return String(raw).trim();
+  }
+  return '';
+}
+function downloadTpl(page){
+  const csv = '\ufeff' + TPL[page].join(',') + '\r\n';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' }));
+  a.download = page + '_导入模板.csv'; a.click();
+  toast('模板已下载（CSV格式，Excel可直接编辑）', 'ok');
+}
+let importTarget = null;
+let lastImportResult = null;
+/* XLSX 按需加载：不阻塞首屏；离线时 CSV 导入依然可用 */
+let xlsxPromise = null;
+function loadXLSX(){
+  if(typeof XLSX !== 'undefined') return Promise.resolve(true);
+  if(xlsxPromise) return xlsxPromise;
+  xlsxPromise = new Promise(resolve => {
+    let done = false;
+    const fin = ok => { if(done) return; done = true; clearTimeout(tm); resolve(ok); };
+    const tm = setTimeout(() => fin(typeof XLSX !== 'undefined'), 8000);
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+    s.onload = () => fin(typeof XLSX !== 'undefined');
+    s.onerror = () => fin(false);
+    document.head.appendChild(s);
+  });
+  return xlsxPromise;
+}
+/* 内置 CSV 解析（支持引号、逗号/制表符、BOM、CRLF），断网也能导入 */
+function parseCSV(text){
+  const s = String(text || '').replace(/^\ufeff/, '');
+  if(!s.trim()) return [];
+  const nl = s.indexOf('\n');
+  const first = nl < 0 ? s : s.slice(0, nl);
+  const delim = first.indexOf('\t') >= 0 && first.indexOf(',') < 0 ? '\t' : ',';
+  const rows = []; let row = [], cell = '', q = false;
+  for(let i = 0; i < s.length; i++){
+    const ch = s[i];
+    if(q){
+      if(ch === '"'){ if(s[i+1] === '"'){ cell += '"'; i++; } else q = false; }
+      else cell += ch;
+    } else if(ch === '"') q = true;
+    else if(ch === delim){ row.push(cell); cell = ''; }
+    else if(ch === '\n'){ row.push(cell); rows.push(row); row = []; cell = ''; }
+    else if(ch !== '\r') cell += ch;
+  }
+  if(cell !== '' || row.length){ row.push(cell); rows.push(row); }
+  if(rows.length < 2) return [];
+  const head = rows.shift().map(h => String(h).trim());
+  return rows.filter(r => r.some(v => String(v).trim() !== '')).map(r => {
+    const o = {}; head.forEach((h, i) => { if(h) o[h] = r[i] === undefined ? '' : r[i]; });
+    return o;
+  });
+}
+function doExcelImport(page){
+  importTarget = page;
+  const f = document.getElementById('fileInput');
+  if(!f) return;
+  f.value = ''; f.click();
+}
+document.getElementById('fileInput').addEventListener('change', function(){
+  const file = this.files && this.files[0];
+  const target = importTarget;
+  if(!file || !target) return;
+  const isCSV = /\.csv$/i.test(file.name) || file.type === 'text/csv';
+  const fr = new FileReader();
+  fr.onload = async e => {
+    try{
+      let rows;
+      if(isCSV){
+        rows = parseCSV(new TextDecoder('utf-8').decode(new Uint8Array(e.target.result)));
+      } else {
+        const ok = await loadXLSX();
+        if(!ok){ toast('Excel 解析组件加载失败（需要联网），请把文件另存为 CSV 后导入', 'err'); return; }
+        const wb = XLSX.read(new Uint8Array(e.target.result), { type:'array', cellDates:true });
+        const sh = wb.Sheets[wb.SheetNames[0]];
+        if(!sh){ toast('未找到可读取的工作表', 'err'); return; }
+        rows = XLSX.utils.sheet_to_json(sh, { defval:'' });
+      }
+      if(!rows || !rows.length){ toast('未解析到数据行，请检查表头与内容', 'err'); return; }
+      snapshot('before-import', true); // 导入前留一份可恢复快照
+      const res = handleImport(target, rows);
+      saveDB(); render();
+      showImportResult(target, res);
+    }catch(err){ console.error('[import]', err); toast('导入失败：' + (err && err.message ? err.message : '未知错误'), 'err'); }
+  };
+  fr.onerror = () => toast('文件读取失败，请重试', 'err');
+  fr.readAsArrayBuffer(file);
+});
+function hasCell(rw, names){ return names.some(n => rw[n] !== undefined && rw[n] !== null && String(rw[n]).trim() !== ''); }
+function handleImport(page, rows){
+  const items = [];
+  let added = 0, updated = 0, skipped = 0, failed = 0;
+  const push = (rw, status, note) => {
+    const base = page === 'inventory'
+      ? { 货号: pick(rw,['货号']), 颜色: pick(rw,['颜色']), 店铺: pick(rw,['店铺']) }
+      : page === 'shipments'
+      ? { 'FBA货件ID': pick(rw,['FBA货件ID','货件ID']), 'FBA仓': pick(rw,['FBA仓','仓库']), 'FBA货件名': pick(rw,['FBA货件名','货件名']), 货号: pick(rw,['货号']), 店铺: pick(rw,['店铺']) }
+      : { '子ASIN': pick(rw,['子ASIN']), MSKU: pick(rw,['MSKU']), 货号: pick(rw,['货号']), 店铺: pick(rw,['店铺']) };
+    items.push(Object.assign(base, { 状态: status, 说明: note }));
+    if(status === '失败') failed++;
+  };
+  if(page === 'inventory'){
+    rows.forEach(rw => {
+      try{
+        const sku = pick(rw, ['货号']); const color = pick(rw, ['颜色']);
+        if(!sku || !color){ push(rw, '失败', !sku && !color ? '缺少货号与颜色' : (!sku ? '缺少货号' : '缺少颜色')); return; }
+        const ex = (DB.inventory || []).find(x => x.sku === sku && x.color === color);
+        const data = {
+          sku, color,
+          parent: pick(rw,['父ASIN','父体']) || (ex ? ex.parent : ''),
+          shop: pick(rw,['店铺']) || (ex ? ex.shop : ''),
+          // 空单元格不覆盖原值，避免一次不完整的导入把库存清零
+          fbaTotal: hasCell(rw,['FBA库存总数','FBA总数','实时FBA库存总数']) ? num(pick(rw,['FBA库存总数','FBA总数','实时FBA库存总数'])) : (ex ? ex.fbaTotal : 0),
+          fbaSellable: hasCell(rw,['FBA在售','在售库存']) ? num(pick(rw,['FBA在售','在售库存'])) : (ex ? ex.fbaSellable : 0),
+          transit: hasCell(rw,['在途库存','在途']) ? num(pick(rw,['在途库存','在途'])) : (ex ? ex.transit : 0),
+          updatedAt: pick(rw,['时间','数据时间','更新时间']) || today()
+        };
+        if(ex){
+          if(String(data.updatedAt) >= String(ex.updatedAt || '')){ Object.assign(ex, data); updated++; push(rw, '成功', '按最新时间覆盖更新'); }
+          else { skipped++; push(rw, '跳过', '数据时间早于现有记录，未覆盖'); }
+        } else { DB.inventory.unshift(Object.assign(newRecord(), data, { id: uid('iv') })); added++; push(rw, '成功', '新增库存记录'); }
+      }catch(e){ push(rw, '失败', '解析异常：' + e.message); }
+    });
+  } else if(page === 'shipments'){
+    /* 严格规则：FBA货件ID 与 FBA仓 必须同时匹配同一条已有记录方可导入成功 */
+    rows.forEach(rw => {
+      try{
+        const sid = pick(rw, ['FBA货件ID','货件ID']); const wh = pick(rw, ['FBA仓','仓库']);
+        if(!sid || !wh){ push(rw, '失败', !sid && !wh ? '缺少FBA货件ID与FBA仓' : (!sid ? '缺少FBA货件ID' : '缺少FBA仓')); return; }
+        const ex = (DB.shipments || []).find(x => x.shipmentId === sid && x.warehouse === wh);
+        if(!ex){ push(rw, '失败', '未找到FBA货件ID与FBA仓同时匹配的记录'); return; }
+        const g = (names, cur) => pick(rw, names) || cur || '';
+        Object.assign(ex, {
+          shop: g(['店铺'], ex.shop),
+          createdAt: g(['创建时间'], ex.createdAt).replace(' ', 'T'),
+          sku: g(['货号'], ex.sku), parent: g(['父ASIN'], ex.parent),
+          name: g(['FBA货件名','货件名'], ex.name),
+          method: g(['货代方式','物流方式'], ex.method),
+          depart: g(['离港时间','离港'], ex.depart).slice(0, 10),
+          arrive: g(['到港时间','到港'], ex.arrive).slice(0, 10),
+          winStart: g(['预计送达时段开始','送达时段开始','时段开始'], ex.winStart).slice(0, 10),
+          winEnd: g(['预计送达时段结束','送达时段结束','时段结束'], ex.winEnd).slice(0, 10),
+          delivered: g(['送达时间','送达'], ex.delivered).slice(0, 10) // 表格没填送达时间时保留原值，不会被改成未送达
+        });
+        updated++; push(rw, '成功', 'FBA货件ID与FBA仓同时匹配，已覆盖更新');
+      }catch(e){ push(rw, '失败', '解析异常：' + e.message); }
+    });
+  } else if(page === 'skus'){
+    /* 严格规则：子ASIN 与 MSKU 必须同时匹配同一条已有记录方可导入成功 */
+    rows.forEach(rw => {
+      try{
+        const ca = pick(rw, ['子ASIN']); const msku = pick(rw, ['MSKU']);
+        if(!ca || !msku){ push(rw, '失败', !ca && !msku ? '缺少子ASIN与MSKU' : (!ca ? '缺少子ASIN' : '缺少MSKU')); return; }
+        const ex = (DB.skus || []).find(x => x.childAsin === ca && x.msku === msku);
+        if(!ex){ push(rw, '失败', '未找到子ASIN与MSKU同时匹配的记录'); return; }
+        Object.assign(ex, {
+          shop: pick(rw,['店铺']) || ex.shop, parent: pick(rw,['父ASIN','父体']) || ex.parent,
+          color: pick(rw,['颜色']) || ex.color || '',        // 空值不覆盖已有颜色/图片
+          img: pick(rw,['产品图片','图片']) || ex.img || '',
+          fbaQty: hasCell(rw,['FBA库存数量','FBA库存']) ? num(pick(rw,['FBA库存数量','FBA库存'])) : (ex.fbaQty || 0),
+          sku: pick(rw,['货号']) || ex.sku, type: pick(rw,['产品类型']) || ex.type
+        });
+        updated++; push(rw, '成功', '子ASIN与MSKU同时匹配，已覆盖更新');
+      }catch(e){ push(rw, '失败', '解析异常：' + e.message); }
+    });
+  }
+  return { added, updated, skipped, failed, items };
+}
+/* 导入结果回传弹窗：失败行标红，可下载结果表格 */
+function showImportResult(page, res){
+  lastImportResult = { page, res };
+  const cols = res.items.length ? Object.keys(res.items[0]) : [];
+  const rowsHtml = res.items.map(it => {
+    const cls = it['状态'] === '失败' ? 'imp-fail' : (it['状态'] === '跳过' ? 'imp-skip' : '');
+    return `<tr class="${cls}">${cols.map(c => `<td>${esc(String(it[c] === undefined ? '' : it[c]))}</td>`).join('')}</tr>`;
+  }).join('') || `<tr><td colspan="${cols.length || 1}"><div class="empty">未解析到数据行</div></td></tr>`;
+  const root = document.getElementById('modalRoot');
+  root.innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal xl">
+      <div class="modal-head"><h3>导入结果回传 · ${{inventory:'产品库存', shipments:'FBA货件', skus:'具体产品情况'}[page] || ''}</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body">
+        <div class="imp-sum">
+          <span class="tag ok">成功 ${res.added + res.updated} 条${res.added ? '（新增' + res.added + ' / 更新' + res.updated + '）' : ''}</span>
+          ${res.failed ? `<span class="tag err">失败 ${res.failed} 条</span>` : ''}
+          ${res.skipped ? `<span class="tag gray">跳过 ${res.skipped} 条</span>` : ''}
+          <span class="tag gray">合计 ${res.items.length} 条</span>
+        </div>
+        <div class="imp-wrap">
+          <table class="imp-tbl">
+            <thead><tr>${cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>
+        ${res.failed ? '<p class="imp-note"><b>红底行</b>为导入失败记录：' + (page === 'skus' ? '子ASIN与MSKU需同时匹配已有数据方可导入成功，请核对后修正再导入。' : page === 'shipments' ? 'FBA货件ID与FBA仓需同时匹配已有数据方可导入成功，请核对后修正再导入。' : '请核对唯一标识字段后重试。') + '</p>' : '<p class="imp-note">全部导入成功 🎉</p>'}
+      </div>
+      <div class="modal-foot">
+        <button class="btn ghost" onclick="closeModal()">关闭</button>
+        <button class="btn" onclick="downloadImportResult()">⬇ 下载结果表格</button>
+      </div>
+    </div></div>`;
+}
+/* 下载导入结果表格（.xls 格式，Excel/WPS 可直接打开，失败行保留红色标记） */
+function downloadImportResult(){
+  if(!lastImportResult){ toast('暂无导入结果', 'err'); return; }
+  const { page, res } = lastImportResult;
+  const cols = res.items.length ? Object.keys(res.items[0]) : [];
+  const escCell = v => esc(String(v === undefined ? '' : v));
+  const html = '\ufeff<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"><style>td,th{border:1px solid #ccc;padding:4px 8px;font-size:12px}</style></head><body>'
+    + '<table><thead><tr>' + cols.map(c => `<th>${escCell(c)}</th>`).join('') + '</tr></thead><tbody>'
+    + res.items.map(it => {
+        const fail = it['状态'] === '失败';
+        return `<tr${fail ? ' style="background:#fde7e4;color:#c05648;font-weight:600"' : ''}>` + cols.map(c => `<td>${escCell(it[c])}</td>`).join('') + '</tr>';
+      }).join('')
+    + '</tbody></table></body></html>';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([html], { type:'application/vnd.ms-excel' }));
+  const d = new Date(); const p2 = n => String(n).padStart(2, '0');
+  a.download = `导入结果_${page}_${d.getFullYear()}${p2(d.getMonth()+1)}${p2(d.getDate())}_${p2(d.getHours())}${p2(d.getMinutes())}.xls`;
+  a.click();
+  toast(res.failed ? '结果表格已下载（失败行标红）' : '结果表格已下载', 'ok');
+}
+
+/* ================= 用户登录 ================= */
+let loginMode = 'login';   // login | register | reset
+let resetUser = null;      // 邮箱校验通过后的待重置账号
+let prefillUser = '';      // 重置成功后回填登录用户名
+function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(e || '').trim()); }
+function findUserByEmail(email){
+  const em = String(email || '').trim().toLowerCase();
+  if(!em) return null;
+  const users = getUsers();
+  return Object.keys(users).find(n => String(users[n].email || '').toLowerCase() === em) || null;
+}
+function setPassword(name, pw){
+  const users = getUsers(), u = users[name];
+  if(!u) return false;
+  const salt = uid('s');
+  u.salt = salt; u.hash = hashPwd(pw, salt);
+  saveUsers(users);
+  return true;
+}
+function showLogin(){
+  const hasUser = Object.keys(getUsers()).length > 0;
+  loginMode = hasUser ? 'login' : 'register';
+  resetUser = null;
+  document.getElementById('loginRoot').hidden = false;
+  drawLogin();
+}
+function drawLogin(){
+  const hasUser = Object.keys(getUsers()).length > 0;
+  if(!hasUser && loginMode === 'login') loginMode = 'register';
+  const reg = loginMode === 'register', rst = loginMode === 'reset';
+  const root = document.getElementById('loginRoot');
+  let body = '';
+  if(rst){
+    body = resetUser ? `
+      <div class="login-note">邮箱验证通过，账号：<b>${esc(resetUser)}</b><br>请设置新密码，设置完成后即可用新密码登录</div>
+      <div class="login-field"><label>新密码</label><input id="lgPass" type="password" maxlength="32" placeholder="至少 4 位"></div>
+      <div class="login-field"><label>确认新密码</label><input id="lgPass2" type="password" maxlength="32" placeholder="请再次输入新密码"></div>` : `
+      <div class="login-note">输入账号绑定的邮箱，验证通过后即可设置新密码（无需原密码）</div>
+      <div class="login-field"><label>绑定邮箱</label><input id="lgEmail" type="email" maxlength="60" placeholder="请输入账号绑定的邮箱"></div>`;
+  } else {
+    body = `
+      <div class="login-field"><label>用户名</label><input id="lgUser" autocomplete="username" maxlength="20" placeholder="请输入用户名" value="${esc(prefillUser)}"></div>
+      <div class="login-field"><label>密码</label><input id="lgPass" type="password" autocomplete="${reg ? 'new-password' : 'current-password'}" maxlength="32" placeholder="请输入密码"></div>
+      ${reg ? `<div class="login-field"><label>确认密码</label><input id="lgPass2" type="password" maxlength="32" placeholder="请再次输入密码"></div>
+      <div class="login-field"><label>绑定邮箱</label><input id="lgEmail" type="email" maxlength="60" placeholder="忘记密码时凭此邮箱重置，如 name@example.com"></div>` : ''}`;
+  }
+  root.innerHTML = `
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="brand-icon">A</div>
+      <h1>亚马逊运营工作台</h1>
+      <p>全链路数据一站管理 · 各账号数据独立互不共享</p>
+    </div>
+    <div class="login-tabs">
+      ${rst ? `<button type="button" class="ltab on">重置密码</button>`
+        : `<button type="button" class="ltab ${!reg ? 'on' : ''}" onclick="setLoginMode('login')">账号登录</button>
+         <button type="button" class="ltab ${reg ? 'on' : ''}" onclick="setLoginMode('register')">注册新用户</button>`}
+    </div>
+    <form onsubmit="${rst ? 'resetSubmit(event)' : 'loginSubmit(event)'}">
+      ${body}
+      <div class="login-err" id="lgErr"></div>
+      <button class="btn login-btn" type="submit">${rst ? (resetUser ? '确认重置密码' : '验证邮箱') : (reg ? '注册并进入' : '登 录')}</button>
+    </form>
+    ${rst ? `<p class="login-links"><a onclick="setLoginMode('login')">« 返回登录</a></p>`
+      : `<p class="login-links"><a onclick="setLoginMode('reset')">忘记密码？用绑定邮箱重置</a></p>`}
+    ${rst ? '' : `<p class="login-tip">${reg && !hasUser ? '首位注册用户将自动继承当前已有数据；' : ''}${reg ? '邮箱用于忘记密码时重置，登录后可在「账户设置」中修改' : '登录后可在「账户设置」中修改密码与绑定邮箱'}</p>`}
+  </div>`;
+  setTimeout(() => {
+    const id = rst ? (resetUser ? 'lgPass' : 'lgEmail') : 'lgUser';
+    const el = document.getElementById(id); if(el && el.focus) el.focus();
+  }, 60);
+}
+function setLoginMode(m){ loginMode = m; if(m !== 'reset') resetUser = null; drawLogin(); }
+function lgErr(msg){ const el = document.getElementById('lgErr'); if(el) el.textContent = msg || ''; }
+function loginSubmit(ev){
+  if(ev && ev.preventDefault) ev.preventDefault();
+  const name = (document.getElementById('lgUser').value || '').trim();
+  const pw = document.getElementById('lgPass').value || '';
+  lgErr('');
+  if(!name){ lgErr('请输入用户名'); return; }
+  if(/\s/.test(name)){ lgErr('用户名不能包含空格'); return; }
+  if(!pw){ lgErr('请输入密码'); return; }
+  if(loginMode === 'register'){
+    if(pw.length < 4){ lgErr('密码至少 4 位'); return; }
+    const pw2 = document.getElementById('lgPass2').value || '';
+    if(pw !== pw2){ lgErr('两次输入的密码不一致'); return; }
+    const email = (document.getElementById('lgEmail').value || '').trim().toLowerCase();
+    if(!email){ lgErr('请填写绑定邮箱（用于忘记密码时重置）'); return; }
+    if(!validEmail(email)){ lgErr('邮箱格式不正确，请检查'); return; }
+    const users = getUsers();
+    if(users[name]){ lgErr('该用户名已被注册，请更换或改为登录'); return; }
+    const owner = findUserByEmail(email);
+    if(owner){ lgErr('该邮箱已被账号「' + owner + '」绑定，请更换'); return; }
+    const salt = uid('s');
+    users[name] = { salt, hash: hashPwd(pw, salt), email, createdAt: nowDT() };
+    saveUsers(users);
+    prefillUser = '';
+    migrateLegacyData(name); // 首位注册用户继承旧版数据
+    enterUser(name, { silent: true });
+    const h = location.hash.slice(1);
+    if(NAV.some(n => n.key === h)) S.page = h;
+    render();
+    toast('注册成功，欢迎 ' + name, 'ok');
+  } else {
+    const u = getUsers()[name];
+    if(!u || hashPwd(pw, u.salt) !== u.hash){ lgErr('用户名或密码错误，忘记密码可用绑定邮箱重置'); return; }
+    prefillUser = '';
+    enterUser(name);
+  }
+}
+/* 忘记密码：邮箱验证 → 设置新密码（无需原密码） */
+function resetSubmit(ev){
+  if(ev && ev.preventDefault) ev.preventDefault();
+  lgErr('');
+  if(!resetUser){
+    const em = (document.getElementById('lgEmail').value || '').trim();
+    if(!em){ lgErr('请输入绑定邮箱'); return; }
+    if(!validEmail(em)){ lgErr('邮箱格式不正确，请检查'); return; }
+    const owner = findUserByEmail(em);
+    if(!owner){ lgErr('该邮箱未绑定任何账号，请检查邮箱或登录后在「账户设置」中绑定'); return; }
+    resetUser = owner;
+    drawLogin();
+    toast('邮箱验证通过', 'ok');
+    return;
+  }
+  const pw = document.getElementById('lgPass').value || '';
+  const pw2 = document.getElementById('lgPass2').value || '';
+  if(!pw){ lgErr('请输入新密码'); return; }
+  if(pw.length < 4){ lgErr('密码至少 4 位'); return; }
+  if(pw !== pw2){ lgErr('两次输入的密码不一致'); return; }
+  const who = resetUser;
+  setPassword(who, pw);
+  resetUser = null; loginMode = 'login'; prefillUser = who;
+  drawLogin();
+  toast('密码已重置，请用新密码登录', 'ok');
+}
+function enterUser(name, opts){
+  opts = opts || {};
+  S.user = name;
+  try { localStorage.setItem(SESSION_KEY, name); } catch(e){}
+  loadUserSettings();
+  loadDB();
+  const th = safeGet(ukey('theme'));
+  document.documentElement.setAttribute('data-theme', th || 'forest');
+  document.getElementById('loginRoot').hidden = true;
+  updateAvatar();
+  if(!opts.silent){
+    S.page = 'home';
+    const h = location.hash.slice(1);
+    if(NAV.some(n => n.key === h)) S.page = h;
+    render();
+    toast('欢迎回来，' + name, 'ok');
+  }
+}
+function updateAvatar(){
+  const c = document.getElementById('avatarCircle');
+  const n = document.getElementById('avatarName');
+  const r = document.getElementById('avatarRole');
+  if(c) c.textContent = (S.user || '访').slice(0, 1);
+  if(n) n.textContent = S.user || '未登录';
+  if(r) r.textContent = S.user ? '已登录 · 独立数据空间' : '亚马逊运营';
+}
+function logout(){
+  if(!confirm('确定退出当前账号？\n数据已自动保存，下次登录可继续使用。')) return;
+  try { localStorage.removeItem(SESSION_KEY); } catch(e){}
+  S.user = null; DB = null; S.page = 'home'; S.q = {}; S.remCol = {}; S.sort = {}; S.cols = {}; S.remOrder = null;
+  try { document.getElementById('modalRoot').innerHTML = ''; } catch(e){}
+  closeDrawer();
+  prefillUser = '';
+  showLogin();
+}
+
+/* ================= 账户设置（修改密码 / 绑定邮箱） ================= */
+function openAccountPanel(){
+  const u = getUsers()[S.user] || {};
+  const pct = storagePct();
+  const usedK = Math.round(usageChars() / 1024);
+  const st = dataStats();
+  const bak = readSnapshot();
+  const bakTxt = bak ? new Date(bak.at).toLocaleString('zh-CN', { hour12: false }) + '（' + ({ auto:'自动', import:'导入前', export:'导出前', 'before-restore':'恢复前' }[bak.tag] || '自动') + '）' : '暂无（数据变动后自动生成）';
+  document.getElementById('modalRoot').innerHTML = `
+  <div class="overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal" style="width:540px">
+      <div class="modal-head"><h3>账户设置</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+      <div class="modal-body">
+        <div class="acc-row">
+          <div class="acc-lbl">登录账号</div>
+          <div class="acc-val"><b>${esc(S.user)}</b><span class="tag gray">数据独立空间</span></div>
+        </div>
+        <div class="acc-sec">绑定邮箱<span class="acc-hint">忘记密码时凭此邮箱重置，请填写常用邮箱</span></div>
+        <div class="acc-inline">
+          <input id="accEmail" type="email" maxlength="60" placeholder="name@example.com" value="${esc(u.email || '')}">
+          <button class="btn sm" onclick="saveEmail()">${u.email ? '更新邮箱' : '绑定邮箱'}</button>
+        </div>
+        <div class="acc-err" id="accErr">${u.email ? '' : '当前账号未绑定邮箱，忘记密码后将无法自助重置'}</div>
+        <div class="acc-sec">修改密码<span class="acc-hint">修改后请使用新密码登录</span></div>
+        <div class="login-field"><label>当前密码</label><input id="accOld" type="password" maxlength="32" placeholder="请输入当前密码"></div>
+        <div class="login-field"><label>新密码</label><input id="accNew" type="password" maxlength="32" placeholder="至少 4 位"></div>
+        <div class="login-field"><label>确认新密码</label><input id="accNew2" type="password" maxlength="32" placeholder="请再次输入新密码"></div>
+        <div class="acc-err" id="accPwErr"></div>
+        <div class="acc-acts">
+          <button class="btn" onclick="savePassword()">保存新密码</button>
+          <button class="btn ghost" onclick="closeModal();logout()">退出登录</button>
+        </div>
+        <div class="acc-sec">数据备份与恢复<span class="acc-hint">建议每周导出一次，换电脑或清理浏览器后可完整还原</span></div>
+        <div class="acc-bar ${pct >= 90 ? 'danger' : pct >= 70 ? 'warn' : ''}"><span style="width:${pct}%"></span></div>
+        <div class="acc-sub">本地存储占用约 ${pct}%（${usedK}K / 上限约 4500K 字符，含本浏览器全部账号）<br>最近快照：${esc(bakTxt)}</div>
+        <div class="acc-sub">回收站：${(DB.trash || []).length} 条记录（删除后保留 ${TRASH_DAYS} 天，期间可恢复，到期自动彻底删除）</div>
+        <div class="acc-acts">
+          <button class="btn ghost sm" onclick="exportBackup()">⬇ 导出全部数据</button>
+          <button class="btn ghost sm" onclick="importBackupPick()">⬆ 导入备份</button>
+          <button class="btn ghost sm" onclick="restoreSnapshot()">↺ 恢复自动快照</button>
+          <button class="btn ghost sm" onclick="closeModal();go('trash')">🗑 打开回收站</button>
+        </div>
+        <div class="acc-err" id="accDataMsg"></div>
+        <div class="acc-sub" style="margin-top:10px">数据版本 v${DB_VERSION} · 单文件离线运行，数据保存在本机浏览器</div>
+        <div class="acc-sec">长期使用维护<span class="acc-hint">数据积累较多时，归档已完成的历史记录可释放本地空间</span></div>
+        <div class="acc-sub">记录数：产品 ${st.products} · 货件 ${st.shipments} · 库存 ${st.inventory} · 促销 ${st.promotions} · 工厂单 ${st.factoryOrders} · 打样 ${st.sampling} · SKU ${st.skus}<br>本地图片占用约 ${st.imgKB}K（建议单账号控制在 1200K 以内，超出请改用图片链接）</div>
+        <div class="acc-acts">
+          <button class="btn ghost sm" onclick="archiveOldData(180)">归档 180 天前已完成记录</button>
+          <button class="btn ghost sm" onclick="selfCheck()">运行稳定性自检</button>
+        </div>
+        <div class="acc-err" id="selfCheckMsg"></div>
+      </div>
+    </div>
+  </div>`;
+}
+/* ================= 长期维护：容量统计 / 归档清理 / 自检 ================= */
+function imgUsageChars(){
+  let n = 0;
+  const add = v => { if(typeof v === 'string' && v.slice(0, 11) === 'data:image/') n += v.length; };
+  (DB.products || []).forEach(p => (p.colors || []).forEach(c => add(c.img)));
+  (DB.skus || []).forEach(s => add(s.img));
+  return n;
+}
+function dataStats(){
+  const c = k => (DB[k] || []).length;
+  return { products:c('products'), promotions:c('promotions'), shipments:c('shipments'), inventory:c('inventory'),
+    factoryOrders:c('factoryOrders'), sampling:c('sampling'), skus:c('skus'), creators:c('creators'), ads:c('ads'),
+    imgKB: Math.round(imgUsageChars() / 1024) };
+}
+function archiveCutoff(days){ const d = new Date(); d.setDate(d.getDate() - days); return iso(d); }
+function archiveCount(days){
+  const cut = archiveCutoff(days || 180);
+  return {
+    shipments: (DB.shipments || []).filter(s => s.delivered && String(s.delivered).slice(0,10) < cut).length,
+    promotions: (DB.promotions || []).filter(p => p.end && String(p.end).slice(0,10) < cut).length,
+    factoryOrders: (DB.factoryOrders || []).filter(o => o.shippedAt && String(o.shippedAt).slice(0,10) < cut).length,
+    sampling: (DB.sampling || []).filter(s => s.doneAt && String(s.doneAt).slice(0,10) < cut).length
+  };
+}
+function archiveOldData(days){
+  days = days || 180;
+  const c = archiveCount(days);
+  const total = c.shipments + c.promotions + c.factoryOrders + c.sampling;
+  if(!total){ toast('没有超过 ' + days + ' 天且已完成的历史记录，暂不需要清理', 'ok'); return; }
+  confirmModal('将清理 ' + days + ' 天前已完成的记录：已送达货件 ' + c.shipments + ' 票、已结束促销 ' + c.promotions +
+    ' 条、已出货工厂单 ' + c.factoryOrders + ' 条、已完成打样 ' + c.sampling + ' 条，共 ' + total +
+    ' 条。清理前会自动导出完整备份文件，可随时从该文件恢复。确定继续吗？', () => {
+    try{
+      exportBackup(); // 先留一份完整备份
+      const cut = archiveCutoff(days);
+      DB.shipments = DB.shipments.filter(s => !(s.delivered && String(s.delivered).slice(0,10) < cut));
+      DB.promotions = DB.promotions.filter(p => !(p.end && String(p.end).slice(0,10) < cut));
+      DB.factoryOrders = DB.factoryOrders.filter(o => !(o.shippedAt && String(o.shippedAt).slice(0,10) < cut));
+      DB.sampling = DB.sampling.filter(s => !(s.doneAt && String(s.doneAt).slice(0,10) < cut));
+      saveDB(true); render(); openAccountPanel();
+      toast('已归档清理 ' + total + ' 条历史记录，备份文件已下载', 'ok');
+    }catch(e){ console.error(e); toast('清理失败：' + e.message, 'err'); }
+  }, '确认清理');
+}
+/* 一键自检：把最容易出问题的几项做成可读结论，便于定期确认数据健康度 */
+function selfCheck(){
+  const issues = [], notes = [];
+  const pct = storagePct();
+  notes.push('存储占用 ' + pct + '%（' + Math.round(usageChars()/1024) + 'K / 约 4500K）');
+  if(pct >= 90) issues.push('存储空间即将耗尽：请导出备份并归档旧数据，或把本地图片改为链接');
+  else if(pct >= 70) notes.push('存储偏满，建议归档 180 天前的历史记录');
+
+  const imgK = Math.round(imgUsageChars()/1024);
+  notes.push('本地图片占用 ' + imgK + 'K');
+  if(imgK > 1200) issues.push('本地图片超过 1200K：本地存储约 5M 上限，图片过多会挤压业务数据空间');
+
+  const st = dataStats();
+  notes.push('记录数：产品 ' + st.products + ' · 货件 ' + st.shipments + ' · 库存 ' + st.inventory + ' · 促销 ' + st.promotions +
+    ' · 工厂单 ' + st.factoryOrders + ' · 打样 ' + st.sampling + ' · SKU ' + st.skus);
+
+  // 结构完整性
+  const bad = COLLS.filter(k => !Array.isArray(DB[k]));
+  if(bad.length) issues.push('数据结构异常：' + bad.join('、') + ' 不是数组');
+  // 重复 id（同一集合内重复会导致编辑删错行）
+  let dup = 0;
+  COLLS.forEach(k => {
+    const seen = new Set();
+    (DB[k] || []).forEach(r => { if(!r || !r.id) return; if(seen.has(r.id)) dup++; else seen.add(r.id); });
+  });
+  if(dup) issues.push('发现 ' + dup + ' 个重复 id 的记录（建议导出备份后检查）');
+  // 关键字段缺失
+  const noSku = (DB.products || []).filter(p => !p.sku).length;
+  if(noSku) issues.push(noSku + ' 个产品缺少货号');
+  const noShipId = (DB.shipments || []).filter(s => !s.shipmentId).length;
+  if(noShipId) notes.push(noShipId + ' 票货件未填 FBA 货件ID（不影响提醒，仅导入匹配需要）');
+
+  const bak = readSnapshot();
+  notes.push(bak ? '最近快照：' + new Date(bak.at).toLocaleString('zh-CN', { hour12: false }) : '暂无自动快照（数据变动后会自动生成）');
+
+  const msg = (issues.length ? '⚠ 发现 ' + issues.length + ' 项需要处理：\n· ' + issues.join('\n· ') + '\n\n' : '✅ 自检通过，未发现影响稳定运行的问题。\n\n') + notes.join('\n');
+  const el = document.getElementById('selfCheckMsg');
+  if(el){
+    el.style.whiteSpace = 'pre-wrap';
+    el.style.color = issues.length ? '' : 'var(--acc)'; // 通过用主题色，问题用告警色
+    el.textContent = msg;
+  }
+  toast(issues.length ? '自检发现 ' + issues.length + ' 项待处理问题' : '自检通过：数据状态正常', issues.length ? 'err' : 'ok');
+  return { issues, notes, pct, imgK };
+}
+
+/* ================= 数据备份 / 恢复 ================= */
+function exportBackup(){
+  try{
+    if(!DB){ toast('尚未登录', 'err'); return; }
+    snapshot('export', true);
+    const payload = {
+      app: 'amz-workbench', ver: DB_VERSION, user: S.user, exportedAt: nowDT(),
+      db: DB,
+      settings: {
+        remCol: S.remCol, sort: S.sort, cols: S.cols, remOrder: S.remOrder,
+        theme: document.documentElement.getAttribute('data-theme') || 'forest'
+      },
+      account: { name: S.user, email: (getUsers()[S.user] || {}).email || '' }
+    };
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+    const d = new Date(), p2 = n => String(n).padStart(2, '0');
+    a.download = `亚马逊工作台备份_${S.user}_${d.getFullYear()}${p2(d.getMonth()+1)}${p2(d.getDate())}_${p2(d.getHours())}${p2(d.getMinutes())}.json`;
+    a.click();
+    setTimeout(() => { try { URL.revokeObjectURL(a.href); } catch(e){} }, 5000);
+    toast('备份已导出（含全部业务数据与个人设置）', 'ok');
+  }catch(e){ console.error(e); toast('导出失败：' + e.message, 'err'); }
+}
+function importBackupPick(){
+  const inp = document.getElementById('bakFileInput');
+  if(!inp) return;
+  inp.value = ''; inp.click();
+}
+function onBackupFile(input){
+  const f = input.files && input.files[0]; if(!f) return;
+  const fr = new FileReader();
+  fr.onload = () => {
+    let obj = null;
+    try { obj = JSON.parse(String(fr.result || '')); } catch(e){ toast('文件不是有效的 JSON 备份', 'err'); return; }
+    if(!obj || !obj.db || !Array.isArray(obj.db.products)){ toast('备份文件格式不正确（缺少业务数据）', 'err'); return; }
+    confirmModal('导入将覆盖当前账号的全部业务数据（当前数据会先自动存一份快照）。确定继续吗？', () => {
+      try{
+        snapshot('before-import', true);
+        DB = normalizeDB(obj.db);
+        saveDB();
+        if(obj.settings){
+          S.remCol = obj.settings.remCol || {}; S.sort = obj.settings.sort || {};
+          S.cols = obj.settings.cols || {}; S.remOrder = obj.settings.remOrder || null;
+          saveRemCol(); saveSort(); saveCols(); saveRemOrder();
+          if(obj.settings.theme) applyThemeQuiet(obj.settings.theme);
+        }
+        render();
+        toast('备份已导入：' + DB.products.length + ' 个产品 / ' + (DB.shipments || []).length + ' 票货件', 'ok');
+      }catch(e){ console.error(e); toast('导入失败：' + e.message, 'err'); }
+    });
+  };
+  fr.onerror = () => toast('文件读取失败，请重试', 'err');
+  fr.readAsText(f);
+}
+function restoreSnapshot(){
+  const bak = readSnapshot();
+  if(!bak){ toast('暂无可用自动快照（数据变动后会自动生成）', 'err'); return; }
+  const t = new Date(bak.at || 0), p2 = n => String(n).padStart(2, '0');
+  const when = t.getFullYear() + '-' + p2(t.getMonth()+1) + '-' + p2(t.getDate()) + ' ' + p2(t.getHours()) + ':' + p2(t.getMinutes());
+  confirmModal('将恢复到 ' + when + ' 的自动快照，当前数据会被覆盖（覆盖前会再存一份快照）。确定继续吗？', () => {
+    try{
+      const parsed = JSON.parse(bak.json);
+      snapshot('before-restore', true);
+      DB = normalizeDB(parsed);
+      saveDB(); render();
+      toast('已恢复到 ' + when + ' 的数据', 'ok');
+    }catch(e){ console.error(e); toast('快照恢复失败：' + e.message, 'err'); }
+  });
+}
+function accErr(id, msg){ const el = document.getElementById(id); if(el) el.textContent = msg || ''; }
+function saveEmail(){
+  accErr('accErr', '');
+  const em = (document.getElementById('accEmail').value || '').trim().toLowerCase();
+  if(!em){ accErr('accErr', '请输入邮箱地址'); return; }
+  if(!validEmail(em)){ accErr('accErr', '邮箱格式不正确，请检查'); return; }
+  const owner = findUserByEmail(em);
+  if(owner && owner !== S.user){ accErr('accErr', '该邮箱已被账号「' + owner + '」绑定，请更换'); return; }
+  const users = getUsers();
+  if(!users[S.user]) return;
+  users[S.user].email = em; saveUsers(users);
+  toast('邮箱已绑定：' + em, 'ok');
+  openAccountPanel();
+}
+function savePassword(){
+  accErr('accPwErr', '');
+  const oldPw = document.getElementById('accOld').value || '';
+  const nw = document.getElementById('accNew').value || '';
+  const nw2 = document.getElementById('accNew2').value || '';
+  const u = getUsers()[S.user];
+  if(!u){ toast('账号状态异常，请重新登录', 'err'); return; }
+  if(!oldPw){ accErr('accPwErr', '请输入当前密码'); return; }
+  if(hashPwd(oldPw, u.salt) !== u.hash){ accErr('accPwErr', '当前密码不正确'); return; }
+  if(!nw){ accErr('accPwErr', '请输入新密码'); return; }
+  if(nw.length < 4){ accErr('accPwErr', '密码至少 4 位'); return; }
+  if(nw !== nw2){ accErr('accPwErr', '两次输入的新密码不一致'); return; }
+  if(nw === oldPw){ accErr('accPwErr', '新密码不能与当前密码相同'); return; }
+  setPassword(S.user, nw);
+  toast('密码已修改，下次登录请使用新密码', 'ok');
+  openAccountPanel();
+}
+
+/* ================= 启动 ================= */
+(function boot(){
+  try{
+    const sess = safeGet(SESSION_KEY);
+    if(sess && getUsers()[sess]) enterUser(sess, { silent: true });
+    else { showLogin(); return; }
+    const _h = location.hash.slice(1);
+    if(NAV.some(n => n.key === _h)) S.page = _h;
+    render();
+  }catch(e){
+    console.error('[boot]', e);
+    try { showLogin(); } catch(_){}
+    setTimeout(() => { try { toast('初始化异常：' + e.message + '，请导出备份后反馈', 'err'); } catch(_){} }, 300);
+  }
+})();
+window.addEventListener('hashchange', () => { if(!S.user) return; const h = location.hash.slice(1); if(NAV.some(n => n.key === h) && h !== S.page){ S.page = h; closeDrawer(); render(); } });
+/* 回收站到期巡检：应用长时间开着也能按期彻底删除（每 30 分钟一次） */
+setInterval(() => {
+  if(!DB) return;
+  try {
+    if(purgeTrash(true)){ saveDB(); if(S.page === 'trash') render(); }
+  } catch(e){ console.error('[trash]', e); }
+}, 30 * 60 * 1000);
+/* Esc 关闭弹窗（桌面端习惯操作） */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    const root = document.getElementById('modalRoot');
+    if(root && root.innerHTML) closeModal();
+  }
+});
+/* 跨天自动刷新提醒：网页长期挂着也能看到当天提醒，不打断正在填写的内容 */
+let lastDaySeen = today();
+setInterval(() => {
+  try{
+    if(!S.user || !DB) return;
+    const d = today();
+    if(d === lastDaySeen) return;
+    lastDaySeen = d;
+    const ae = document.activeElement;
+    const typing = ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName || '');
+    if(document.querySelector('#modalRoot .overlay') || typing) return; // 正在编辑时不打断
+    render();
+    toast('已跨天，提醒已按 ' + d + ' 重新计算', 'ok');
+  }catch(e){ console.error('[dayRollover]', e); }
+}, 60000);
+/* 多标签页同步：其他标签页保存后自动同步，避免互相覆盖 */
+window.addEventListener('storage', ev => {
+  try{
+    if(!S.user || !ev.key) return;
+    if(ev.key !== ukey('workbench')) return;
+    if(document.querySelector('#modalRoot .overlay')){
+      toast('其他标签页已更新数据，请先关闭弹窗并刷新本页，避免覆盖', 'err');
+      return;
+    }
+    loadDB({ persist: false }); // 只读同步，不回写，避免两个标签页互相触发写入
+    render();
+    toast('已同步其他标签页的数据更新', 'ok');
+  }catch(e){ console.error('[storage]', e); }
+});
+/* 保存失败时离开页面给出提示，避免静默丢数据 */
+window.addEventListener('beforeunload', e => {
+  if(!saveFailed) return;
+  e.preventDefault();
+  e.returnValue = '数据尚未成功保存到本地，确定离开吗？';
+  return e.returnValue;
+});
+/* 未捕获异常集中记录，便于排查；不打断用户操作 */
+let _errShownAt = 0;
+window.addEventListener('error', ev => {
+  console.error('[global]', ev.error || ev.message);
+  const now = Date.now();
+  if(now - _errShownAt < 5000) return;
+  _errShownAt = now;
+  try { toast('操作出现异常，已记录。若界面异常请导出备份后刷新', 'err'); } catch(e){}
+});
+window.addEventListener('unhandledrejection', ev => { console.error('[promise]', ev.reason); });
+/* 跨断点（桌面 ↔ 手机）时重绘一次：手机卡片布局的字段标签只在窄屏注入 */
+let _wasMobile = window.innerWidth <= 900;
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 900) closeDrawer();
+  const m = window.innerWidth <= 900;
+  if(m !== _wasMobile){ _wasMobile = m; try { if(S.user && DB) render(); } catch(e){ console.error('[resize]', e); } }
+});
+</script>
+</body>
+</html>
